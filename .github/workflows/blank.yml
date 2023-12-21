@@ -18,7 +18,6 @@ jobs:
   chatgpt-review:
     name: ChatGPT Review
     runs-on: ubuntu-latest
-    if: ${{ github.event.action == 'opened' }}
     steps:
     - uses: lcxznpy/ChatGPT-Reviewer@my_branch
       name: ChatGPT Review
