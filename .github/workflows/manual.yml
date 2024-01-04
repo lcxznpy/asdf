@@ -35,7 +35,9 @@ jobs:
     - name: Send greeting
       run: |
         touch 1.txt
-        echo "Hello ${{ inputs.name }}"
+        echo "Hello ${{ inputs.name }}" > 1.txt
+        git config --global user.name "qaq"
+        git config --global user.email "qwer@qq.com"
         git add .
         git commit -m "create 1.txt"
         git push origin gitops
