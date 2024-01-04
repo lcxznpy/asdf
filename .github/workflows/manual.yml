@@ -30,13 +30,13 @@ jobs:
     # Runs a single command using the runners shell
     - name: checkout repository
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
     - name: Send greeting
       run: |
         touch 1.txt
         echo "Hello ${{ inputs.name }}"
-        git config --global user.email "444346216@qq.com"
-        git config --global user.name "lc"
         git add .
         git commit -m "create 1.txt"
-        git push
+        git push origin 
         
