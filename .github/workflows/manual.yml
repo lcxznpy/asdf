@@ -70,6 +70,7 @@ jobs:
       run: |
         touch 1.txt
         echo "Hello ${{ inputs.name }}" > 1.txt
+        git pull origin main
         git add .
         git commit -m "create 1.txt"
     - name: Push changes
