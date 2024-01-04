@@ -61,6 +61,11 @@ jobs:
         else
           git checkout -b ${{ inputs.branch }}
         fi
+    - name: checkout folder exist
+      run: |
+        if [! -d ${{ inputs.directory }} ];then
+          mkdir -p ${{ inputs.directory }}
+        fi
     - name: Send greeting
       run: |
         touch 1.txt
@@ -72,5 +77,5 @@ jobs:
       with:
         github_token: ${{ secrets.TOKEN_ACTION }}
         branch: ${{ inputs.branch }}
-        directory: ./unit/${{ inputs.directory }}
+        directory: ./${{ inputs.directory }}
         
