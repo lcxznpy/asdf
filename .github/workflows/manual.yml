@@ -51,26 +51,24 @@ jobs:
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
-    # - name: checkout branch exist
-    #   run: |
-        # git config --global user.name "qaq"
-        # git config --global user.email "qwer@qq.com"
-    #     if git rev-parse --verify ${{ inputs.branch }};then
-    #       echo "branch exist"
-    #       git checkout ${{ inputs.branch }}
-    #     else
-    #       git checkout -b ${{ inputs.branch }}
-    #     fi
-    # - name: checkout folder exist
-    #   run: |
-    #     if [! -d ${{ inputs.directory }} ];then
-    #       mkdir -p ${{ inputs.directory }}
-    #     fi
-    #     git branch -vv
-    - name: Save file
+    - name: checkout branch exist
       run: |
         git config --global user.name "qaq"
         git config --global user.email "qwer@qq.com"
+        if git rev-parse --verify ${{ inputs.branch }};then
+          echo "branch exist"
+          git checkout ${{ inputs.branch }}
+        else
+          git checkout -b ${{ inputs.branch }}
+        fi
+    - name: checkout folder exist
+      run: |
+        if [! -d ${{ inputs.directory }} ];then
+          mkdir -p ${{ inputs.directory }}
+        fi
+        git branch -vv
+    - name: Save file
+      run: |
         touch 1.txt
         echo "Hello ${{ inputs.name }}" > 1.txt
         git add .
