@@ -76,5 +76,6 @@ jobs:
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.TOKEN_ACTION }}
+        repository: lcxznpy/asdf
         branch: ${{ inputs.branch }}
         
