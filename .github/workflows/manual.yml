@@ -38,5 +38,5 @@ jobs:
         echo "Hello ${{ inputs.name }}"
         git add .
         git commit -m "create 1.txt"
-        git push origin 
+        git push origin gitops
         
