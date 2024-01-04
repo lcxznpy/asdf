@@ -10,7 +10,7 @@ on:
     inputs:
       name:
         # Friendly description to be shown in the UI instead of 'name'
-        description: 'Person to greet'
+        description: 'name'
         # Default value if no value is explicitly provided
         default: 'World'
         # Input has to be provided for the workflow to run
@@ -19,7 +19,7 @@ on:
         type: string
       branch:
           # Friendly description to be shown in the UI instead of 'name'
-          description: 'Person to greet'
+          description: 'branch'
           # Default value if no value is explicitly provided
           default: 'main'
           # Input has to be provided for the workflow to run
@@ -28,7 +28,7 @@ on:
           type: string
       directory:
           # Friendly description to be shown in the UI instead of 'name'
-          description: 'Person to greet'
+          description: 'directory'
           # Default value if no value is explicitly provided
           default: 'test'
           # Input has to be provided for the workflow to run
