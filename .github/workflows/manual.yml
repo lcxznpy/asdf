@@ -51,30 +51,30 @@ jobs:
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
-    - name: checkout branch exist
-      run: |
-        git config --global user.name "qaq"
-        git config --global user.email "qwer@qq.com"
-        if git rev-parse --verify ${{ inputs.branch }};then
-          echo "branch exist"
-          git checkout ${{ inputs.branch }}
-        else
-          git checkout -b ${{ inputs.branch }}
-        fi
-    - name: checkout folder exist
-      run: |
-        if [! -d ${{ inputs.directory }} ];then
-          mkdir -p ${{ inputs.directory }}
-        fi
-        git branch -vv
-    - name: Send greeting
+    # - name: checkout branch exist
+    #   run: |
+    #     git config --global user.name "qaq"
+    #     git config --global user.email "qwer@qq.com"
+    #     if git rev-parse --verify ${{ inputs.branch }};then
+    #       echo "branch exist"
+    #       git checkout ${{ inputs.branch }}
+    #     else
+    #       git checkout -b ${{ inputs.branch }}
+    #     fi
+    # - name: checkout folder exist
+    #   run: |
+    #     if [! -d ${{ inputs.directory }} ];then
+    #       mkdir -p ${{ inputs.directory }}
+    #     fi
+    #     git branch -vv
+    - name: Save file
       run: |
         touch 1.txt
         echo "Hello ${{ inputs.name }}" > 1.txt
         git add .
         git commit -m "create 1.txt"
-        git pull --rebase
-        git branch -vv
+        # git pull --rebase
+        # git branch -vv
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
