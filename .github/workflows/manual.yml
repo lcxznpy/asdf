@@ -17,6 +17,25 @@ on:
         required: true
         # The data type of the input
         type: string
+      branch:
+          # Friendly description to be shown in the UI instead of 'name'
+          description: 'Person to greet'
+          # Default value if no value is explicitly provided
+          default: 'main'
+          # Input has to be provided for the workflow to run
+          required: true
+          # The data type of the input
+          type: string
+      directory:
+          # Friendly description to be shown in the UI instead of 'name'
+          description: 'Person to greet'
+          # Default value if no value is explicitly provided
+          default: 'test'
+          # Input has to be provided for the workflow to run
+          required: true
+          # The data type of the input
+          type: string
+
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -32,14 +51,26 @@ jobs:
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
-    - name: Send greeting
+    - name: checkout branch exist
       run: |
         git config --global user.name "qaq"
         git config --global user.email "qwer@qq.com"
-        git checkout gitops
+        if git rev-parse --verify ${{ inputs.branch }};then
+          echo "branch exist"
+          git checkout ${{ inputs.branch }}
+        else
+          git checkout -b ${{ inputs.branch }}
+        fi
+    - name: Send greeting
+      run: |
         touch 1.txt
         echo "Hello ${{ inputs.name }}" > 1.txt
         git add .
         git commit -m "create 1.txt"
-        git push origin gitops
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.TOKEN_ACTION }}
+        branch: ${{ inputs.branch }}
+        directory: ./unit/${{ inputs.directory }}
         
