@@ -73,6 +73,7 @@ jobs:
         echo "Hello ${{ inputs.name }}" > 1.txt
         git add .
         git commit -m "create 1.txt"
+        git pull --rebase
         git branch -vv
     - name: Push changes
       uses: ad-m/github-push-action@master
