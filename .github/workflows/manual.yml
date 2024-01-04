@@ -53,8 +53,8 @@ jobs:
         fetch-depth: 0
     # - name: checkout branch exist
     #   run: |
-    #     git config --global user.name "qaq"
-    #     git config --global user.email "qwer@qq.com"
+        # git config --global user.name "qaq"
+        # git config --global user.email "qwer@qq.com"
     #     if git rev-parse --verify ${{ inputs.branch }};then
     #       echo "branch exist"
     #       git checkout ${{ inputs.branch }}
@@ -69,6 +69,8 @@ jobs:
     #     git branch -vv
     - name: Save file
       run: |
+        git config --global user.name "qaq"
+        git config --global user.email "qwer@qq.com"
         touch 1.txt
         echo "Hello ${{ inputs.name }}" > 1.txt
         git add .
