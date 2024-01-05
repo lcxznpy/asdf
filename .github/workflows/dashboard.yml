@@ -58,6 +58,8 @@ jobs:
         sha: '${{ github.event.pull_request.head.sha }}'
     - name: checkout folder exist
       run: |
+        ls -la
+        tree
         git config --global user.name "github-action-robot"
         git config --global user.email "github-action-robot@github.com"
         git fetch
