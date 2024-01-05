@@ -70,6 +70,7 @@ jobs:
         sha: '${{ github.event.pull_request.head.sha }}'
     - name: checkout folder exist
       run: |
+        git fectch
         git checkout ${{ inputs.branch}}
         if [! -d ${{ inputs.directory }} ];then
           mkdir -p ${{ inputs.directory }}
