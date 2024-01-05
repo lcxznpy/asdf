@@ -72,7 +72,7 @@ jobs:
       run: |
         git fetch
         git checkout ${{ inputs.branch}}
-        if [! -d ${{ inputs.directory }} ];then
+        if [ ! -d ${{ inputs.directory }} ]; then
           mkdir -p ${{ inputs.directory }}
         fi
         cd ${{ inputs.directory }}
