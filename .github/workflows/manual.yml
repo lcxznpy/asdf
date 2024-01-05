@@ -78,7 +78,7 @@ jobs:
           mkdir -p ${{ inputs.directory }}
         fi
         ls -la
-        cd ./${{ inputs.directory }}
+        cd $GITHUB_WORKSPACE/${{ inputs.directory }}
         git branch -vv
     - name: Save file
       run: |
