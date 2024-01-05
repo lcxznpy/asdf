@@ -84,6 +84,7 @@ jobs:
         git branch -vv
     - name: Save file
       run: |
+        git branch -vv
         ls
         cd ./${{ inputs.directory }}
         rm -rf 2.txt
