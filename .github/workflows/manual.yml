@@ -79,11 +79,14 @@ jobs:
         fi
         ls -la
         cd $GITHUB_WORKSPACE/${{ inputs.directory }}
+        pwd
+        ls
         git branch -vv
     - name: Save file
       run: |
-        pwd
-        rm -rf 1.txt
+        ls
+        cd ./${{ inputs.directory }}
+        rm -rf 2.txt
         echo "${{ github.event.pull_request.head.sha }} ${{ inputs.name }}" > 2.txt
         git add .
         git commit -m "create 2.txt"
