@@ -53,8 +53,8 @@ jobs:
         fetch-depth: 0
     # - name: checkout branch exist
     #   run: |
-    #     git config --global user.name "qaq"
-    #     git config --global user.email "qwer@qq.com"
+        # git config --global user.name "qaq"
+        # git config --global user.email "qwer@qq.com"
     #     if git rev-parse --verify ${{ inputs.branch }};then
     #       echo "branch exist"
     #       git checkout ${{ inputs.branch }}
@@ -70,6 +70,8 @@ jobs:
         sha: '${{ github.event.pull_request.head.sha }}'
     - name: checkout folder exist
       run: |
+        git config --global user.name "github-action-robot"
+        git config --global user.email "github-action-robot@github.com"
         git fetch
         git checkout ${{ inputs.branch}}
         if [ ! -d ${{ inputs.directory }} ]; then
