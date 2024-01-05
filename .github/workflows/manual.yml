@@ -77,7 +77,8 @@ jobs:
         if [ ! -d ${{ inputs.directory }} ]; then
           mkdir -p ${{ inputs.directory }}
         fi
-        cd ${{ inputs.directory }}
+        ls -la
+        cd ./${{ inputs.directory }}
         git branch -vv
     - name: Save file
       run: |
