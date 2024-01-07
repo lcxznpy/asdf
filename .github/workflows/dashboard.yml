@@ -5,50 +5,95 @@ on:
     # Inputs the workflow accepts.
     inputs:
       matrixone-branch:
-          # Friendly description to be shown in the UI instead of 'name'
           description: 'matrixone-branch'
-          # Default value if no value is explicitly provided
           default: 'main'
-          # Input has to be provided for the workflow to run
           required: true
-          # The data type of the input
           type: string
       gitops-branch:
-          # Friendly description to be shown in the UI instead of 'name'
           description: 'gitops-branch'
-          # Default value if no value is explicitly provided
           default: 'main'
-          # Input has to be provided for the workflow to run
           required: true
-          # The data type of the input
           type: string
       directory:
-          # Friendly description to be shown in the UI instead of 'name'
           description: 'directory'
-          # Default value if no value is explicitly provided
           default: 'test'
-          # Input has to be provided for the workflow to run
           required: true
-          # The data type of the input
           type: string
 
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "greet"
-  greet:
-    # The type of runner that the job will run on
+  Get-Json-File:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Runs a single command using the runners shell
     - name: checkout repository
       uses: actions/checkout@v4
       with:
         repository: lcxznpy/matrixone
         ref: ${{ inputs.matrixone-branch }}
         fetch-depth: 0
+    # - name: create branch 
+    #   uses: peterjgrainger/action-create-branch@v2.2.0
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.TOKEN_ACTION }}
+    #   with:
+    #     branch: ${{ inputs.gitops-branch}}
+    #     sha: '${{ github.event.pull_request.head.sha }}'
+    # - name: checkout folder exist
+    #   run: |
+    #     ls -la
+    #     git config --global user.name "github-action-robot"
+    #     git config --global user.email "github-action-robot@github.com"
+    #     git fetch
+    #     git checkout ${{ inputs.gitops-branch}}
+    #     if [ ! -d ${{ inputs.directory }} ]; then
+    #       mkdir -p ${{ inputs.directory }}
+    #     fi
+    #     ls -la
+    #     cd $GITHUB_WORKSPACE/${{ inputs.directory }}
+    #     pwd
+    #     ls
+    #     git branch -vv
+    - name: Save file
+      run: |
+        # git branch -vv
+        # ls
+        # cd ./${{ inputs.directory }}
+        # curl -s -H "Authorization: Bearer eyJrIjoiZEg2UXRZdVAzNXNVNmFSRnZSZDlDZFB3dGZDOFA0RDUiLCJuIjoidGVzdCIsImlkIjoxfQ==" http://47.102.119.88/api/search\?type\=dash-db | jq -r '.[].uid' > 1.txt
+        curl -s -H "Authorization: Bearer eyJrIjoiZEg2UXRZdVAzNXNVNmFSRnZSZDlDZFB3dGZDOFA0RDUiLCJuIjoidGVzdCIsImlkIjoxfQ==" http://47.102.119.88/api/dashboards/uid/dS3pzTKIk | jq .dashboard > ./dashboard/dS3pzTKIk.json
+        
+        # echo "${{ github.event.pull_request.head.sha }} ${{ inputs.name }}" > 2.txt
+        # git add .
+        # git commit -m "create dashboard json"
+        # git pull --rebase
+        # git branch -vv
+    - name: upload json artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: dashboard
+        path: |
+          ./dashboard/*
+    
+    # - name: Create Pull Request
+    #   uses: peter-evans/create-pull-request@v5
+    #   with:
+    #       token: ${{ secrets.TOKEN_ACTION }}
+    #       commit-message: Update dependencies
+    #       branch: main
+  Create-branch-pr:
+    needs: Get-Json-File
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout repository
+      uses: actions/checkout@v4
+    - name: Download math result for job 2
+      uses: actions/download-artifact@v3
+      with:
+        name: dashboard
+    - name: ls dashboard file
+      run: |
+        pwd
+        ls -la
+        ls -la ./dashboard
     - name: create branch 
       uses: peterjgrainger/action-create-branch@v2.2.0
       env:
@@ -67,27 +112,15 @@ jobs:
           mkdir -p ${{ inputs.directory }}
         fi
         ls -la
-        cd $GITHUB_WORKSPACE/${{ inputs.directory }}
+        mv ./dashboard $GITHUB_WORKSPACE/${{ inputs.directory }}/dashboard
+        cd $GITHUB_WORKSPACE/${{ inputs.directory }}/dashboard
         pwd
         ls
         git branch -vv
-    - name: Save file
-      run: |
-        git branch -vv
-        ls
-        cd ./${{ inputs.directory }}
-        # curl -s -H "Authorization: Bearer eyJrIjoiZEg2UXRZdVAzNXNVNmFSRnZSZDlDZFB3dGZDOFA0RDUiLCJuIjoidGVzdCIsImlkIjoxfQ==" http://47.102.119.88/api/search\?type\=dash-db | jq -r '.[].uid' > 1.txt
-        curl -s -H "Authorization: Bearer eyJrIjoiZEg2UXRZdVAzNXNVNmFSRnZSZDlDZFB3dGZDOFA0RDUiLCJuIjoidGVzdCIsImlkIjoxfQ==" http://47.102.119.88/api/dashboards/uid/dS3pzTKIk | jq .dashboard > dashboard.json
-        
-        # echo "${{ github.event.pull_request.head.sha }} ${{ inputs.name }}" > 2.txt
-        git add .
-        git commit -m "create dashboard json"
-        # git pull --rebase
-        # git branch -vv
-    
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v5
       with:
           token: ${{ secrets.TOKEN_ACTION }}
           commit-message: Update dependencies
           branch: main
+  
