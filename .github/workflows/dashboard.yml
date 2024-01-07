@@ -59,6 +59,7 @@ jobs:
         # ls
         # cd ./${{ inputs.directory }}
         # curl -s -H "Authorization: Bearer eyJrIjoiZEg2UXRZdVAzNXNVNmFSRnZSZDlDZFB3dGZDOFA0RDUiLCJuIjoidGVzdCIsImlkIjoxfQ==" http://47.102.119.88/api/search\?type\=dash-db | jq -r '.[].uid' > 1.txt
+        mkdir dashboard
         curl -s -H "Authorization: Bearer eyJrIjoiZEg2UXRZdVAzNXNVNmFSRnZSZDlDZFB3dGZDOFA0RDUiLCJuIjoidGVzdCIsImlkIjoxfQ==" http://47.102.119.88/api/dashboards/uid/dS3pzTKIk | jq .dashboard > ./dashboard/dS3pzTKIk.json
         
         # echo "${{ github.event.pull_request.head.sha }} ${{ inputs.name }}" > 2.txt
