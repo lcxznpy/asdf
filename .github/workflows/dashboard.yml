@@ -118,6 +118,9 @@ jobs:
         cd $GITHUB_WORKSPACE/${{ inputs.directory }}/dashboard
         pwd
         ls
+        git add .
+        git commit -m "update dashboard"
+        git push origin ${{ inputs.gitops-branch}}
         git branch -vv
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v5
