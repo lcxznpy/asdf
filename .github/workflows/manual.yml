@@ -100,5 +100,6 @@ jobs:
       with:
           token: ${{ secrets.TOKEN_ACTION }}
           commit-message: Update dependencies
-          branch: main
+          base: main
+          branch: ${{ inputs.branch}}
         
