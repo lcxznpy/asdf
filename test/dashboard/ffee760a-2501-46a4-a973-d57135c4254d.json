@@ -1,61 +1,28 @@
 {
   "annotations": {
-    "list": [
-      {
-        "builtIn": 1,
-        "datasource": "-- Grafana --",
-        "enable": true,
-        "hide": true,
-        "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations & Alerts",
-        "target": {
-          "limit": 100,
-          "matchAny": false,
-          "tags": [],
-          "type": "dashboard"
-        },
-        "type": "dashboard"
-      }
-    ]
+    "list": null
   },
   "editable": true,
-  "fiscalYearStartMonth": 0,
-  "graphTooltip": 1,
+  "hideControls": false,
   "id": 5,
-  "iteration": 1704442393833,
-  "links": [],
-  "liveNow": false,
-  "panels": [
+  "links": null,
+  "originalTitle": "",
+  "panels": null,
+  "refresh": "30s",
+  "rows": [
     {
-      "collapsed": true,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 0
-      },
-      "id": 431,
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
       "panels": [
         {
           "aliasColors": {},
           "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VETzmoKIz"
-          },
+          "datasource": "Prometheus",
           "editable": false,
           "error": false,
           "fill": 1,
-          "fillGradient": 0,
-          "gridPos": {
-            "h": 7,
-            "w": 12,
-            "x": 0,
-            "y": 1
-          },
-          "hiddenSeries": false,
+          "gridPos": {},
           "id": 415,
           "isNew": false,
           "legend": {
@@ -74,16 +41,11 @@
           "lines": true,
           "linewidth": 1,
           "nullPointMode": "null as zero",
-          "options": {
-            "alertThreshold": true
-          },
           "percentage": false,
-          "pluginVersion": "8.3.3",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
+          "span": 6,
           "stack": false,
           "steppedLine": false,
           "targets": [
@@ -91,43 +53,40 @@
               "expr": "sum(rate(mo_fs_read_total{type=\"s3\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
               "format": "time_series",
               "legendFormat": "s3",
-              "refId": "A"
+              "refId": ""
             },
             {
               "expr": "sum(rate(mo_fs_read_total{type=\"hit-mem\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
               "format": "time_series",
               "legendFormat": "hit-mem",
-              "refId": "B"
+              "refId": ""
             },
             {
               "expr": "sum(rate(mo_fs_read_total{type=\"hit-disk\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
               "format": "time_series",
               "legendFormat": "hit-dist",
-              "refId": "C"
+              "refId": ""
             },
             {
               "expr": "sum(rate(mo_fs_read_total{type=\"hit-remote\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
               "format": "time_series",
               "legendFormat": "hit-remote",
-              "refId": "D"
+              "refId": ""
             }
           ],
-          "thresholds": [],
-          "timeRegions": [],
           "title": "S3 Read requests",
           "tooltip": {
             "shared": true,
             "sort": 2,
             "value_type": ""
           },
+          "transparent": false,
           "type": "graph",
           "x-axis": true,
           "xaxis": {
             "format": "time",
             "logBase": 1,
-            "mode": "time",
-            "show": true,
-            "values": []
+            "show": true
           },
           "y-axis": true,
           "yaxes": [
@@ -141,31 +100,16 @@
               "logBase": 1,
               "show": false
             }
-          ],
-          "yaxis": {
-            "align": false
-          }
+          ]
         },
         {
           "aliasColors": {},
           "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VETzmoKIz"
-          },
+          "datasource": "Prometheus",
           "editable": false,
           "error": false,
           "fill": 1,
-          "fillGradient": 0,
-          "gridPos": {
-            "h": 7,
-            "w": 12,
-            "x": 12,
-            "y": 1
-          },
-          "hiddenSeries": false,
+          "gridPos": {},
           "id": 416,
           "isNew": false,
           "legend": {
@@ -184,16 +128,11 @@
           "lines": true,
           "linewidth": 1,
           "nullPointMode": "null as zero",
-          "options": {
-            "alertThreshold": true
-          },
           "percentage": false,
-          "pluginVersion": "8.3.3",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
+          "span": 6,
           "stack": false,
           "steppedLine": false,
           "targets": [
@@ -201,31 +140,28 @@
               "expr": "sum(rate(mo_fs_write_total{type=\"s3\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
               "format": "time_series",
               "legendFormat": "s3",
-              "refId": "A"
+              "refId": ""
             },
             {
               "expr": "sum(rate(mo_fs_write_total{type=\"local\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
               "format": "time_series",
               "legendFormat": "local",
-              "refId": "B"
+              "refId": ""
             }
           ],
-          "thresholds": [],
-          "timeRegions": [],
           "title": "S3 Write requests",
           "tooltip": {
             "shared": true,
             "sort": 2,
             "value_type": ""
           },
+          "transparent": false,
           "type": "graph",
           "x-axis": true,
           "xaxis": {
             "format": "time",
             "logBase": 1,
-            "mode": "time",
-            "show": true,
-            "values": []
+            "show": true
           },
           "y-axis": true,
           "yaxes": [
@@ -239,45 +175,26 @@
               "logBase": 1,
               "show": false
             }
-          ],
-          "yaxis": {
-            "align": false
-          }
+          ]
         }
       ],
-      "title": "FileService Overview",
-      "type": "row"
+      "repeat": null,
+      "showTitle": true,
+      "title": "FileService Overview"
     },
     {
-      "collapsed": true,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 1
-      },
-      "id": 432,
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
       "panels": [
         {
           "aliasColors": {},
           "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VETzmoKIz"
-          },
+          "datasource": "Prometheus",
           "editable": false,
           "error": false,
           "fill": 1,
-          "fillGradient": 0,
-          "gridPos": {
-            "h": 7,
-            "w": 6,
-            "x": 0,
-            "y": 9
-          },
-          "hiddenSeries": false,
+          "gridPos": {},
           "id": 417,
           "isNew": false,
           "legend": {
@@ -296,16 +213,11 @@
           "lines": true,
           "linewidth": 1,
           "nullPointMode": "null as zero",
-          "options": {
-            "alertThreshold": true
-          },
           "percentage": false,
-          "pluginVersion": "8.3.3",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
+          "span": 3,
           "stack": false,
           "steppedLine": false,
           "targets": [
@@ -313,55 +225,52 @@
               "expr": "histogram_quantile(0.500000, sum(rate(mo_fs_s3_io_duration_seconds_bucket{type=\"read\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "s3-read",
-              "refId": "A"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.500000, sum(rate(mo_fs_s3_io_duration_seconds_bucket{type=\"write\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "s3-write",
-              "refId": "B"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.500000, sum(rate(mo_fs_local_io_duration_seconds_bucket{type=\"read\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "local-read",
-              "refId": "C"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.500000, sum(rate(mo_fs_local_io_duration_seconds_bucket{type=\"write\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "local-write",
-              "refId": "D"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.500000, sum(rate(mo_fs_s3_io_duration_seconds_bucket{type=\"list\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "s3-list",
-              "refId": "E"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.500000, sum(rate(mo_fs_s3_io_duration_seconds_bucket{type=\"stat\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "s3-stat",
-              "refId": "F"
+              "refId": ""
             }
           ],
-          "thresholds": [],
-          "timeRegions": [],
           "title": "P50.000000 time",
           "tooltip": {
             "shared": true,
             "sort": 2,
             "value_type": ""
           },
+          "transparent": false,
           "type": "graph",
           "x-axis": true,
           "xaxis": {
             "format": "time",
             "logBase": 1,
-            "mode": "time",
-            "show": true,
-            "values": []
+            "show": true
           },
           "y-axis": true,
           "yaxes": [
@@ -376,31 +285,16 @@
               "logBase": 1,
               "show": false
             }
-          ],
-          "yaxis": {
-            "align": false
-          }
+          ]
         },
         {
           "aliasColors": {},
           "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VETzmoKIz"
-          },
+          "datasource": "Prometheus",
           "editable": false,
           "error": false,
           "fill": 1,
-          "fillGradient": 0,
-          "gridPos": {
-            "h": 7,
-            "w": 6,
-            "x": 6,
-            "y": 9
-          },
-          "hiddenSeries": false,
+          "gridPos": {},
           "id": 418,
           "isNew": false,
           "legend": {
@@ -419,16 +313,11 @@
           "lines": true,
           "linewidth": 1,
           "nullPointMode": "null as zero",
-          "options": {
-            "alertThreshold": true
-          },
           "percentage": false,
-          "pluginVersion": "8.3.3",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
+          "span": 3,
           "stack": false,
           "steppedLine": false,
           "targets": [
@@ -436,55 +325,52 @@
               "expr": "histogram_quantile(0.800000, sum(rate(mo_fs_s3_io_duration_seconds_bucket{type=\"read\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "s3-read",
-              "refId": "A"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.800000, sum(rate(mo_fs_s3_io_duration_seconds_bucket{type=\"write\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "s3-write",
-              "refId": "B"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.800000, sum(rate(mo_fs_local_io_duration_seconds_bucket{type=\"read\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "local-read",
-              "refId": "C"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.800000, sum(rate(mo_fs_local_io_duration_seconds_bucket{type=\"write\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "local-write",
-              "refId": "D"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.800000, sum(rate(mo_fs_s3_io_duration_seconds_bucket{type=\"list\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "s3-list",
-              "refId": "E"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.800000, sum(rate(mo_fs_s3_io_duration_seconds_bucket{type=\"stat\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "s3-stat",
-              "refId": "F"
+              "refId": ""
             }
           ],
-          "thresholds": [],
-          "timeRegions": [],
           "title": "P80.000000 time",
           "tooltip": {
             "shared": true,
             "sort": 2,
             "value_type": ""
           },
+          "transparent": false,
           "type": "graph",
           "x-axis": true,
           "xaxis": {
             "format": "time",
             "logBase": 1,
-            "mode": "time",
-            "show": true,
-            "values": []
+            "show": true
           },
           "y-axis": true,
           "yaxes": [
@@ -499,31 +385,16 @@
               "logBase": 1,
               "show": false
             }
-          ],
-          "yaxis": {
-            "align": false
-          }
+          ]
         },
         {
           "aliasColors": {},
           "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VETzmoKIz"
-          },
+          "datasource": "Prometheus",
           "editable": false,
           "error": false,
           "fill": 1,
-          "fillGradient": 0,
-          "gridPos": {
-            "h": 7,
-            "w": 6,
-            "x": 12,
-            "y": 9
-          },
-          "hiddenSeries": false,
+          "gridPos": {},
           "id": 419,
           "isNew": false,
           "legend": {
@@ -542,16 +413,11 @@
           "lines": true,
           "linewidth": 1,
           "nullPointMode": "null as zero",
-          "options": {
-            "alertThreshold": true
-          },
           "percentage": false,
-          "pluginVersion": "8.3.3",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
+          "span": 3,
           "stack": false,
           "steppedLine": false,
           "targets": [
@@ -559,55 +425,52 @@
               "expr": "histogram_quantile(0.900000, sum(rate(mo_fs_s3_io_duration_seconds_bucket{type=\"read\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "s3-read",
-              "refId": "A"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.900000, sum(rate(mo_fs_s3_io_duration_seconds_bucket{type=\"write\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "s3-write",
-              "refId": "B"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.900000, sum(rate(mo_fs_local_io_duration_seconds_bucket{type=\"read\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "local-read",
-              "refId": "C"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.900000, sum(rate(mo_fs_local_io_duration_seconds_bucket{type=\"write\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "local-write",
-              "refId": "D"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.900000, sum(rate(mo_fs_s3_io_duration_seconds_bucket{type=\"list\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "s3-list",
-              "refId": "E"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.900000, sum(rate(mo_fs_s3_io_duration_seconds_bucket{type=\"stat\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "s3-stat",
-              "refId": "F"
+              "refId": ""
             }
           ],
-          "thresholds": [],
-          "timeRegions": [],
           "title": "P90.000000 time",
           "tooltip": {
             "shared": true,
             "sort": 2,
             "value_type": ""
           },
+          "transparent": false,
           "type": "graph",
           "x-axis": true,
           "xaxis": {
             "format": "time",
             "logBase": 1,
-            "mode": "time",
-            "show": true,
-            "values": []
+            "show": true
           },
           "y-axis": true,
           "yaxes": [
@@ -622,31 +485,16 @@
               "logBase": 1,
               "show": false
             }
-          ],
-          "yaxis": {
-            "align": false
-          }
+          ]
         },
         {
           "aliasColors": {},
           "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VETzmoKIz"
-          },
+          "datasource": "Prometheus",
           "editable": false,
           "error": false,
           "fill": 1,
-          "fillGradient": 0,
-          "gridPos": {
-            "h": 7,
-            "w": 6,
-            "x": 18,
-            "y": 9
-          },
-          "hiddenSeries": false,
+          "gridPos": {},
           "id": 420,
           "isNew": false,
           "legend": {
@@ -665,16 +513,11 @@
           "lines": true,
           "linewidth": 1,
           "nullPointMode": "null as zero",
-          "options": {
-            "alertThreshold": true
-          },
           "percentage": false,
-          "pluginVersion": "8.3.3",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
+          "span": 3,
           "stack": false,
           "steppedLine": false,
           "targets": [
@@ -682,55 +525,52 @@
               "expr": "histogram_quantile(0.990000, sum(rate(mo_fs_s3_io_duration_seconds_bucket{type=\"read\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "s3-read",
-              "refId": "A"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.990000, sum(rate(mo_fs_s3_io_duration_seconds_bucket{type=\"write\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "s3-write",
-              "refId": "B"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.990000, sum(rate(mo_fs_local_io_duration_seconds_bucket{type=\"read\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "local-read",
-              "refId": "C"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.990000, sum(rate(mo_fs_local_io_duration_seconds_bucket{type=\"write\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "local-write",
-              "refId": "D"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.990000, sum(rate(mo_fs_s3_io_duration_seconds_bucket{type=\"list\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "s3-list",
-              "refId": "E"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.990000, sum(rate(mo_fs_s3_io_duration_seconds_bucket{type=\"stat\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "s3-stat",
-              "refId": "F"
+              "refId": ""
             }
           ],
-          "thresholds": [],
-          "timeRegions": [],
           "title": "P99.000000 time",
           "tooltip": {
             "shared": true,
             "sort": 2,
             "value_type": ""
           },
+          "transparent": false,
           "type": "graph",
           "x-axis": true,
           "xaxis": {
             "format": "time",
             "logBase": 1,
-            "mode": "time",
-            "show": true,
-            "values": []
+            "show": true
           },
           "y-axis": true,
           "yaxes": [
@@ -745,45 +585,26 @@
               "logBase": 1,
               "show": false
             }
-          ],
-          "yaxis": {
-            "align": false
-          }
+          ]
         }
       ],
-      "title": "FileService read write duration",
-      "type": "row"
+      "repeat": null,
+      "showTitle": true,
+      "title": "FileService read write duration"
     },
     {
-      "collapsed": true,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 2
-      },
-      "id": 433,
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
       "panels": [
         {
           "aliasColors": {},
           "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VETzmoKIz"
-          },
+          "datasource": "Prometheus",
           "editable": false,
           "error": false,
           "fill": 1,
-          "fillGradient": 0,
-          "gridPos": {
-            "h": 7,
-            "w": 6,
-            "x": 0,
-            "y": 10
-          },
-          "hiddenSeries": false,
+          "gridPos": {},
           "id": 421,
           "isNew": false,
           "legend": {
@@ -802,16 +623,11 @@
           "lines": true,
           "linewidth": 1,
           "nullPointMode": "null as zero",
-          "options": {
-            "alertThreshold": true
-          },
           "percentage": false,
-          "pluginVersion": "8.3.3",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
+          "span": 3,
           "stack": false,
           "steppedLine": false,
           "targets": [
@@ -819,43 +635,40 @@
               "expr": "histogram_quantile(0.500000, sum(rate(mo_fs_s3_io_bytes_bucket{type=\"read\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "s3-read",
-              "refId": "A"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.500000, sum(rate(mo_fs_s3_io_bytes_bucket{type=\"write\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "s3-write",
-              "refId": "B"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.500000, sum(rate(mo_fs_local_io_bytes_bucket{type=\"read\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "local-read",
-              "refId": "C"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.500000, sum(rate(mo_fs_local_io_bytes_bucket{type=\"write\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "local-write",
-              "refId": "D"
+              "refId": ""
             }
           ],
-          "thresholds": [],
-          "timeRegions": [],
           "title": "P50.000000 time",
           "tooltip": {
             "shared": true,
             "sort": 2,
             "value_type": ""
           },
+          "transparent": false,
           "type": "graph",
           "x-axis": true,
           "xaxis": {
             "format": "time",
             "logBase": 1,
-            "mode": "time",
-            "show": true,
-            "values": []
+            "show": true
           },
           "y-axis": true,
           "yaxes": [
@@ -870,31 +683,16 @@
               "logBase": 1,
               "show": false
             }
-          ],
-          "yaxis": {
-            "align": false
-          }
+          ]
         },
         {
           "aliasColors": {},
           "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VETzmoKIz"
-          },
+          "datasource": "Prometheus",
           "editable": false,
           "error": false,
           "fill": 1,
-          "fillGradient": 0,
-          "gridPos": {
-            "h": 7,
-            "w": 6,
-            "x": 6,
-            "y": 10
-          },
-          "hiddenSeries": false,
+          "gridPos": {},
           "id": 422,
           "isNew": false,
           "legend": {
@@ -913,16 +711,11 @@
           "lines": true,
           "linewidth": 1,
           "nullPointMode": "null as zero",
-          "options": {
-            "alertThreshold": true
-          },
           "percentage": false,
-          "pluginVersion": "8.3.3",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
+          "span": 3,
           "stack": false,
           "steppedLine": false,
           "targets": [
@@ -930,43 +723,40 @@
               "expr": "histogram_quantile(0.800000, sum(rate(mo_fs_s3_io_bytes_bucket{type=\"read\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "s3-read",
-              "refId": "A"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.800000, sum(rate(mo_fs_s3_io_bytes_bucket{type=\"write\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "s3-write",
-              "refId": "B"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.800000, sum(rate(mo_fs_local_io_bytes_bucket{type=\"read\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "local-read",
-              "refId": "C"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.800000, sum(rate(mo_fs_local_io_bytes_bucket{type=\"write\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "local-write",
-              "refId": "D"
+              "refId": ""
             }
           ],
-          "thresholds": [],
-          "timeRegions": [],
           "title": "P80.000000 time",
           "tooltip": {
             "shared": true,
             "sort": 2,
             "value_type": ""
           },
+          "transparent": false,
           "type": "graph",
           "x-axis": true,
           "xaxis": {
             "format": "time",
             "logBase": 1,
-            "mode": "time",
-            "show": true,
-            "values": []
+            "show": true
           },
           "y-axis": true,
           "yaxes": [
@@ -981,31 +771,16 @@
               "logBase": 1,
               "show": false
             }
-          ],
-          "yaxis": {
-            "align": false
-          }
+          ]
         },
         {
           "aliasColors": {},
           "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VETzmoKIz"
-          },
+          "datasource": "Prometheus",
           "editable": false,
           "error": false,
           "fill": 1,
-          "fillGradient": 0,
-          "gridPos": {
-            "h": 7,
-            "w": 6,
-            "x": 12,
-            "y": 10
-          },
-          "hiddenSeries": false,
+          "gridPos": {},
           "id": 423,
           "isNew": false,
           "legend": {
@@ -1024,16 +799,11 @@
           "lines": true,
           "linewidth": 1,
           "nullPointMode": "null as zero",
-          "options": {
-            "alertThreshold": true
-          },
           "percentage": false,
-          "pluginVersion": "8.3.3",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
+          "span": 3,
           "stack": false,
           "steppedLine": false,
           "targets": [
@@ -1041,43 +811,40 @@
               "expr": "histogram_quantile(0.900000, sum(rate(mo_fs_s3_io_bytes_bucket{type=\"read\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "s3-read",
-              "refId": "A"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.900000, sum(rate(mo_fs_s3_io_bytes_bucket{type=\"write\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "s3-write",
-              "refId": "B"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.900000, sum(rate(mo_fs_local_io_bytes_bucket{type=\"read\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "local-read",
-              "refId": "C"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.900000, sum(rate(mo_fs_local_io_bytes_bucket{type=\"write\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "local-write",
-              "refId": "D"
+              "refId": ""
             }
           ],
-          "thresholds": [],
-          "timeRegions": [],
           "title": "P90.000000 time",
           "tooltip": {
             "shared": true,
             "sort": 2,
             "value_type": ""
           },
+          "transparent": false,
           "type": "graph",
           "x-axis": true,
           "xaxis": {
             "format": "time",
             "logBase": 1,
-            "mode": "time",
-            "show": true,
-            "values": []
+            "show": true
           },
           "y-axis": true,
           "yaxes": [
@@ -1092,31 +859,16 @@
               "logBase": 1,
               "show": false
             }
-          ],
-          "yaxis": {
-            "align": false
-          }
+          ]
         },
         {
           "aliasColors": {},
           "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VETzmoKIz"
-          },
+          "datasource": "Prometheus",
           "editable": false,
           "error": false,
           "fill": 1,
-          "fillGradient": 0,
-          "gridPos": {
-            "h": 7,
-            "w": 6,
-            "x": 18,
-            "y": 10
-          },
-          "hiddenSeries": false,
+          "gridPos": {},
           "id": 424,
           "isNew": false,
           "legend": {
@@ -1135,16 +887,11 @@
           "lines": true,
           "linewidth": 1,
           "nullPointMode": "null as zero",
-          "options": {
-            "alertThreshold": true
-          },
           "percentage": false,
-          "pluginVersion": "8.3.3",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
+          "span": 3,
           "stack": false,
           "steppedLine": false,
           "targets": [
@@ -1152,43 +899,40 @@
               "expr": "histogram_quantile(0.990000, sum(rate(mo_fs_s3_io_bytes_bucket{type=\"read\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "s3-read",
-              "refId": "A"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.990000, sum(rate(mo_fs_s3_io_bytes_bucket{type=\"write\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "s3-write",
-              "refId": "B"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.990000, sum(rate(mo_fs_local_io_bytes_bucket{type=\"read\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "local-read",
-              "refId": "C"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.990000, sum(rate(mo_fs_local_io_bytes_bucket{type=\"write\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "local-write",
-              "refId": "D"
+              "refId": ""
             }
           ],
-          "thresholds": [],
-          "timeRegions": [],
           "title": "P99.000000 time",
           "tooltip": {
             "shared": true,
             "sort": 2,
             "value_type": ""
           },
+          "transparent": false,
           "type": "graph",
           "x-axis": true,
           "xaxis": {
             "format": "time",
             "logBase": 1,
-            "mode": "time",
-            "show": true,
-            "values": []
+            "show": true
           },
           "y-axis": true,
           "yaxes": [
@@ -1203,45 +947,26 @@
               "logBase": 1,
               "show": false
             }
-          ],
-          "yaxis": {
-            "align": false
-          }
+          ]
         }
       ],
-      "title": "FileService read write bytes",
-      "type": "row"
+      "repeat": null,
+      "showTitle": true,
+      "title": "FileService read write bytes"
     },
     {
-      "collapsed": true,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 3
-      },
-      "id": 434,
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
       "panels": [
         {
           "aliasColors": {},
           "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VETzmoKIz"
-          },
+          "datasource": "Prometheus",
           "editable": false,
           "error": false,
           "fill": 1,
-          "fillGradient": 0,
-          "gridPos": {
-            "h": 7,
-            "w": 12,
-            "x": 0,
-            "y": 11
-          },
-          "hiddenSeries": false,
+          "gridPos": {},
           "id": 425,
           "isNew": false,
           "legend": {
@@ -1260,41 +985,33 @@
           "lines": true,
           "linewidth": 1,
           "nullPointMode": "null as zero",
-          "options": {
-            "alertThreshold": true
-          },
           "percentage": false,
-          "pluginVersion": "8.3.3",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
+          "span": 6,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
               "expr": "sum(rate(mo_fs_s3_conn_duration_seconds_count{type=\"connect\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
               "format": "time_series",
-              "refId": "A"
+              "refId": ""
             }
           ],
-          "thresholds": [],
-          "timeRegions": [],
           "title": "Connect",
           "tooltip": {
             "shared": true,
             "sort": 2,
             "value_type": ""
           },
+          "transparent": false,
           "type": "graph",
           "x-axis": true,
           "xaxis": {
             "format": "time",
             "logBase": 1,
-            "mode": "time",
-            "show": true,
-            "values": []
+            "show": true
           },
           "y-axis": true,
           "yaxes": [
@@ -1308,31 +1025,16 @@
               "logBase": 1,
               "show": false
             }
-          ],
-          "yaxis": {
-            "align": false
-          }
+          ]
         },
         {
           "aliasColors": {},
           "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VETzmoKIz"
-          },
+          "datasource": "Prometheus",
           "editable": false,
           "error": false,
           "fill": 1,
-          "fillGradient": 0,
-          "gridPos": {
-            "h": 7,
-            "w": 12,
-            "x": 12,
-            "y": 11
-          },
-          "hiddenSeries": false,
+          "gridPos": {},
           "id": 426,
           "isNew": false,
           "legend": {
@@ -1351,41 +1053,33 @@
           "lines": true,
           "linewidth": 1,
           "nullPointMode": "null as zero",
-          "options": {
-            "alertThreshold": true
-          },
           "percentage": false,
-          "pluginVersion": "8.3.3",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
+          "span": 6,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
               "expr": "sum(rate(mo_fs_s3_conn_duration_seconds_count{type=\"dns-resolve\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
               "format": "time_series",
-              "refId": "A"
+              "refId": ""
             }
           ],
-          "thresholds": [],
-          "timeRegions": [],
           "title": "DNS Resolve",
           "tooltip": {
             "shared": true,
             "sort": 2,
             "value_type": ""
           },
+          "transparent": false,
           "type": "graph",
           "x-axis": true,
           "xaxis": {
             "format": "time",
             "logBase": 1,
-            "mode": "time",
-            "show": true,
-            "values": []
+            "show": true
           },
           "y-axis": true,
           "yaxes": [
@@ -1399,45 +1093,26 @@
               "logBase": 1,
               "show": false
             }
-          ],
-          "yaxis": {
-            "align": false
-          }
+          ]
         }
       ],
-      "title": "FileService S3 connection overview",
-      "type": "row"
+      "repeat": null,
+      "showTitle": true,
+      "title": "FileService S3 connection overview"
     },
     {
-      "collapsed": true,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 4
-      },
-      "id": 435,
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
       "panels": [
         {
           "aliasColors": {},
           "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VETzmoKIz"
-          },
+          "datasource": "Prometheus",
           "editable": false,
           "error": false,
           "fill": 1,
-          "fillGradient": 0,
-          "gridPos": {
-            "h": 7,
-            "w": 6,
-            "x": 0,
-            "y": 5
-          },
-          "hiddenSeries": false,
+          "gridPos": {},
           "id": 427,
           "isNew": false,
           "legend": {
@@ -1456,16 +1131,11 @@
           "lines": true,
           "linewidth": 1,
           "nullPointMode": "null as zero",
-          "options": {
-            "alertThreshold": true
-          },
           "percentage": false,
-          "pluginVersion": "8.3.3",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
+          "span": 3,
           "stack": false,
           "steppedLine": false,
           "targets": [
@@ -1473,43 +1143,40 @@
               "expr": "histogram_quantile(0.500000, sum(rate(mo_fs_s3_conn_duration_seconds_bucket{type=\"connect\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "connect",
-              "refId": "A"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.500000, sum(rate(mo_fs_s3_conn_duration_seconds_bucket{type=\"get-conn\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "get-conn",
-              "refId": "B"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.500000, sum(rate(mo_fs_s3_conn_duration_seconds_bucket{type=\"dns-resolve\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "dns-resolve",
-              "refId": "C"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.500000, sum(rate(mo_fs_s3_conn_duration_seconds_bucket{type=\"tls-handshake\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "tls-handshake",
-              "refId": "D"
+              "refId": ""
             }
           ],
-          "thresholds": [],
-          "timeRegions": [],
           "title": "P50.000000 time",
           "tooltip": {
             "shared": true,
             "sort": 2,
             "value_type": ""
           },
+          "transparent": false,
           "type": "graph",
           "x-axis": true,
           "xaxis": {
             "format": "time",
             "logBase": 1,
-            "mode": "time",
-            "show": true,
-            "values": []
+            "show": true
           },
           "y-axis": true,
           "yaxes": [
@@ -1524,31 +1191,16 @@
               "logBase": 1,
               "show": false
             }
-          ],
-          "yaxis": {
-            "align": false
-          }
+          ]
         },
         {
           "aliasColors": {},
           "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VETzmoKIz"
-          },
+          "datasource": "Prometheus",
           "editable": false,
           "error": false,
           "fill": 1,
-          "fillGradient": 0,
-          "gridPos": {
-            "h": 7,
-            "w": 6,
-            "x": 6,
-            "y": 5
-          },
-          "hiddenSeries": false,
+          "gridPos": {},
           "id": 428,
           "isNew": false,
           "legend": {
@@ -1567,16 +1219,11 @@
           "lines": true,
           "linewidth": 1,
           "nullPointMode": "null as zero",
-          "options": {
-            "alertThreshold": true
-          },
           "percentage": false,
-          "pluginVersion": "8.3.3",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
+          "span": 3,
           "stack": false,
           "steppedLine": false,
           "targets": [
@@ -1584,43 +1231,40 @@
               "expr": "histogram_quantile(0.800000, sum(rate(mo_fs_s3_conn_duration_seconds_bucket{type=\"connect\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "connect",
-              "refId": "A"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.800000, sum(rate(mo_fs_s3_conn_duration_seconds_bucket{type=\"get-conn\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "get-conn",
-              "refId": "B"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.800000, sum(rate(mo_fs_s3_conn_duration_seconds_bucket{type=\"dns-resolve\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "dns-resolve",
-              "refId": "C"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.800000, sum(rate(mo_fs_s3_conn_duration_seconds_bucket{type=\"tls-handshake\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "tls-handshake",
-              "refId": "D"
+              "refId": ""
             }
           ],
-          "thresholds": [],
-          "timeRegions": [],
           "title": "P80.000000 time",
           "tooltip": {
             "shared": true,
             "sort": 2,
             "value_type": ""
           },
+          "transparent": false,
           "type": "graph",
           "x-axis": true,
           "xaxis": {
             "format": "time",
             "logBase": 1,
-            "mode": "time",
-            "show": true,
-            "values": []
+            "show": true
           },
           "y-axis": true,
           "yaxes": [
@@ -1635,31 +1279,16 @@
               "logBase": 1,
               "show": false
             }
-          ],
-          "yaxis": {
-            "align": false
-          }
+          ]
         },
         {
           "aliasColors": {},
           "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VETzmoKIz"
-          },
+          "datasource": "Prometheus",
           "editable": false,
           "error": false,
           "fill": 1,
-          "fillGradient": 0,
-          "gridPos": {
-            "h": 7,
-            "w": 6,
-            "x": 12,
-            "y": 5
-          },
-          "hiddenSeries": false,
+          "gridPos": {},
           "id": 429,
           "isNew": false,
           "legend": {
@@ -1678,16 +1307,11 @@
           "lines": true,
           "linewidth": 1,
           "nullPointMode": "null as zero",
-          "options": {
-            "alertThreshold": true
-          },
           "percentage": false,
-          "pluginVersion": "8.3.3",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
+          "span": 3,
           "stack": false,
           "steppedLine": false,
           "targets": [
@@ -1695,43 +1319,40 @@
               "expr": "histogram_quantile(0.900000, sum(rate(mo_fs_s3_conn_duration_seconds_bucket{type=\"connect\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "connect",
-              "refId": "A"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.900000, sum(rate(mo_fs_s3_conn_duration_seconds_bucket{type=\"get-conn\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "get-conn",
-              "refId": "B"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.900000, sum(rate(mo_fs_s3_conn_duration_seconds_bucket{type=\"dns-resolve\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "dns-resolve",
-              "refId": "C"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.900000, sum(rate(mo_fs_s3_conn_duration_seconds_bucket{type=\"tls-handshake\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "tls-handshake",
-              "refId": "D"
+              "refId": ""
             }
           ],
-          "thresholds": [],
-          "timeRegions": [],
           "title": "P90.000000 time",
           "tooltip": {
             "shared": true,
             "sort": 2,
             "value_type": ""
           },
+          "transparent": false,
           "type": "graph",
           "x-axis": true,
           "xaxis": {
             "format": "time",
             "logBase": 1,
-            "mode": "time",
-            "show": true,
-            "values": []
+            "show": true
           },
           "y-axis": true,
           "yaxes": [
@@ -1746,31 +1367,16 @@
               "logBase": 1,
               "show": false
             }
-          ],
-          "yaxis": {
-            "align": false
-          }
+          ]
         },
         {
           "aliasColors": {},
           "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": {
-            "type": "prometheus",
-            "uid": "VETzmoKIz"
-          },
+          "datasource": "Prometheus",
           "editable": false,
           "error": false,
           "fill": 1,
-          "fillGradient": 0,
-          "gridPos": {
-            "h": 7,
-            "w": 6,
-            "x": 18,
-            "y": 5
-          },
-          "hiddenSeries": false,
+          "gridPos": {},
           "id": 430,
           "isNew": false,
           "legend": {
@@ -1789,16 +1395,11 @@
           "lines": true,
           "linewidth": 1,
           "nullPointMode": "null as zero",
-          "options": {
-            "alertThreshold": true
-          },
           "percentage": false,
-          "pluginVersion": "8.3.3",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
+          "span": 3,
           "stack": false,
           "steppedLine": false,
           "targets": [
@@ -1806,43 +1407,40 @@
               "expr": "histogram_quantile(0.990000, sum(rate(mo_fs_s3_conn_duration_seconds_bucket{type=\"connect\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "connect",
-              "refId": "A"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.990000, sum(rate(mo_fs_s3_conn_duration_seconds_bucket{type=\"get-conn\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "get-conn",
-              "refId": "B"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.990000, sum(rate(mo_fs_s3_conn_duration_seconds_bucket{type=\"dns-resolve\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "dns-resolve",
-              "refId": "C"
+              "refId": ""
             },
             {
               "expr": "histogram_quantile(0.990000, sum(rate(mo_fs_s3_conn_duration_seconds_bucket{type=\"tls-handshake\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "tls-handshake",
-              "refId": "D"
+              "refId": ""
             }
           ],
-          "thresholds": [],
-          "timeRegions": [],
           "title": "P99.000000 time",
           "tooltip": {
             "shared": true,
             "sort": 2,
             "value_type": ""
           },
+          "transparent": false,
           "type": "graph",
           "x-axis": true,
           "xaxis": {
             "format": "time",
             "logBase": 1,
-            "mode": "time",
-            "show": true,
-            "values": []
+            "show": true
           },
           "y-axis": true,
           "yaxes": [
@@ -1857,34 +1455,31 @@
               "logBase": 1,
               "show": false
             }
-          ],
-          "yaxis": {
-            "align": false
-          }
+          ]
         }
       ],
-      "title": "FileService s3 connection duration",
-      "type": "row"
+      "repeat": null,
+      "showTitle": true,
+      "title": "FileService s3 connection duration"
     }
   ],
-  "refresh": "30s",
-  "schemaVersion": 34,
+  "schemaVersion": 0,
+  "sharedCrosshair": true,
+  "slug": "",
   "style": "dark",
-  "tags": [],
+  "tags": null,
   "templating": {
     "list": [
       {
         "allFormat": "",
         "allValue": "",
-        "auto": false,
-        "auto_count": 30,
-        "auto_min": "10s",
         "current": {
           "text": [
             "1m"
           ],
           "value": "1m"
         },
+        "datasource": null,
         "hide": 0,
         "includeAll": false,
         "label": "interval",
@@ -1893,7 +1488,7 @@
         "name": "interval",
         "options": [
           {
-            "selected": true,
+            "selected": false,
             "text": "1m",
             "value": "1m"
           },
@@ -1931,7 +1526,6 @@
         "query": "1m,5m,10m,30m,1h,6h,12h",
         "refresh": false,
         "regex": "",
-        "skipUrlSync": false,
         "sort": 0,
         "type": "interval"
       },
@@ -1944,25 +1538,23 @@
           ],
           "value": "$__all"
         },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "VETzmoKIz"
-        },
-        "definition": "",
+        "datasource": "Prometheus",
         "hide": 0,
         "includeAll": true,
         "label": "namespace",
         "multi": true,
         "multiFormat": "",
         "name": "namespace",
-        "options": [],
-        "query": {
-          "query": "label_values(namespace)",
-          "refId": "Prometheus-namespace-Variable-Query"
-        },
+        "options": [
+          {
+            "selected": false,
+            "text": "All",
+            "value": "$__all"
+          }
+        ],
+        "query": "label_values(namespace)",
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
         "sort": 0,
         "type": "query"
       },
@@ -1975,25 +1567,23 @@
           ],
           "value": "$__all"
         },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "VETzmoKIz"
-        },
-        "definition": "",
+        "datasource": "Prometheus",
         "hide": 0,
         "includeAll": true,
         "label": "pod",
         "multi": true,
         "multiFormat": "",
         "name": "pod",
-        "options": [],
-        "query": {
-          "query": "label_values(pod)",
-          "refId": "Prometheus-pod-Variable-Query"
-        },
+        "options": [
+          {
+            "selected": false,
+            "text": "All",
+            "value": "$__all"
+          }
+        ],
+        "query": "label_values(pod)",
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
         "sort": 0,
         "type": "query"
       }
@@ -2030,7 +1620,6 @@
   },
   "timezone": "",
   "title": "FileService Metrics",
-  "uid": "dS3pzTKIk",
-  "version": 16,
-  "weekStart": ""
+  "uid": "ffee760a-2501-46a4-a973-d57135c4254d",
+  "version": 3
 }
