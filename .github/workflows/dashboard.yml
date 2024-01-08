@@ -71,6 +71,7 @@ jobs:
         cache: false
     - name: Upload Dashboard configuration
       run: |
+        docker ps -a 
         ls
         pwd
         cd ./pkg/util/metric/v2/dashboard
