@@ -70,6 +70,8 @@ jobs:
     steps:
     - name: checkout repository
       uses: actions/checkout@v4
+      with: 
+        fetch-depth: 0
     - name: create branch 
       uses: peterjgrainger/action-create-branch@v2.2.0
       env:
@@ -77,16 +79,14 @@ jobs:
       with:
         branch: ${{ inputs.gitops-branch}}
         sha: '${{ github.event.pull_request.head.sha }}'
-  Push:
-    needs: Create-branch
-    runs-on: ubuntu-latest
-    steps:
-    - name: checkout repository
-      uses: actions/checkout@v4
-      with: 
-        fetch-depth: 0
-    - name: change branch
-      run: git checkout ${{ inputs.gitops-branch}}
+    - name: change branch 
+      run: |
+        git config --global user.name "github-action-robot"
+        git config --global user.email "github-action-robot@github.com"
+        git branch -vv
+        git fetch
+        git checkout ${{ inputs.gitops-branch}}
+        git branch -vv
     - name: Download Json
       uses: actions/download-artifact@v3
       with:
@@ -94,17 +94,10 @@ jobs:
         name: dashboard
     - name: ls dashboard file
       run: |
-        
-        git config --global user.name "github-action-robot"
-        git config --global user.email "github-action-robot@github.com"
-        # git branch -vv
+        git branch -vv
         ls -la
         ls -la ./dashboard
-        # git fetch
-        # git checkout ${{ inputs.gitops-branch}}
-        git branch -vv
         pwd
-        ls -la
         ls -la ./dashboard
         # tail 10 ./dashboard/*
     - name: checkout folder exist
@@ -120,7 +113,8 @@ jobs:
         ls && pwd
         git add .
         git commit -m "update dashboard"
-        git push origin ${{ inputs.gitops-branch}}
+        # git push origin ${{ inputs.gitops-branch}}
+        git branch -vv
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v5
       with:
