@@ -73,7 +73,7 @@ jobs:
       run: |
         ls
         pwd
-        cd /pkg/util/metric/v2/dashboard
+        cd ./pkg/util/metric/v2/dashboard
         go test
     - name: Save file
       run: |
