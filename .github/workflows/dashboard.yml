@@ -111,7 +111,7 @@ jobs:
         rm -rf ${{ inputs.directory }}
         mkdir -p ${{ inputs.directory }}
         ls && pwd 
-        mv ./dashboard/* $GITHUB_WORKSPACE/${{ inputs.directory }}
+        mv ./dashboard/* $GITHUB_WORKSPACE/${{ inputs.directory }}/
         cd $GITHUB_WORKSPACE/${{ inputs.directory }}
         ls && pwd
         cd $GITHUB_WORKSPACE
