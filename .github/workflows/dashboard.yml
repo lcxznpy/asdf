@@ -90,9 +90,9 @@ jobs:
         # curl http://admin:admin@localhost:80/api/search\?type\=dash-db | jq -r '.[].uid' > 1.txt
 
         uid_array=($(curl http://admin:admin@localhost:80/api/search\?type\=dash-db | jq -r '.[].uid'))
-        echo $uid_array
+        # echo $uid_array
         for element in "${uid_array[@]}"; do
-            echo "$element"
+            # echo "$element"
             curl -s "http://admin:admin@localhost:80/api/dashboards/uid/$element" | jq .dashboard > $GITHUB_WORKSPACE/dashboard/$element.json
         done
         ls -la $GITHUB_WORKSPACE/dashboard
@@ -130,7 +130,7 @@ jobs:
         pwd
         ls -la
         ls -la ./dashboard
-        tail 10 ./dashboard/*
+        # tail 10 ./dashboard/*
     - name: create branch 
       uses: peterjgrainger/action-create-branch@v2.2.0
       env:
@@ -138,25 +138,25 @@ jobs:
       with:
         branch: ${{ inputs.gitops-branch}}
         sha: '${{ github.event.pull_request.head.sha }}'
-    # - name: checkout folder exist
-    #   run: |
-    #     ls -la
-    #     git config --global user.name "github-action-robot"
-    #     git config --global user.email "github-action-robot@github.com"
-    #     git fetch
-    #     git checkout ${{ inputs.gitops-branch}}
-    #     if [ ! -d ${{ inputs.directory }} ]; then
-    #       mkdir -p ${{ inputs.directory }}
-    #     fi
-    #     ls -la
-    #     mv ./dashboard $GITHUB_WORKSPACE/${{ inputs.directory }}/dashboard
-    #     cd $GITHUB_WORKSPACE/${{ inputs.directory }}/dashboard
-    #     pwd
-    #     ls
-    #     git add .
-    #     git commit -m "update dashboard"
-    #     git push origin ${{ inputs.gitops-branch}}
-    #     git branch -vv
+    - name: checkout folder exist
+      run: |
+        ls -la
+        git config --global user.name "github-action-robot"
+        git config --global user.email "github-action-robot@github.com"
+        git fetch
+        git checkout ${{ inputs.gitops-branch}}
+        if [ ! -d ${{ inputs.directory }} ]; then
+          mkdir -p ${{ inputs.directory }}
+        fi
+        ls -la
+        mv ./dashboard $GITHUB_WORKSPACE/${{ inputs.directory }}
+        cd $GITHUB_WORKSPACE/${{ inputs.directory }}
+        pwd
+        ls
+        git add .
+        git commit -m "update dashboard"
+        git push origin ${{ inputs.gitops-branch}}
+        git branch -vv
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v5
       with:
