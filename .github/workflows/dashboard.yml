@@ -71,7 +71,7 @@ jobs:
                  ##echo $title
                  title=${title// /_}
                  ##echo $title
-                curl -s "http://admin:admin@localhost:80/api/dashboards/uid/$uid" | jq .dashboard  > "/root/test/dashboard/$title.json"
+                curl -s "http://admin:admin@localhost:80/api/dashboards/uid/$uid" | jq .dashboard  > "$GITHUB_WORKSPACE/dashboard/$title.json"
         done
 
         # for element in "${uid_array[@]}"; do
