@@ -181,12 +181,12 @@ jobs:
     - name: checkout repository
       uses: actions/checkout@v4
       with:
-        ref: main
+        ref: ${{ inputs.gitops-branch}}
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v5
       with:
           token: ${{ secrets.TOKEN_ACTION }}
           commit-message: Update dependencies
-          branch: ${{ inputs.gitops-branch}}
+          branch: main
     
   
