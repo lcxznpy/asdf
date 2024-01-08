@@ -138,6 +138,8 @@ jobs:
         git config --global user.name "github-action-robot"
         git config --global user.email "github-action-robot@github.com"
         git branch -vv
+        ls -la
+        ls -la ./dashboard
         git fetch
         git checkout ${{ inputs.gitops-branch}}
         git branch -vv
