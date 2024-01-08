@@ -114,7 +114,7 @@ jobs:
     #       token: ${{ secrets.TOKEN_ACTION }}
     #       commit-message: Update dependencies
     #       branch: main
-  Create-branch-pr:
+  Create-branch:
     needs: Get-Json-File
     runs-on: ubuntu-latest
     steps:
@@ -127,7 +127,15 @@ jobs:
       with:
         branch: ${{ inputs.gitops-branch}}
         sha: '${{ github.event.pull_request.head.sha }}'
-    - name: Download math result for job 2
+  Create-PR:
+    needs: Create-branch
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout repository
+      uses: actions/checkout@v4
+      with: 
+        ref: ${{ inputs.gitops-branch}}
+    - name: Download Json
       uses: actions/download-artifact@v3
       with:
         path: dashboard
