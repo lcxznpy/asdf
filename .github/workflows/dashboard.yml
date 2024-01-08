@@ -22,17 +22,17 @@ on:
 
 
 jobs:
-  Deploy-Grafana-Prometheus:
-    runs-on: ubuntu-latest
-    steps:
-    # - name: Deploy Prometheus
-    #   run: |
-    #     docker pull bitnami/prometheus
-    #     docker run -d -p 9090:9090 --name prometheus bitnami/prometheus
-    - name: Deploy Grafana
-      run: |
-        docker pull grafana/grafana
-        docker run -d -p 80:3000 --name=grafana grafana/grafana
+  # Deploy-Grafana-Prometheus:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   # - name: Deploy Prometheus
+  #   #   run: |
+  #   #     docker pull bitnami/prometheus
+  #   #     docker run -d -p 9090:9090 --name prometheus bitnami/prometheus
+  #   - name: Deploy Grafana
+  #     run: |
+  #       docker pull grafana/grafana
+  #       docker run -d -p 80:3000 --name=grafana grafana/grafana
   Get-Json-File:
     runs-on: ubuntu-latest
     steps:
@@ -69,6 +69,10 @@ jobs:
       with:
         go-version: "1.20.11"
         cache: false
+    - name: Deploy Grafana
+      run: |
+        docker pull grafana/grafana
+        docker run -d -p 80:3000 --name=grafana grafana/grafana
     - name: Upload Dashboard configuration
       run: |
         docker ps -a 
