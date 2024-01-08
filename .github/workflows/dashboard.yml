@@ -4,9 +4,14 @@ on:
   workflow_dispatch:
     # Inputs the workflow accepts.
     inputs:
-      matrixone-branch:
-          description: 'matrixone-branch'
+      matrixone-branch_or_commitID:
+          description: 'matrixone-branch_or_commitID'
           default: 'main'
+          required: true
+          type: string
+      matrixone-commit_ID:
+          description: 'matrixone-commit_ID'
+          default: ''
           required: true
           type: string
       gitops-branch:
@@ -29,7 +34,7 @@ jobs:
       uses: actions/checkout@v4
       with:
         repository: lcxznpy/matrixone
-        ref: ${{ inputs.matrixone-branch }}
+        ref: ${{ inputs.matrixone-branch_or_commitID }}
         fetch-depth: 0
     - name: Use Golang
       uses: actions/setup-go@v4
@@ -51,12 +56,28 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE
         mkdir dashboard
-        uid_array=($(curl http://admin:admin@localhost:80/api/search\?type\=dash-db | jq -r '.[].uid'))
+        # uid_array=($(curl http://admin:admin@localhost:80/api/search\?type\=dash-db | jq -r '.[].uid'))
         # echo $uid_array
-        for element in "${uid_array[@]}"; do
-            # echo "$element"
-            curl -s "http://admin:admin@localhost:80/api/dashboards/uid/$element" | jq .dashboard > $GITHUB_WORKSPACE/dashboard/$element.json
+        curl -s "http://admin:admin@localhost:80/api/search" | jq -r > data.json
+        count=$(jq '. | length' data.json)
+        echo $count
+
+        for ((i=0;i < count;i++));do
+                uid=$(jq --arg i $i '.[$i|tonumber].uid' data.json)
+                uid=${uid//\"}
+                 ##echo $uid
+                title=$(jq --arg i $i '.[$i|tonumber].title' data.json)
+                title=${title//\"}
+                 ##echo $title
+                 title=${title// /_}
+                 ##echo $title
+                curl -s "http://admin:admin@localhost:80/api/dashboards/uid/$uid" | jq .dashboard  > "/root/test/dashboard/$title.json"
         done
+
+        # for element in "${uid_array[@]}"; do
+        #     # echo "$element"
+        #     curl -s "http://admin:admin@localhost:80/api/dashboards/uid/$element" | jq .dashboard > $GITHUB_WORKSPACE/dashboard/$element.json
+        # done
         ls -la $GITHUB_WORKSPACE/dashboard
     - name: upload json artifacts
       uses: actions/upload-artifact@v3
