@@ -4,7 +4,7 @@
   },
   "editable": true,
   "hideControls": false,
-  "id": 3,
+  "id": 7,
   "links": null,
   "originalTitle": "",
   "panels": null,
@@ -23,7 +23,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 383,
+          "id": 448,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -50,61 +50,19 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_append_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "sum(mo_mem_mpool_allocated_size{type=\"tae_default\",namespace=~\"$namespace\", pod=~\"$pod\"})",
               "format": "time_series",
-              "legendFormat": "append",
+              "legendFormat": "tae_default",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"total\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "sum(mo_mem_mpool_high_water_mark_size{type=\"tae_default_high_water_mark\",namespace=~\"$namespace\", pod=~\"$pod\"})",
               "format": "time_series",
-              "legendFormat": "send",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "send-latency",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"network\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "send-network",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "apply",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "apply-latency",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-notify\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "apply-notify",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-notify-latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "apply-notify-latency",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-wait-logtail\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "wait-commit-apply",
+              "legendFormat": "tae_default_high_water_mark",
               "refId": ""
             }
           ],
-          "title": "P50.000000 time",
+          "title": "TAE DEFAULT",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -121,9 +79,8 @@
           "y-axis": true,
           "yaxes": [
             {
-              "format": "s",
+              "format": "short",
               "logBase": 1,
-              "min": 0,
               "show": true
             },
             {
@@ -141,7 +98,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 384,
+          "id": 449,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -168,61 +125,19 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_append_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "sum(mo_mem_mpool_allocated_size{type=\"tae_mutable\",namespace=~\"$namespace\", pod=~\"$pod\"})",
               "format": "time_series",
-              "legendFormat": "append",
+              "legendFormat": "tae_mutable",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"total\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "sum(mo_mem_mpool_high_water_mark_size{type=\"tae_mutable_high_water_mark\",namespace=~\"$namespace\", pod=~\"$pod\"})",
               "format": "time_series",
-              "legendFormat": "send",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "send-latency",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"network\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "send-network",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "apply",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "apply-latency",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-notify\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "apply-notify",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-notify-latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "apply-notify-latency",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-wait-logtail\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "wait-commit-apply",
+              "legendFormat": "tae_mutable_high_water_mark",
               "refId": ""
             }
           ],
-          "title": "P80.000000 time",
+          "title": "TAE MUTABLE",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -239,9 +154,8 @@
           "y-axis": true,
           "yaxes": [
             {
-              "format": "s",
+              "format": "short",
               "logBase": 1,
-              "min": 0,
               "show": true
             },
             {
@@ -259,7 +173,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 385,
+          "id": 450,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -286,61 +200,19 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_append_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "sum(mo_mem_mpool_allocated_size{type=\"tae_small\",namespace=~\"$namespace\", pod=~\"$pod\"})",
               "format": "time_series",
-              "legendFormat": "append",
+              "legendFormat": "tae_small",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"total\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "sum(mo_mem_mpool_high_water_mark_size{type=\"tae_small_high_water_mark\",namespace=~\"$namespace\", pod=~\"$pod\"})",
               "format": "time_series",
-              "legendFormat": "send",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "send-latency",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"network\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "send-network",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "apply",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "apply-latency",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-notify\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "apply-notify",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-notify-latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "apply-notify-latency",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-wait-logtail\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "wait-commit-apply",
+              "legendFormat": "tae_small_high_water_mark",
               "refId": ""
             }
           ],
-          "title": "P90.000000 time",
+          "title": "TAE SMALL",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -357,9 +229,8 @@
           "y-axis": true,
           "yaxes": [
             {
-              "format": "s",
+              "format": "short",
               "logBase": 1,
-              "min": 0,
               "show": true
             },
             {
@@ -377,7 +248,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 386,
+          "id": 451,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -404,165 +275,19 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_append_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "sum(mo_mem_mpool_allocated_size{type=\"vectorpool_default\",namespace=~\"$namespace\", pod=~\"$pod\"})",
               "format": "time_series",
-              "legendFormat": "append",
+              "legendFormat": "vectorpool_default",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"total\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "sum(mo_mem_mpool_high_water_mark_size{type=\"vectorpool_default_high_water_mark\",namespace=~\"$namespace\", pod=~\"$pod\"})",
               "format": "time_series",
-              "legendFormat": "send",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "send-latency",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"network\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "send-network",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "apply",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "apply-latency",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-notify\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "apply-notify",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-notify-latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "apply-notify-latency",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-wait-logtail\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "wait-commit-apply",
+              "legendFormat": "vectorpool_default_high_water_mark",
               "refId": ""
             }
           ],
-          "title": "P99.000000 time",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "s",
-              "logBase": 1,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        }
-      ],
-      "repeat": null,
-      "showTitle": true,
-      "title": "Logtail overview"
-    },
-    {
-      "collapse": false,
-      "editable": true,
-      "height": "250px",
-      "panels": [
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 387,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 4,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(rate(mo_logtail_received_total{type=\"total\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}: total",
-              "refId": ""
-            },
-            {
-              "expr": "sum(rate(mo_logtail_received_total{type=\"subscribe\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}: subscribe",
-              "refId": ""
-            },
-            {
-              "expr": "sum(rate(mo_logtail_received_total{type=\"unsubscribe\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}: unsubscribe",
-              "refId": ""
-            },
-            {
-              "expr": "sum(rate(mo_logtail_received_total{type=\"update\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}: update",
-              "refId": ""
-            },
-            {
-              "expr": "sum(rate(mo_logtail_received_total{type=\"heartbeat\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}: heartbeat",
-              "refId": ""
-            }
-          ],
-          "title": "CN Received status",
+          "title": "VECTORPOOL DEFAULT",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -598,7 +323,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 388,
+          "id": 452,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -620,30 +345,24 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "span": 4,
+          "span": 3,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(mo_logtail_queue_size{type=\"send\",namespace=~\"$namespace\", pod=~\"$pod\"})",
+              "expr": "sum(mo_mem_mpool_allocated_size{type=\"tae_logtail\",namespace=~\"$namespace\", pod=~\"$pod\"})",
               "format": "time_series",
-              "legendFormat": "send",
+              "legendFormat": "tae_logtail",
               "refId": ""
             },
             {
-              "expr": "sum(mo_logtail_queue_size{type=\"receive\",namespace=~\"$namespace\", pod=~\"$pod\"})",
+              "expr": "sum(mo_mem_mpool_high_water_mark_size{type=\"tae_logtail_high_water_mark\",namespace=~\"$namespace\", pod=~\"$pod\"})",
               "format": "time_series",
-              "legendFormat": "receive",
-              "refId": ""
-            },
-            {
-              "expr": "sum(mo_logtail_queue_size{type=\"apply\",namespace=~\"$namespace\", pod=~\"$pod\"})",
-              "format": "time_series",
-              "legendFormat": "apply",
+              "legendFormat": "tae_logtail_high_water_mark",
               "refId": ""
             }
           ],
-          "title": "Queue status",
+          "title": "TAE LOGTAIL",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -679,7 +398,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 389,
+          "id": 453,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -701,18 +420,24 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "span": 4,
+          "span": 3,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(rate(mo_logtail_load_checkpoint_total{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
+              "expr": "sum(mo_mem_mpool_allocated_size{type=\"tae_checkpoint\",namespace=~\"$namespace\", pod=~\"$pod\"})",
               "format": "time_series",
-              "legendFormat": "{{ pod }}",
+              "legendFormat": "tae_checkpoint",
+              "refId": ""
+            },
+            {
+              "expr": "sum(mo_mem_mpool_high_water_mark_size{type=\"tae_checkpoint_high_water_mark\",namespace=~\"$namespace\", pod=~\"$pod\"})",
+              "format": "time_series",
+              "legendFormat": "tae_checkpoint_high_water_mark",
               "refId": ""
             }
           ],
-          "title": "Checkpoint logtail",
+          "title": "TAE CHECKPOINT",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -739,17 +464,7 @@
               "show": false
             }
           ]
-        }
-      ],
-      "repeat": null,
-      "showTitle": true,
-      "title": "Logtail Queue Status"
-    },
-    {
-      "collapse": false,
-      "editable": true,
-      "height": "250px",
-      "panels": [
+        },
         {
           "aliasColors": {},
           "bars": false,
@@ -758,7 +473,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 390,
+          "id": 454,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -780,36 +495,24 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "span": 12,
+          "span": 3,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_bytes_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "sum(mo_mem_mpool_allocated_size{type=\"tae_merge\",namespace=~\"$namespace\", pod=~\"$pod\"})",
               "format": "time_series",
-              "legendFormat": "P50.00%",
+              "legendFormat": "tae_merge",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_bytes_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "sum(mo_mem_mpool_high_water_mark_size{type=\"tae_merge_high_water_mark\",namespace=~\"$namespace\", pod=~\"$pod\"})",
               "format": "time_series",
-              "legendFormat": "P80.00%",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_bytes_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P90.00%",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_bytes_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P99.00%",
+              "legendFormat": "tae_merge_high_water_mark",
               "refId": ""
             }
           ],
-          "title": "Logtail size",
+          "title": "TAE MERGE",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -826,9 +529,8 @@
           "y-axis": true,
           "yaxes": [
             {
-              "format": "bytes",
+              "format": "short",
               "logBase": 1,
-              "min": 0,
               "show": true
             },
             {
@@ -837,17 +539,7 @@
               "show": false
             }
           ]
-        }
-      ],
-      "repeat": null,
-      "showTitle": true,
-      "title": "Logtail size"
-    },
-    {
-      "collapse": false,
-      "editable": true,
-      "height": "250px",
-      "panels": [
+        },
         {
           "aliasColors": {},
           "bars": false,
@@ -856,7 +548,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 391,
+          "id": 455,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -878,36 +570,24 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "span": 12,
+          "span": 3,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_load_checkpoint_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "sum(mo_mem_mpool_allocated_size{type=\"tae_workspace\",namespace=~\"$namespace\", pod=~\"$pod\"})",
               "format": "time_series",
-              "legendFormat": "P50.00%",
+              "legendFormat": "tae_workspace",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_load_checkpoint_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "sum(mo_mem_mpool_high_water_mark_size{type=\"tae_workspace_high_water_mark\",namespace=~\"$namespace\", pod=~\"$pod\"})",
               "format": "time_series",
-              "legendFormat": "P80.00%",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_load_checkpoint_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P90.00%",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_load_checkpoint_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P99.00%",
+              "legendFormat": "tae_workspace_high_water_mark",
               "refId": ""
             }
           ],
-          "title": "Logtail load checkpoint",
+          "title": "TAE WORKSPACE",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -924,9 +604,8 @@
           "y-axis": true,
           "yaxes": [
             {
-              "format": "s",
+              "format": "short",
               "logBase": 1,
-              "min": 0,
               "show": true
             },
             {
@@ -935,17 +614,7 @@
               "show": false
             }
           ]
-        }
-      ],
-      "repeat": null,
-      "showTitle": true,
-      "title": "Logtail load checkpoint"
-    },
-    {
-      "collapse": false,
-      "editable": true,
-      "height": "250px",
-      "panels": [
+        },
         {
           "aliasColors": {},
           "bars": false,
@@ -954,7 +623,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 392,
+          "id": 456,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -976,36 +645,24 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "span": 12,
+          "span": 3,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_collect_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "sum(mo_mem_mpool_allocated_size{type=\"tae_debug\",namespace=~\"$namespace\", pod=~\"$pod\"})",
               "format": "time_series",
-              "legendFormat": "P50.00%",
+              "legendFormat": "tae_debug",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_collect_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "sum(mo_mem_mpool_high_water_mark_size{type=\"tae_debug_high_water_mark\",namespace=~\"$namespace\", pod=~\"$pod\"})",
               "format": "time_series",
-              "legendFormat": "P80.00%",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_collect_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P90.00%",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_collect_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P99.00%",
+              "legendFormat": "tae_debug_high_water_mark",
               "refId": ""
             }
           ],
-          "title": "collect duration",
+          "title": "TAE DEBUG",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -1022,9 +679,8 @@
           "y-axis": true,
           "yaxes": [
             {
-              "format": "s",
+              "format": "short",
               "logBase": 1,
-              "min": 0,
               "show": true
             },
             {
@@ -1033,17 +689,7 @@
               "show": false
             }
           ]
-        }
-      ],
-      "repeat": null,
-      "showTitle": true,
-      "title": "Logtail collect duration"
-    },
-    {
-      "collapse": false,
-      "editable": true,
-      "height": "250px",
-      "panels": [
+        },
         {
           "aliasColors": {},
           "bars": false,
@@ -1052,7 +698,82 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 393,
+          "id": 457,
+          "isNew": false,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(mo_mem_mpool_allocated_size{type=\"global_stats_allocated\",namespace=~\"$namespace\", pod=~\"$pod\"})",
+              "format": "time_series",
+              "legendFormat": "global_stats_allocated",
+              "refId": ""
+            },
+            {
+              "expr": "sum(mo_mem_mpool_high_water_mark_size{type=\"global_stats_allocated_high_water_mark\",namespace=~\"$namespace\", pod=~\"$pod\"})",
+              "format": "time_series",
+              "legendFormat": "global_stats_allocated_high_water_mark",
+              "refId": ""
+            }
+          ],
+          "title": "GLOBAL STATS ALLOCATED",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": ""
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "xaxis": {
+            "format": "time",
+            "logBase": 1,
+            "show": true
+          },
+          "y-axis": true,
+          "yaxes": [
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "Prometheus",
+          "editable": false,
+          "error": false,
+          "fill": 1,
+          "gridPos": {},
+          "id": 458,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -1079,82 +800,12 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(increase(mo_logtail_subscription_request_total{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
+              "expr": "increase(mo_mem_cross_pool_free_total{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])",
               "format": "time_series",
-              "legendFormat": "{{ pod }}",
               "refId": ""
             }
           ],
-          "title": "logtail subscription average increase",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 394,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 6,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(increase(mo_logtail_subscription_request_total{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}",
-              "refId": ""
-            }
-          ],
-          "title": "logtail subscription average increase, sensitive",
+          "title": "Cross Pool Free Counter",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -1185,7 +836,7 @@
       ],
       "repeat": null,
       "showTitle": true,
-      "title": "logtail subscription the tn have received"
+      "title": "TAE Mpool Allocator"
     }
   ],
   "schemaVersion": 0,
@@ -1344,7 +995,7 @@
     ]
   },
   "timezone": "",
-  "title": "Logtail Metrics",
-  "uid": "d2fc8445-23d0-427f-a113-531eb116024b",
+  "title": "Memory Metrics",
+  "uid": "ced37e97-baa3-4063-abd7-2097d1b46848",
   "version": 3
 }
