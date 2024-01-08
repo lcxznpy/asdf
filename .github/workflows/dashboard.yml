@@ -9,11 +9,11 @@ on:
           default: 'main'
           required: true
           type: string
-      matrixone-commit_ID:
-          description: 'matrixone-commit_ID'
-          default: ''
-          required: true
-          type: string
+      # matrixone-commit_ID:
+      #     description: 'matrixone-commit_ID'
+      #     default: ''
+      #     required: false
+      #     type: string
       gitops-branch:
           description: 'gitops-branch'
           default: 'main'
