@@ -127,7 +127,7 @@ jobs:
       with:
         branch: ${{ inputs.gitops-branch}}
         sha: '${{ github.event.pull_request.head.sha }}'
-  Create-PR:
+  Push:
     needs: Create-branch
     runs-on: ubuntu-latest
     steps:
@@ -174,10 +174,19 @@ jobs:
         git commit -m "update dashboard"
         git push origin ${{ inputs.gitops-branch}}
         git branch -vv
+  Create-PR:
+    needs: Push
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout repository
+      uses: actions/checkout@v4
+      with:
+        ref: main
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v5
       with:
           token: ${{ secrets.TOKEN_ACTION }}
           commit-message: Update dependencies
           branch: ${{ inputs.gitops-branch}}
+    
   
