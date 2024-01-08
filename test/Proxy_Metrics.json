@@ -4,7 +4,7 @@
   },
   "editable": true,
   "hideControls": false,
-  "id": 9,
+  "id": 10,
   "links": null,
   "originalTitle": "",
   "panels": null,
@@ -23,7 +23,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 471,
+          "id": 475,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -45,54 +45,60 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "span": 3,
+          "span": 6,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"collect\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "sum(rate(mo_proxy_connect_counter{type=\"accepted\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
               "format": "time_series",
-              "legendFormat": "collect",
+              "legendFormat": "accepted",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate_awake\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "sum(rate(mo_proxy_connect_counter{type=\"current\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
               "format": "time_series",
-              "legendFormat": "generate_awake",
+              "legendFormat": "current",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate_awake_discard\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "sum(rate(mo_proxy_connect_counter{type=\"success\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
               "format": "time_series",
-              "legendFormat": "generate_awake_discard",
+              "legendFormat": "success",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate_delay\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "sum(rate(mo_proxy_connect_counter{type=\"route-fail\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
               "format": "time_series",
-              "legendFormat": "generate_delay",
+              "legendFormat": "route-fail",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "sum(rate(mo_proxy_connect_counter{type=\"common-fail\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
               "format": "time_series",
-              "legendFormat": "generate",
+              "legendFormat": "common-fail",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate_discard\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "sum(rate(mo_proxy_connect_counter{type=\"retry\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
               "format": "time_series",
-              "legendFormat": "generate_discard",
+              "legendFormat": "retry",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"export\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "sum(rate(mo_proxy_connect_counter{type=\"select\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
               "format": "time_series",
-              "legendFormat": "export",
+              "legendFormat": "select",
+              "refId": ""
+            },
+            {
+              "expr": "sum(rate(mo_proxy_connect_counter{type=\"reject\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "legendFormat": "reject",
               "refId": ""
             }
           ],
-          "title": "P50.000000 time",
+          "title": "Connect Counter",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -109,9 +115,8 @@
           "y-axis": true,
           "yaxes": [
             {
-              "format": "s",
+              "format": "short",
               "logBase": 1,
-              "min": 0,
               "show": true
             },
             {
@@ -129,7 +134,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 472,
+          "id": 476,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -151,54 +156,24 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "span": 3,
+          "span": 6,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"collect\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "sum(rate(mo_proxy_disconnect_counter{type=\"server\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
               "format": "time_series",
-              "legendFormat": "collect",
+              "legendFormat": "server",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate_awake\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "sum(rate(mo_proxy_disconnect_counter{type=\"client\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
               "format": "time_series",
-              "legendFormat": "generate_awake",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate_awake_discard\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "generate_awake_discard",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate_delay\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "generate_delay",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "generate",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate_discard\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "generate_discard",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"export\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "export",
+              "legendFormat": "client",
               "refId": ""
             }
           ],
-          "title": "P80.000000 time",
+          "title": "Disconnect Counter",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -215,9 +190,8 @@
           "y-axis": true,
           "yaxes": [
             {
-              "format": "s",
+              "format": "short",
               "logBase": 1,
-              "min": 0,
               "show": true
             },
             {
@@ -226,7 +200,17 @@
               "show": false
             }
           ]
-        },
+        }
+      ],
+      "repeat": null,
+      "showTitle": true,
+      "title": "Proxy Connection"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
         {
           "aliasColors": {},
           "bars": false,
@@ -235,7 +219,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 473,
+          "id": 477,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -257,160 +241,36 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "span": 3,
+          "span": 12,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"collect\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_proxy_connection_transfer_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
-              "legendFormat": "collect",
+              "legendFormat": "P50.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate_awake\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_proxy_connection_transfer_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
-              "legendFormat": "generate_awake",
+              "legendFormat": "P80.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate_awake_discard\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_proxy_connection_transfer_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
-              "legendFormat": "generate_awake_discard",
+              "legendFormat": "P90.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate_delay\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_proxy_connection_transfer_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
-              "legendFormat": "generate_delay",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "generate",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate_discard\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "generate_discard",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"export\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "export",
+              "legendFormat": "P99.00%",
               "refId": ""
             }
           ],
-          "title": "P90.000000 time",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "s",
-              "logBase": 1,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 474,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"collect\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "collect",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate_awake\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "generate_awake",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate_awake_discard\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "generate_awake_discard",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate_delay\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "generate_delay",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "generate",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate_discard\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "generate_discard",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"export\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "export",
-              "refId": ""
-            }
-          ],
-          "title": "P99.000000 time",
+          "title": "connection transfer duration",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -442,7 +302,380 @@
       ],
       "repeat": null,
       "showTitle": true,
-      "title": "Trace Collector duration"
+      "title": "Connection transfer duration"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "Prometheus",
+          "editable": false,
+          "error": false,
+          "fill": 1,
+          "gridPos": {},
+          "id": 478,
+          "isNew": false,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(rate(mo_proxy_connection_transfer_counter{type=\"success\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "legendFormat": "success",
+              "refId": ""
+            },
+            {
+              "expr": "sum(rate(mo_proxy_connection_transfer_counter{type=\"fail\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "legendFormat": "fail",
+              "refId": ""
+            },
+            {
+              "expr": "sum(rate(mo_proxy_connection_transfer_counter{type=\"abort\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "legendFormat": "abort",
+              "refId": ""
+            }
+          ],
+          "title": "Connection Transfer Counter",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": ""
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "xaxis": {
+            "format": "time",
+            "logBase": 1,
+            "show": true
+          },
+          "y-axis": true,
+          "yaxes": [
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "Prometheus",
+          "editable": false,
+          "error": false,
+          "fill": 1,
+          "gridPos": {},
+          "id": 479,
+          "isNew": false,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(rate(mo_proxy_drain_counter{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "refId": ""
+            }
+          ],
+          "title": "Backend Server Drain Counter",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": ""
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "xaxis": {
+            "format": "time",
+            "logBase": 1,
+            "show": true
+          },
+          "y-axis": true,
+          "yaxes": [
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "showTitle": true,
+      "title": "Proxy Transfer"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "Prometheus",
+          "editable": false,
+          "error": false,
+          "fill": 1,
+          "gridPos": {},
+          "id": 480,
+          "isNew": false,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(rate(mo_proxy_available_backend_server_num{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "refId": ""
+            }
+          ],
+          "title": "Available Backend Server Num",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": ""
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "xaxis": {
+            "format": "time",
+            "logBase": 1,
+            "show": true
+          },
+          "y-axis": true,
+          "yaxes": [
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "Prometheus",
+          "editable": false,
+          "error": false,
+          "fill": 1,
+          "gridPos": {},
+          "id": 481,
+          "isNew": false,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(rate(mo_proxy_transfer_queue_size{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "refId": ""
+            }
+          ],
+          "title": "Transfer Queue Size",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": ""
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "xaxis": {
+            "format": "time",
+            "logBase": 1,
+            "show": true
+          },
+          "y-axis": true,
+          "yaxes": [
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "Prometheus",
+          "editable": false,
+          "error": false,
+          "fill": 1,
+          "gridPos": {},
+          "id": 482,
+          "isNew": false,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(rate(mo_proxy_connections_need_to_transfer{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "refId": ""
+            }
+          ],
+          "title": "Connections Need To Transfer",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": ""
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "xaxis": {
+            "format": "time",
+            "logBase": 1,
+            "show": true
+          },
+          "y-axis": true,
+          "yaxes": [
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "showTitle": true,
+      "title": "Proxy Others State"
     }
   ],
   "schemaVersion": 0,
@@ -601,7 +834,7 @@
     ]
   },
   "timezone": "",
-  "title": "Trace Metrics",
-  "uid": "cd74e4cf-508d-4f91-89be-9eff62d3e70c",
+  "title": "Proxy Metrics",
+  "uid": "b3f1a45b-a3bc-4776-9596-528b12dc0e8e",
   "version": 3
 }
