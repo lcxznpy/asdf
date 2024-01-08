@@ -84,7 +84,9 @@ jobs:
     - name: checkout repository
       uses: actions/checkout@v4
       with: 
-        ref: ${{ inputs.gitops-branch}}
+        fetch-depth: 0
+    - name: change branch
+      run: git checkout ${{ inputs.gitops-branch}}
     - name: Download Json
       uses: actions/download-artifact@v3
       with:
@@ -95,11 +97,11 @@ jobs:
         
         git config --global user.name "github-action-robot"
         git config --global user.email "github-action-robot@github.com"
-        git branch -vv
+        # git branch -vv
         ls -la
         ls -la ./dashboard
-        git fetch
-        git checkout ${{ inputs.gitops-branch}}
+        # git fetch
+        # git checkout ${{ inputs.gitops-branch}}
         git branch -vv
         pwd
         ls -la
