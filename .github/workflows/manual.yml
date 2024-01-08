@@ -91,6 +91,7 @@ jobs:
         echo "${{ github.event.pull_request.head.sha }} ${{ inputs.name }}" > 2.txt
         git add .
         git commit -m "create 2.txt"
+        git branch -vv
         # git pull --rebase
         # git branch -vv
     
