@@ -87,8 +87,15 @@ jobs:
         # cd ./${{ inputs.directory }}
         # curl -s -H "Authorization: Bearer eyJrIjoiZEg2UXRZdVAzNXNVNmFSRnZSZDlDZFB3dGZDOFA0RDUiLCJuIjoidGVzdCIsImlkIjoxfQ==" http://47.102.119.88/api/search\?type\=dash-db | jq -r '.[].uid' > 1.txt
         mkdir dashboard
-        curl http://admin:admin@localhost:80/api/search\?type\=dash-db | jq -r '.[].uid' > 1.txt
-        cat 1.txt
+        # curl http://admin:admin@localhost:80/api/search\?type\=dash-db | jq -r '.[].uid' > 1.txt
+
+        uid_array=($(curl http://admin:admin@localhost:80/api/search\?type\=dash-db | jq -r '.[].uid'))
+  
+        for element in "${uid_array[@]}"; do
+            echo "$element"
+            curl -s "http://admin:admin@localhost:80/api/dashboards/uid/$element" | jq .dashboard > $GITHUB_WORKSPACE/dashboard/$element.json
+        done
+        ls -la $GITHUB_WORKSPACE/dashboard
         # echo "${{ github.event.pull_request.head.sha }} ${{ inputs.name }}" > 2.txt
         # git add .
         # git commit -m "create dashboard json"
