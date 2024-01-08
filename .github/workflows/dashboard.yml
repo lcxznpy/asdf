@@ -148,11 +148,12 @@ jobs:
         if [ ! -d ${{ inputs.directory }} ]; then
           mkdir -p ${{ inputs.directory }}
         fi
-        ls -la
+        ls && pwd
         mv ./dashboard $GITHUB_WORKSPACE/${{ inputs.directory }}
         cd $GITHUB_WORKSPACE/${{ inputs.directory }}
-        pwd
-        ls
+        ls && pwd
+        cd $GITHUB_WORKSPACE
+        ls && pwd
         git add .
         git commit -m "update dashboard"
         git push origin ${{ inputs.gitops-branch}}
