@@ -145,10 +145,12 @@ jobs:
         git config --global user.email "github-action-robot@github.com"
         git fetch
         git checkout ${{ inputs.gitops-branch}}
-        if [ ! -d ${{ inputs.directory }} ]; then
-          mkdir -p ${{ inputs.directory }}
-        fi
-        ls && pwd
+        # if [ ! -d ${{ inputs.directory }} ]; then
+        #   mkdir -p ${{ inputs.directory }}
+        # fi
+        rm -rf ${{ inputs.directory }}
+        mkdir -p ${{ inputs.directory }}
+        ls && pwd 
         mv ./dashboard $GITHUB_WORKSPACE/${{ inputs.directory }}
         cd $GITHUB_WORKSPACE/${{ inputs.directory }}
         ls && pwd
