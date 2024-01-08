@@ -134,6 +134,7 @@ jobs:
         name: dashboard
     - name: ls dashboard file
       run: |
+        git branch -vv
         pwd
         ls -la
         ls -la ./dashboard
