@@ -22,17 +22,6 @@ on:
 
 
 jobs:
-  # Deploy-Grafana-Prometheus:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   # - name: Deploy Prometheus
-  #   #   run: |
-  #   #     docker pull bitnami/prometheus
-  #   #     docker run -d -p 9090:9090 --name prometheus bitnami/prometheus
-  #   - name: Deploy Grafana
-  #     run: |
-  #       docker pull grafana/grafana
-  #       docker run -d -p 80:3000 --name=grafana grafana/grafana
   Get-Json-File:
     runs-on: ubuntu-latest
     steps:
@@ -42,28 +31,6 @@ jobs:
         repository: lcxznpy/matrixone
         ref: ${{ inputs.matrixone-branch }}
         fetch-depth: 0
-    # - name: create branch 
-    #   uses: peterjgrainger/action-create-branch@v2.2.0
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.TOKEN_ACTION }}
-    #   with:
-    #     branch: ${{ inputs.gitops-branch}}
-    #     sha: '${{ github.event.pull_request.head.sha }}'
-    # - name: checkout folder exist
-    #   run: |
-    #     ls -la
-    #     git config --global user.name "github-action-robot"
-    #     git config --global user.email "github-action-robot@github.com"
-    #     git fetch
-    #     git checkout ${{ inputs.gitops-branch}}
-    #     if [ ! -d ${{ inputs.directory }} ]; then
-    #       mkdir -p ${{ inputs.directory }}
-    #     fi
-    #     ls -la
-    #     cd $GITHUB_WORKSPACE/${{ inputs.directory }}
-    #     pwd
-    #     ls
-    #     git branch -vv
     - name: Use Golang
       uses: actions/setup-go@v4
       with:
@@ -82,13 +49,7 @@ jobs:
         go test
     - name: Save file
       run: |
-        # git branch -vv
-        # ls
-        # cd ./${{ inputs.directory }}
-        # curl -s -H "Authorization: Bearer eyJrIjoiZEg2UXRZdVAzNXNVNmFSRnZSZDlDZFB3dGZDOFA0RDUiLCJuIjoidGVzdCIsImlkIjoxfQ==" http://47.102.119.88/api/search\?type\=dash-db | jq -r '.[].uid' > 1.txt
         mkdir dashboard
-        # curl http://admin:admin@localhost:80/api/search\?type\=dash-db | jq -r '.[].uid' > 1.txt
-
         uid_array=($(curl http://admin:admin@localhost:80/api/search\?type\=dash-db | jq -r '.[].uid'))
         # echo $uid_array
         for element in "${uid_array[@]}"; do
@@ -96,24 +57,12 @@ jobs:
             curl -s "http://admin:admin@localhost:80/api/dashboards/uid/$element" | jq .dashboard > $GITHUB_WORKSPACE/dashboard/$element.json
         done
         ls -la $GITHUB_WORKSPACE/dashboard
-        # echo "${{ github.event.pull_request.head.sha }} ${{ inputs.name }}" > 2.txt
-        # git add .
-        # git commit -m "create dashboard json"
-        # git pull --rebase
-        # git branch -vv
     - name: upload json artifacts
       uses: actions/upload-artifact@v3
       with:
         name: dashboard
         path: |
           ./dashboard/*
-    
-    # - name: Create Pull Request
-    #   uses: peter-evans/create-pull-request@v5
-    #   with:
-    #       token: ${{ secrets.TOKEN_ACTION }}
-    #       commit-message: Update dependencies
-    #       branch: main
   Create-branch:
     needs: Get-Json-File
     runs-on: ubuntu-latest
@@ -158,10 +107,6 @@ jobs:
     - name: checkout folder exist
       run: |
         ls -la
-        
-        # if [ ! -d ${{ inputs.directory }} ]; then
-        #   mkdir -p ${{ inputs.directory }}
-        # fi
         rm -rf ${{ inputs.directory }}
         mkdir -p ${{ inputs.directory }}
         ls && pwd 
@@ -170,23 +115,25 @@ jobs:
         ls && pwd
         cd $GITHUB_WORKSPACE
         ls && pwd
-        # git add .
-        # git commit -m "update dashboard"
-        # git push origin ${{ inputs.gitops-branch}}
-        # git branch -vv
-  Create-PR:
-    needs: Push
-    runs-on: ubuntu-latest
-    steps:
-    - name: checkout repository
-      uses: actions/checkout@v4
-      with:
-        ref: ${{ inputs.gitops-branch}}
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v5
       with:
           token: ${{ secrets.TOKEN_ACTION }}
           commit-message: Update dependencies
           branch: main
+  # Create-PR:
+  #   needs: Push
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: checkout repository
+  #     uses: actions/checkout@v4
+  #     with:
+  #       ref: ${{ inputs.gitops-branch}}
+  #   - name: Create Pull Request
+  #     uses: peter-evans/create-pull-request@v5
+  #     with:
+  #         token: ${{ secrets.TOKEN_ACTION }}
+  #         commit-message: Update dependencies
+  #         branch: main
     
   
