@@ -120,7 +120,7 @@ jobs:
         ls -la ./dashboard
         pwd
         ls -la ./dashboard
-        # tail 10 ./dashboard/*
+        tail 10 ./dashboard/*
     - name: checkout folder exist
       run: |
         ls -la
