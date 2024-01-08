@@ -22,6 +22,17 @@ on:
 
 
 jobs:
+  Deploy-Grafana-Prometheus:
+    runs-on: ubuntu-latest
+    steps:
+    # - name: Deploy Prometheus
+    #   run: |
+    #     docker pull bitnami/prometheus
+    #     docker run -d -p 9090:9090 --name prometheus bitnami/prometheus
+    - name: Deploy Grafana
+      run: |
+        docker pull grafana/grafana
+        docker run -d -p 80:3000 --name=grafana grafana/grafana
   Get-Json-File:
     runs-on: ubuntu-latest
     steps:
@@ -53,6 +64,12 @@ jobs:
     #     pwd
     #     ls
     #     git branch -vv
+    - name: Upload Dashboard configuration
+      run: |
+        ls
+        pwd
+        cd /matrixone/pkg/util/metric/v2/dashboard
+        go test
     - name: Save file
       run: |
         # git branch -vv
@@ -60,8 +77,8 @@ jobs:
         # cd ./${{ inputs.directory }}
         # curl -s -H "Authorization: Bearer eyJrIjoiZEg2UXRZdVAzNXNVNmFSRnZSZDlDZFB3dGZDOFA0RDUiLCJuIjoidGVzdCIsImlkIjoxfQ==" http://47.102.119.88/api/search\?type\=dash-db | jq -r '.[].uid' > 1.txt
         mkdir dashboard
-        curl -s -H "Authorization: Bearer eyJrIjoiZEg2UXRZdVAzNXNVNmFSRnZSZDlDZFB3dGZDOFA0RDUiLCJuIjoidGVzdCIsImlkIjoxfQ==" http://47.102.119.88/api/dashboards/uid/dS3pzTKIk | jq .dashboard > ./dashboard/dS3pzTKIk.json
-        
+        curl http://admin:admin@localhost:80/api/search\?type\=dash-db | jq -r '.[].uid' > 1.txt
+        cat 1.txt
         # echo "${{ github.event.pull_request.head.sha }} ${{ inputs.name }}" > 2.txt
         # git add .
         # git commit -m "create dashboard json"
