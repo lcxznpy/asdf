@@ -64,11 +64,16 @@ jobs:
     #     pwd
     #     ls
     #     git branch -vv
+    - name: Use Golang
+      uses: actions/setup-go@v4
+      with:
+        go-version: "1.20.11"
+        cache: false
     - name: Upload Dashboard configuration
       run: |
         ls
         pwd
-        cd /matrixone/pkg/util/metric/v2/dashboard
+        cd /pkg/util/metric/v2/dashboard
         go test
     - name: Save file
       run: |
