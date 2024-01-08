@@ -136,6 +136,7 @@ jobs:
       with:
           token: ${{ secrets.TOKEN_ACTION }}
           commit-message: Update dependencies
+          base: main
           branch: ${{ inputs.gitops-branch}}
     
   
