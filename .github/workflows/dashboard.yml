@@ -120,6 +120,13 @@ jobs:
     steps:
     - name: checkout repository
       uses: actions/checkout@v4
+    - name: create branch 
+      uses: peterjgrainger/action-create-branch@v2.2.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.TOKEN_ACTION }}
+      with:
+        branch: ${{ inputs.gitops-branch}}
+        sha: '${{ github.event.pull_request.head.sha }}'
     - name: Download math result for job 2
       uses: actions/download-artifact@v3
       with:
@@ -131,13 +138,6 @@ jobs:
         ls -la
         ls -la ./dashboard
         # tail 10 ./dashboard/*
-    - name: create branch 
-      uses: peterjgrainger/action-create-branch@v2.2.0
-      env:
-        GITHUB_TOKEN: ${{ secrets.TOKEN_ACTION }}
-      with:
-        branch: ${{ inputs.gitops-branch}}
-        sha: '${{ github.event.pull_request.head.sha }}'
     - name: checkout folder exist
       run: |
         ls -la
@@ -151,7 +151,7 @@ jobs:
         rm -rf ${{ inputs.directory }}
         mkdir -p ${{ inputs.directory }}
         ls && pwd 
-        mv ./dashboard $GITHUB_WORKSPACE/${{ inputs.directory }}
+        mv ./dashboard/* $GITHUB_WORKSPACE/${{ inputs.directory }}
         cd $GITHUB_WORKSPACE/${{ inputs.directory }}
         ls && pwd
         cd $GITHUB_WORKSPACE
