@@ -49,6 +49,7 @@ jobs:
         go test
     - name: Save file
       run: |
+        cd $GITHUB_WORKSPACE
         mkdir dashboard
         uid_array=($(curl http://admin:admin@localhost:80/api/search\?type\=dash-db | jq -r '.[].uid'))
         # echo $uid_array
@@ -115,6 +116,9 @@ jobs:
         ls && pwd
         cd $GITHUB_WORKSPACE
         ls && pwd
+        git add .
+        git commit -m "update dashboard"
+        git push origin ${{ inputs.gitops-branch}}
     # - name: Create Pull Request
     #   uses: peter-evans/create-pull-request@v5
     #   with:
