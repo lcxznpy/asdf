@@ -170,10 +170,10 @@ jobs:
         ls && pwd
         cd $GITHUB_WORKSPACE
         ls && pwd
-        git add .
-        git commit -m "update dashboard"
-        git push origin ${{ inputs.gitops-branch}}
-        git branch -vv
+        # git add .
+        # git commit -m "update dashboard"
+        # git push origin ${{ inputs.gitops-branch}}
+        # git branch -vv
   Create-PR:
     needs: Push
     runs-on: ubuntu-latest
