@@ -90,7 +90,7 @@ jobs:
         # curl http://admin:admin@localhost:80/api/search\?type\=dash-db | jq -r '.[].uid' > 1.txt
 
         uid_array=($(curl http://admin:admin@localhost:80/api/search\?type\=dash-db | jq -r '.[].uid'))
-        
+        echo $uid_array
         for element in "${uid_array[@]}"; do
             echo "$element"
             curl -s "http://admin:admin@localhost:80/api/dashboards/uid/$element" | jq .dashboard > $GITHUB_WORKSPACE/dashboard/$element.json
