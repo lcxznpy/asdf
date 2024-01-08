@@ -127,8 +127,6 @@ jobs:
     steps:
     - name: checkout repository
       uses: actions/checkout@v4
-      with:
-        ref: main
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v5
       with:
