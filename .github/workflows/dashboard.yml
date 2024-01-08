@@ -134,6 +134,12 @@ jobs:
         name: dashboard
     - name: ls dashboard file
       run: |
+        
+        git config --global user.name "github-action-robot"
+        git config --global user.email "github-action-robot@github.com"
+        git branch -vv
+        git fetch
+        git checkout ${{ inputs.gitops-branch}}
         git branch -vv
         pwd
         ls -la
@@ -142,10 +148,7 @@ jobs:
     - name: checkout folder exist
       run: |
         ls -la
-        git config --global user.name "github-action-robot"
-        git config --global user.email "github-action-robot@github.com"
-        git fetch
-        git checkout ${{ inputs.gitops-branch}}
+        
         # if [ ! -d ${{ inputs.directory }} ]; then
         #   mkdir -p ${{ inputs.directory }}
         # fi
