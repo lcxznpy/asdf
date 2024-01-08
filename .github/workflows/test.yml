@@ -1,0 +1,36 @@
+name: Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      matrixone-branch:
+          description: 'matrixone-branch'
+          default: 'main'
+          required: true
+          type: string
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Docker Compose
+      run: |
+        docker ps -a
+        sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+        sudo chmod +x /usr/local/bin/docker-compose
+
+    - name: Start Prometheus and Grafana
+      run: |
+        docker-compose up -d
+
+    - name: Wait for services to start
+      run: |
+        sleep 30
+
+    - name: Display service logs
+      run: |
+        docker-compose logs
