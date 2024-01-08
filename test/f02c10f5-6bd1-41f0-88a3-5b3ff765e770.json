@@ -4,7 +4,7 @@
   },
   "editable": true,
   "hideControls": false,
-  "id": 7,
+  "id": 10,
   "links": null,
   "originalTitle": "",
   "panels": null,
@@ -23,757 +23,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 448,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(mo_mem_mpool_allocated_size{type=\"tae_default\",namespace=~\"$namespace\", pod=~\"$pod\"})",
-              "format": "time_series",
-              "legendFormat": "tae_default",
-              "refId": ""
-            },
-            {
-              "expr": "sum(mo_mem_mpool_high_water_mark_size{type=\"tae_default_high_water_mark\",namespace=~\"$namespace\", pod=~\"$pod\"})",
-              "format": "time_series",
-              "legendFormat": "tae_default_high_water_mark",
-              "refId": ""
-            }
-          ],
-          "title": "TAE DEFAULT",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 449,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(mo_mem_mpool_allocated_size{type=\"tae_mutable\",namespace=~\"$namespace\", pod=~\"$pod\"})",
-              "format": "time_series",
-              "legendFormat": "tae_mutable",
-              "refId": ""
-            },
-            {
-              "expr": "sum(mo_mem_mpool_high_water_mark_size{type=\"tae_mutable_high_water_mark\",namespace=~\"$namespace\", pod=~\"$pod\"})",
-              "format": "time_series",
-              "legendFormat": "tae_mutable_high_water_mark",
-              "refId": ""
-            }
-          ],
-          "title": "TAE MUTABLE",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 450,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(mo_mem_mpool_allocated_size{type=\"tae_small\",namespace=~\"$namespace\", pod=~\"$pod\"})",
-              "format": "time_series",
-              "legendFormat": "tae_small",
-              "refId": ""
-            },
-            {
-              "expr": "sum(mo_mem_mpool_high_water_mark_size{type=\"tae_small_high_water_mark\",namespace=~\"$namespace\", pod=~\"$pod\"})",
-              "format": "time_series",
-              "legendFormat": "tae_small_high_water_mark",
-              "refId": ""
-            }
-          ],
-          "title": "TAE SMALL",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 451,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(mo_mem_mpool_allocated_size{type=\"vectorpool_default\",namespace=~\"$namespace\", pod=~\"$pod\"})",
-              "format": "time_series",
-              "legendFormat": "vectorpool_default",
-              "refId": ""
-            },
-            {
-              "expr": "sum(mo_mem_mpool_high_water_mark_size{type=\"vectorpool_default_high_water_mark\",namespace=~\"$namespace\", pod=~\"$pod\"})",
-              "format": "time_series",
-              "legendFormat": "vectorpool_default_high_water_mark",
-              "refId": ""
-            }
-          ],
-          "title": "VECTORPOOL DEFAULT",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 452,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(mo_mem_mpool_allocated_size{type=\"tae_logtail\",namespace=~\"$namespace\", pod=~\"$pod\"})",
-              "format": "time_series",
-              "legendFormat": "tae_logtail",
-              "refId": ""
-            },
-            {
-              "expr": "sum(mo_mem_mpool_high_water_mark_size{type=\"tae_logtail_high_water_mark\",namespace=~\"$namespace\", pod=~\"$pod\"})",
-              "format": "time_series",
-              "legendFormat": "tae_logtail_high_water_mark",
-              "refId": ""
-            }
-          ],
-          "title": "TAE LOGTAIL",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 453,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(mo_mem_mpool_allocated_size{type=\"tae_checkpoint\",namespace=~\"$namespace\", pod=~\"$pod\"})",
-              "format": "time_series",
-              "legendFormat": "tae_checkpoint",
-              "refId": ""
-            },
-            {
-              "expr": "sum(mo_mem_mpool_high_water_mark_size{type=\"tae_checkpoint_high_water_mark\",namespace=~\"$namespace\", pod=~\"$pod\"})",
-              "format": "time_series",
-              "legendFormat": "tae_checkpoint_high_water_mark",
-              "refId": ""
-            }
-          ],
-          "title": "TAE CHECKPOINT",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 454,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(mo_mem_mpool_allocated_size{type=\"tae_merge\",namespace=~\"$namespace\", pod=~\"$pod\"})",
-              "format": "time_series",
-              "legendFormat": "tae_merge",
-              "refId": ""
-            },
-            {
-              "expr": "sum(mo_mem_mpool_high_water_mark_size{type=\"tae_merge_high_water_mark\",namespace=~\"$namespace\", pod=~\"$pod\"})",
-              "format": "time_series",
-              "legendFormat": "tae_merge_high_water_mark",
-              "refId": ""
-            }
-          ],
-          "title": "TAE MERGE",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 455,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(mo_mem_mpool_allocated_size{type=\"tae_workspace\",namespace=~\"$namespace\", pod=~\"$pod\"})",
-              "format": "time_series",
-              "legendFormat": "tae_workspace",
-              "refId": ""
-            },
-            {
-              "expr": "sum(mo_mem_mpool_high_water_mark_size{type=\"tae_workspace_high_water_mark\",namespace=~\"$namespace\", pod=~\"$pod\"})",
-              "format": "time_series",
-              "legendFormat": "tae_workspace_high_water_mark",
-              "refId": ""
-            }
-          ],
-          "title": "TAE WORKSPACE",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 456,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(mo_mem_mpool_allocated_size{type=\"tae_debug\",namespace=~\"$namespace\", pod=~\"$pod\"})",
-              "format": "time_series",
-              "legendFormat": "tae_debug",
-              "refId": ""
-            },
-            {
-              "expr": "sum(mo_mem_mpool_high_water_mark_size{type=\"tae_debug_high_water_mark\",namespace=~\"$namespace\", pod=~\"$pod\"})",
-              "format": "time_series",
-              "legendFormat": "tae_debug_high_water_mark",
-              "refId": ""
-            }
-          ],
-          "title": "TAE DEBUG",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 457,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(mo_mem_mpool_allocated_size{type=\"global_stats_allocated\",namespace=~\"$namespace\", pod=~\"$pod\"})",
-              "format": "time_series",
-              "legendFormat": "global_stats_allocated",
-              "refId": ""
-            },
-            {
-              "expr": "sum(mo_mem_mpool_high_water_mark_size{type=\"global_stats_allocated_high_water_mark\",namespace=~\"$namespace\", pod=~\"$pod\"})",
-              "format": "time_series",
-              "legendFormat": "global_stats_allocated_high_water_mark",
-              "refId": ""
-            }
-          ],
-          "title": "GLOBAL STATS ALLOCATED",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 458,
+          "id": 475,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -800,12 +50,130 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "increase(mo_mem_cross_pool_free_total{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])",
+              "expr": "sum(rate(mo_proxy_connect_counter{type=\"accepted\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
               "format": "time_series",
+              "legendFormat": "accepted",
+              "refId": ""
+            },
+            {
+              "expr": "sum(rate(mo_proxy_connect_counter{type=\"current\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "legendFormat": "current",
+              "refId": ""
+            },
+            {
+              "expr": "sum(rate(mo_proxy_connect_counter{type=\"success\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "legendFormat": "success",
+              "refId": ""
+            },
+            {
+              "expr": "sum(rate(mo_proxy_connect_counter{type=\"route-fail\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "legendFormat": "route-fail",
+              "refId": ""
+            },
+            {
+              "expr": "sum(rate(mo_proxy_connect_counter{type=\"common-fail\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "legendFormat": "common-fail",
+              "refId": ""
+            },
+            {
+              "expr": "sum(rate(mo_proxy_connect_counter{type=\"retry\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "legendFormat": "retry",
+              "refId": ""
+            },
+            {
+              "expr": "sum(rate(mo_proxy_connect_counter{type=\"select\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "legendFormat": "select",
+              "refId": ""
+            },
+            {
+              "expr": "sum(rate(mo_proxy_connect_counter{type=\"reject\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "legendFormat": "reject",
               "refId": ""
             }
           ],
-          "title": "Cross Pool Free Counter",
+          "title": "Connect Counter",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": ""
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "xaxis": {
+            "format": "time",
+            "logBase": 1,
+            "show": true
+          },
+          "y-axis": true,
+          "yaxes": [
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "Prometheus",
+          "editable": false,
+          "error": false,
+          "fill": 1,
+          "gridPos": {},
+          "id": 476,
+          "isNew": false,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(rate(mo_proxy_disconnect_counter{type=\"server\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "legendFormat": "server",
+              "refId": ""
+            },
+            {
+              "expr": "sum(rate(mo_proxy_disconnect_counter{type=\"client\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "legendFormat": "client",
+              "refId": ""
+            }
+          ],
+          "title": "Disconnect Counter",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -836,7 +204,478 @@
       ],
       "repeat": null,
       "showTitle": true,
-      "title": "TAE Mpool Allocator"
+      "title": "Proxy Connection"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "Prometheus",
+          "editable": false,
+          "error": false,
+          "fill": 1,
+          "gridPos": {},
+          "id": 477,
+          "isNew": false,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_proxy_connection_transfer_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "format": "time_series",
+              "legendFormat": "P50.00%",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_proxy_connection_transfer_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "format": "time_series",
+              "legendFormat": "P80.00%",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_proxy_connection_transfer_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "format": "time_series",
+              "legendFormat": "P90.00%",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_proxy_connection_transfer_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "format": "time_series",
+              "legendFormat": "P99.00%",
+              "refId": ""
+            }
+          ],
+          "title": "connection transfer duration",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": ""
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "xaxis": {
+            "format": "time",
+            "logBase": 1,
+            "show": true
+          },
+          "y-axis": true,
+          "yaxes": [
+            {
+              "format": "s",
+              "logBase": 1,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "showTitle": true,
+      "title": "Connection transfer duration"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "Prometheus",
+          "editable": false,
+          "error": false,
+          "fill": 1,
+          "gridPos": {},
+          "id": 478,
+          "isNew": false,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(rate(mo_proxy_connection_transfer_counter{type=\"success\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "legendFormat": "success",
+              "refId": ""
+            },
+            {
+              "expr": "sum(rate(mo_proxy_connection_transfer_counter{type=\"fail\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "legendFormat": "fail",
+              "refId": ""
+            },
+            {
+              "expr": "sum(rate(mo_proxy_connection_transfer_counter{type=\"abort\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "legendFormat": "abort",
+              "refId": ""
+            }
+          ],
+          "title": "Connection Transfer Counter",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": ""
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "xaxis": {
+            "format": "time",
+            "logBase": 1,
+            "show": true
+          },
+          "y-axis": true,
+          "yaxes": [
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "Prometheus",
+          "editable": false,
+          "error": false,
+          "fill": 1,
+          "gridPos": {},
+          "id": 479,
+          "isNew": false,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(rate(mo_proxy_drain_counter{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "refId": ""
+            }
+          ],
+          "title": "Backend Server Drain Counter",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": ""
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "xaxis": {
+            "format": "time",
+            "logBase": 1,
+            "show": true
+          },
+          "y-axis": true,
+          "yaxes": [
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "showTitle": true,
+      "title": "Proxy Transfer"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "Prometheus",
+          "editable": false,
+          "error": false,
+          "fill": 1,
+          "gridPos": {},
+          "id": 480,
+          "isNew": false,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(rate(mo_proxy_available_backend_server_num{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "refId": ""
+            }
+          ],
+          "title": "Available Backend Server Num",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": ""
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "xaxis": {
+            "format": "time",
+            "logBase": 1,
+            "show": true
+          },
+          "y-axis": true,
+          "yaxes": [
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "Prometheus",
+          "editable": false,
+          "error": false,
+          "fill": 1,
+          "gridPos": {},
+          "id": 481,
+          "isNew": false,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(rate(mo_proxy_transfer_queue_size{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "refId": ""
+            }
+          ],
+          "title": "Transfer Queue Size",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": ""
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "xaxis": {
+            "format": "time",
+            "logBase": 1,
+            "show": true
+          },
+          "y-axis": true,
+          "yaxes": [
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "Prometheus",
+          "editable": false,
+          "error": false,
+          "fill": 1,
+          "gridPos": {},
+          "id": 482,
+          "isNew": false,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(rate(mo_proxy_connections_need_to_transfer{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "refId": ""
+            }
+          ],
+          "title": "Connections Need To Transfer",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": ""
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "xaxis": {
+            "format": "time",
+            "logBase": 1,
+            "show": true
+          },
+          "y-axis": true,
+          "yaxes": [
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "showTitle": true,
+      "title": "Proxy Others State"
     }
   ],
   "schemaVersion": 0,
@@ -995,7 +834,7 @@
     ]
   },
   "timezone": "",
-  "title": "Memory Metrics",
-  "uid": "ced37e97-baa3-4063-abd7-2097d1b46848",
+  "title": "Proxy Metrics",
+  "uid": "f02c10f5-6bd1-41f0-88a3-5b3ff765e770",
   "version": 3
 }
