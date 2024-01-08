@@ -119,18 +119,6 @@ jobs:
         git add .
         git commit -m "update dashboard"
         git push origin ${{ inputs.gitops-branch}}
-    # - name: Create Pull Request
-    #   uses: peter-evans/create-pull-request@v5
-    #   with:
-    #       token: ${{ secrets.TOKEN_ACTION }}
-    #       commit-message: Update dependencies
-    #       branch: main
-  Create-PR:
-    needs: Push
-    runs-on: ubuntu-latest
-    steps:
-    - name: checkout repository
-      uses: actions/checkout@v4
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v5
       with:
@@ -138,5 +126,18 @@ jobs:
           commit-message: Update dependencies
           base: main
           branch: ${{ inputs.gitops-branch}}
+  # Create-PR:
+  #   needs: Push
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: checkout repository
+  #     uses: actions/checkout@v4
+  #   - name: Create Pull Request
+  #     uses: peter-evans/create-pull-request@v5
+  #     with:
+  #         token: ${{ secrets.TOKEN_ACTION }}
+  #         commit-message: Update dependencies
+  #         base: main
+  #         branch: ${{ inputs.gitops-branch}}
     
   
