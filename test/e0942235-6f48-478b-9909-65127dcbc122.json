@@ -4,7 +4,7 @@
   },
   "editable": true,
   "hideControls": false,
-  "id": 8,
+  "id": 7,
   "links": null,
   "originalTitle": "",
   "panels": null,
@@ -23,7 +23,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 459,
+          "id": 448,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -50,13 +50,19 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(go_gc_heap_objects_objects{namespace=~\"$namespace\", pod=~\"$pod\"}) by (pod)",
+              "expr": "sum(mo_mem_mpool_allocated_size{type=\"tae_default\",namespace=~\"$namespace\", pod=~\"$pod\"})",
               "format": "time_series",
-              "legendFormat": "{{ pod }}",
+              "legendFormat": "tae_default",
+              "refId": ""
+            },
+            {
+              "expr": "sum(mo_mem_mpool_high_water_mark_size{type=\"tae_default_high_water_mark\",namespace=~\"$namespace\", pod=~\"$pod\"})",
+              "format": "time_series",
+              "legendFormat": "tae_default_high_water_mark",
               "refId": ""
             }
           ],
-          "title": "Live Objects",
+          "title": "TAE DEFAULT",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -92,7 +98,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 460,
+          "id": 449,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -119,363 +125,19 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(go_memory_classes_heap_free_bytes{namespace=~\"$namespace\", pod=~\"$pod\"}) by (pod)",
+              "expr": "sum(mo_mem_mpool_allocated_size{type=\"tae_mutable\",namespace=~\"$namespace\", pod=~\"$pod\"})",
               "format": "time_series",
-              "legendFormat": "{{ pod }}",
+              "legendFormat": "tae_mutable",
               "refId": ""
-            }
-          ],
-          "title": "Free and ready to return system",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "bytes",
-              "logBase": 1,
-              "min": 0,
-              "show": true
             },
             {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 461,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(go_memory_classes_heap_objects_bytes{namespace=~\"$namespace\", pod=~\"$pod\"}) by (pod)",
+              "expr": "sum(mo_mem_mpool_high_water_mark_size{type=\"tae_mutable_high_water_mark\",namespace=~\"$namespace\", pod=~\"$pod\"})",
               "format": "time_series",
-              "legendFormat": "{{ pod }}",
+              "legendFormat": "tae_mutable_high_water_mark",
               "refId": ""
             }
           ],
-          "title": "Dead objects and not marked free live objects",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "bytes",
-              "logBase": 1,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 462,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(go_memory_classes_heap_released_bytes{namespace=~\"$namespace\", pod=~\"$pod\"}) by (pod)",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}",
-              "refId": ""
-            }
-          ],
-          "title": "Released to system",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "bytes",
-              "logBase": 1,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 463,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(rate(go_gc_heap_allocs_bytes_total{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}",
-              "refId": ""
-            }
-          ],
-          "title": "Heap Allocation Bytes/s",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "bytes",
-              "logBase": 1,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 464,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(rate(go_gc_heap_frees_bytes_total{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}",
-              "refId": ""
-            }
-          ],
-          "title": "Heap Free Bytes/s",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "bytes",
-              "logBase": 1,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 465,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(rate(go_gc_heap_allocs_objects_total{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}",
-              "refId": ""
-            }
-          ],
-          "title": "Heap Allocation Object/s",
+          "title": "TAE MUTABLE",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -511,7 +173,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 466,
+          "id": 450,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -538,13 +200,19 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(rate(go_gc_heap_frees_objects_total{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
+              "expr": "sum(mo_mem_mpool_allocated_size{type=\"tae_small\",namespace=~\"$namespace\", pod=~\"$pod\"})",
               "format": "time_series",
-              "legendFormat": "{{ pod }}",
+              "legendFormat": "tae_small",
+              "refId": ""
+            },
+            {
+              "expr": "sum(mo_mem_mpool_high_water_mark_size{type=\"tae_small_high_water_mark\",namespace=~\"$namespace\", pod=~\"$pod\"})",
+              "format": "time_series",
+              "legendFormat": "tae_small_high_water_mark",
               "refId": ""
             }
           ],
-          "title": "Heap Free Object/s",
+          "title": "TAE SMALL",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -580,7 +248,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 467,
+          "id": 451,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -602,36 +270,24 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "span": 12,
+          "span": 3,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(go_gc_heap_allocs_by_size_bytes_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "sum(mo_mem_mpool_allocated_size{type=\"vectorpool_default\",namespace=~\"$namespace\", pod=~\"$pod\"})",
               "format": "time_series",
-              "legendFormat": "P80.00%",
+              "legendFormat": "vectorpool_default",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(go_gc_heap_allocs_by_size_bytes_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "sum(mo_mem_mpool_high_water_mark_size{type=\"vectorpool_default_high_water_mark\",namespace=~\"$namespace\", pod=~\"$pod\"})",
               "format": "time_series",
-              "legendFormat": "P90.00%",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.950000, sum(rate(go_gc_heap_allocs_by_size_bytes_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P95.00%",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(go_gc_heap_allocs_by_size_bytes_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P99.00%",
+              "legendFormat": "vectorpool_default_high_water_mark",
               "refId": ""
             }
           ],
-          "title": "Allocation bytes size",
+          "title": "VECTORPOOL DEFAULT",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -648,9 +304,8 @@
           "y-axis": true,
           "yaxes": [
             {
-              "format": "bytes",
+              "format": "short",
               "logBase": 1,
-              "min": 0,
               "show": true
             },
             {
@@ -659,17 +314,7 @@
               "show": false
             }
           ]
-        }
-      ],
-      "repeat": null,
-      "showTitle": true,
-      "title": "Memory Status"
-    },
-    {
-      "collapse": false,
-      "editable": true,
-      "height": "250px",
-      "panels": [
+        },
         {
           "aliasColors": {},
           "bars": false,
@@ -678,7 +323,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 468,
+          "id": 452,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -700,36 +345,24 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "span": 12,
+          "span": 3,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(go_gc_pauses_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
+              "expr": "sum(mo_mem_mpool_allocated_size{type=\"tae_logtail\",namespace=~\"$namespace\", pod=~\"$pod\"})",
               "format": "time_series",
-              "legendFormat": "{{ pod }}(P80.00%)",
+              "legendFormat": "tae_logtail",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(go_gc_pauses_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
+              "expr": "sum(mo_mem_mpool_high_water_mark_size{type=\"tae_logtail_high_water_mark\",namespace=~\"$namespace\", pod=~\"$pod\"})",
               "format": "time_series",
-              "legendFormat": "{{ pod }}(P90.00%)",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.950000, sum(rate(go_gc_pauses_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}(P95.00%)",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(go_gc_pauses_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}(P99.00%)",
+              "legendFormat": "tae_logtail_high_water_mark",
               "refId": ""
             }
           ],
-          "title": "STW duration",
+          "title": "TAE LOGTAIL",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -746,9 +379,8 @@
           "y-axis": true,
           "yaxes": [
             {
-              "format": "s",
+              "format": "short",
               "logBase": 1,
-              "min": 0,
               "show": true
             },
             {
@@ -757,17 +389,7 @@
               "show": false
             }
           ]
-        }
-      ],
-      "repeat": null,
-      "showTitle": true,
-      "title": "Go GC Status"
-    },
-    {
-      "collapse": false,
-      "editable": true,
-      "height": "250px",
-      "panels": [
+        },
         {
           "aliasColors": {},
           "bars": false,
@@ -776,7 +398,382 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 469,
+          "id": 453,
+          "isNew": false,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(mo_mem_mpool_allocated_size{type=\"tae_checkpoint\",namespace=~\"$namespace\", pod=~\"$pod\"})",
+              "format": "time_series",
+              "legendFormat": "tae_checkpoint",
+              "refId": ""
+            },
+            {
+              "expr": "sum(mo_mem_mpool_high_water_mark_size{type=\"tae_checkpoint_high_water_mark\",namespace=~\"$namespace\", pod=~\"$pod\"})",
+              "format": "time_series",
+              "legendFormat": "tae_checkpoint_high_water_mark",
+              "refId": ""
+            }
+          ],
+          "title": "TAE CHECKPOINT",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": ""
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "xaxis": {
+            "format": "time",
+            "logBase": 1,
+            "show": true
+          },
+          "y-axis": true,
+          "yaxes": [
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "Prometheus",
+          "editable": false,
+          "error": false,
+          "fill": 1,
+          "gridPos": {},
+          "id": 454,
+          "isNew": false,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(mo_mem_mpool_allocated_size{type=\"tae_merge\",namespace=~\"$namespace\", pod=~\"$pod\"})",
+              "format": "time_series",
+              "legendFormat": "tae_merge",
+              "refId": ""
+            },
+            {
+              "expr": "sum(mo_mem_mpool_high_water_mark_size{type=\"tae_merge_high_water_mark\",namespace=~\"$namespace\", pod=~\"$pod\"})",
+              "format": "time_series",
+              "legendFormat": "tae_merge_high_water_mark",
+              "refId": ""
+            }
+          ],
+          "title": "TAE MERGE",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": ""
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "xaxis": {
+            "format": "time",
+            "logBase": 1,
+            "show": true
+          },
+          "y-axis": true,
+          "yaxes": [
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "Prometheus",
+          "editable": false,
+          "error": false,
+          "fill": 1,
+          "gridPos": {},
+          "id": 455,
+          "isNew": false,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(mo_mem_mpool_allocated_size{type=\"tae_workspace\",namespace=~\"$namespace\", pod=~\"$pod\"})",
+              "format": "time_series",
+              "legendFormat": "tae_workspace",
+              "refId": ""
+            },
+            {
+              "expr": "sum(mo_mem_mpool_high_water_mark_size{type=\"tae_workspace_high_water_mark\",namespace=~\"$namespace\", pod=~\"$pod\"})",
+              "format": "time_series",
+              "legendFormat": "tae_workspace_high_water_mark",
+              "refId": ""
+            }
+          ],
+          "title": "TAE WORKSPACE",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": ""
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "xaxis": {
+            "format": "time",
+            "logBase": 1,
+            "show": true
+          },
+          "y-axis": true,
+          "yaxes": [
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "Prometheus",
+          "editable": false,
+          "error": false,
+          "fill": 1,
+          "gridPos": {},
+          "id": 456,
+          "isNew": false,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(mo_mem_mpool_allocated_size{type=\"tae_debug\",namespace=~\"$namespace\", pod=~\"$pod\"})",
+              "format": "time_series",
+              "legendFormat": "tae_debug",
+              "refId": ""
+            },
+            {
+              "expr": "sum(mo_mem_mpool_high_water_mark_size{type=\"tae_debug_high_water_mark\",namespace=~\"$namespace\", pod=~\"$pod\"})",
+              "format": "time_series",
+              "legendFormat": "tae_debug_high_water_mark",
+              "refId": ""
+            }
+          ],
+          "title": "TAE DEBUG",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": ""
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "xaxis": {
+            "format": "time",
+            "logBase": 1,
+            "show": true
+          },
+          "y-axis": true,
+          "yaxes": [
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "Prometheus",
+          "editable": false,
+          "error": false,
+          "fill": 1,
+          "gridPos": {},
+          "id": 457,
+          "isNew": false,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(mo_mem_mpool_allocated_size{type=\"global_stats_allocated\",namespace=~\"$namespace\", pod=~\"$pod\"})",
+              "format": "time_series",
+              "legendFormat": "global_stats_allocated",
+              "refId": ""
+            },
+            {
+              "expr": "sum(mo_mem_mpool_high_water_mark_size{type=\"global_stats_allocated_high_water_mark\",namespace=~\"$namespace\", pod=~\"$pod\"})",
+              "format": "time_series",
+              "legendFormat": "global_stats_allocated_high_water_mark",
+              "refId": ""
+            }
+          ],
+          "title": "GLOBAL STATS ALLOCATED",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": ""
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "xaxis": {
+            "format": "time",
+            "logBase": 1,
+            "show": true
+          },
+          "y-axis": true,
+          "yaxes": [
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "Prometheus",
+          "editable": false,
+          "error": false,
+          "fill": 1,
+          "gridPos": {},
+          "id": 458,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -803,13 +800,12 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(go_goroutines{namespace=~\"$namespace\", pod=~\"$pod\"}) by (pod)",
+              "expr": "increase(mo_mem_cross_pool_free_total{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])",
               "format": "time_series",
-              "legendFormat": "{{ pod }}",
               "refId": ""
             }
           ],
-          "title": "Goroutine count",
+          "title": "Cross Pool Free Counter",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -828,94 +824,6 @@
             {
               "format": "short",
               "logBase": 1,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 470,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 6,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(go_sched_latencies_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}(P80.00%)",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(go_sched_latencies_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}(P90.00%)",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.950000, sum(rate(go_sched_latencies_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}(P95.00%)",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(go_sched_latencies_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}(P99.00%)",
-              "refId": ""
-            }
-          ],
-          "title": "Schedule latency duration",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "s",
-              "logBase": 1,
-              "min": 0,
               "show": true
             },
             {
@@ -928,7 +836,7 @@
       ],
       "repeat": null,
       "showTitle": true,
-      "title": "Goroutine Status"
+      "title": "TAE Mpool Allocator"
     }
   ],
   "schemaVersion": 0,
@@ -1087,7 +995,7 @@
     ]
   },
   "timezone": "",
-  "title": "Go Runtime Metrics",
-  "uid": "b0581d27-aa64-401d-a345-4db5763da39d",
+  "title": "Memory Metrics",
+  "uid": "e0942235-6f48-478b-9909-65127dcbc122",
   "version": 3
 }
