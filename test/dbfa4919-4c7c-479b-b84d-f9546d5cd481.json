@@ -4,7 +4,7 @@
   },
   "editable": true,
   "hideControls": false,
-  "id": 11,
+  "id": 9,
   "links": null,
   "originalTitle": "",
   "panels": null,
@@ -23,7 +23,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 483,
+          "id": 471,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -50,57 +50,45 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_frontend_accept_connection_duration_bucket{label=\"created\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"collect\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
-              "legendFormat": "created",
+              "legendFormat": "collect",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_frontend_accept_connection_duration_bucket{label=\"establish\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate_awake\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
-              "legendFormat": "establish",
+              "legendFormat": "generate_awake",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_frontend_accept_connection_duration_bucket{label=\"upgradeTLS\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate_awake_discard\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
-              "legendFormat": "upgradeTLS",
+              "legendFormat": "generate_awake_discard",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_frontend_accept_connection_duration_bucket{label=\"authenticate\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate_delay\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
-              "legendFormat": "authenticate",
+              "legendFormat": "generate_delay",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_frontend_accept_connection_duration_bucket{label=\"check-tenant\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
-              "legendFormat": "check-tenant",
+              "legendFormat": "generate",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_frontend_accept_connection_duration_bucket{label=\"check-user\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate_discard\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
-              "legendFormat": "check-user",
+              "legendFormat": "generate_discard",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_frontend_accept_connection_duration_bucket{label=\"check-role\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"export\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
-              "legendFormat": "check-role",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_frontend_accept_connection_duration_bucket{label=\"check-dbname\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "check-dbname",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_frontend_accept_connection_duration_bucket{label=\"init-global-sys-var\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "init-global-sys-var",
+              "legendFormat": "export",
               "refId": ""
             }
           ],
@@ -141,7 +129,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 484,
+          "id": 472,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -168,57 +156,45 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_frontend_accept_connection_duration_bucket{label=\"created\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"collect\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
-              "legendFormat": "created",
+              "legendFormat": "collect",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_frontend_accept_connection_duration_bucket{label=\"establish\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate_awake\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
-              "legendFormat": "establish",
+              "legendFormat": "generate_awake",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_frontend_accept_connection_duration_bucket{label=\"upgradeTLS\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate_awake_discard\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
-              "legendFormat": "upgradeTLS",
+              "legendFormat": "generate_awake_discard",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_frontend_accept_connection_duration_bucket{label=\"authenticate\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate_delay\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
-              "legendFormat": "authenticate",
+              "legendFormat": "generate_delay",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_frontend_accept_connection_duration_bucket{label=\"check-tenant\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
-              "legendFormat": "check-tenant",
+              "legendFormat": "generate",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_frontend_accept_connection_duration_bucket{label=\"check-user\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate_discard\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
-              "legendFormat": "check-user",
+              "legendFormat": "generate_discard",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_frontend_accept_connection_duration_bucket{label=\"check-role\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"export\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
-              "legendFormat": "check-role",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_frontend_accept_connection_duration_bucket{label=\"check-dbname\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "check-dbname",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_frontend_accept_connection_duration_bucket{label=\"init-global-sys-var\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "init-global-sys-var",
+              "legendFormat": "export",
               "refId": ""
             }
           ],
@@ -259,7 +235,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 485,
+          "id": 473,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -286,57 +262,45 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_frontend_accept_connection_duration_bucket{label=\"created\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"collect\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
-              "legendFormat": "created",
+              "legendFormat": "collect",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_frontend_accept_connection_duration_bucket{label=\"establish\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate_awake\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
-              "legendFormat": "establish",
+              "legendFormat": "generate_awake",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_frontend_accept_connection_duration_bucket{label=\"upgradeTLS\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate_awake_discard\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
-              "legendFormat": "upgradeTLS",
+              "legendFormat": "generate_awake_discard",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_frontend_accept_connection_duration_bucket{label=\"authenticate\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate_delay\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
-              "legendFormat": "authenticate",
+              "legendFormat": "generate_delay",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_frontend_accept_connection_duration_bucket{label=\"check-tenant\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
-              "legendFormat": "check-tenant",
+              "legendFormat": "generate",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_frontend_accept_connection_duration_bucket{label=\"check-user\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate_discard\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
-              "legendFormat": "check-user",
+              "legendFormat": "generate_discard",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_frontend_accept_connection_duration_bucket{label=\"check-role\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"export\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
-              "legendFormat": "check-role",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_frontend_accept_connection_duration_bucket{label=\"check-dbname\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "check-dbname",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_frontend_accept_connection_duration_bucket{label=\"init-global-sys-var\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "init-global-sys-var",
+              "legendFormat": "export",
               "refId": ""
             }
           ],
@@ -377,7 +341,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 486,
+          "id": 474,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -404,57 +368,45 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_frontend_accept_connection_duration_bucket{label=\"created\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"collect\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
-              "legendFormat": "created",
+              "legendFormat": "collect",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_frontend_accept_connection_duration_bucket{label=\"establish\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate_awake\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
-              "legendFormat": "establish",
+              "legendFormat": "generate_awake",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_frontend_accept_connection_duration_bucket{label=\"upgradeTLS\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate_awake_discard\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
-              "legendFormat": "upgradeTLS",
+              "legendFormat": "generate_awake_discard",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_frontend_accept_connection_duration_bucket{label=\"authenticate\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate_delay\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
-              "legendFormat": "authenticate",
+              "legendFormat": "generate_delay",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_frontend_accept_connection_duration_bucket{label=\"check-tenant\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
-              "legendFormat": "check-tenant",
+              "legendFormat": "generate",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_frontend_accept_connection_duration_bucket{label=\"check-user\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"generate_discard\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
-              "legendFormat": "check-user",
+              "legendFormat": "generate_discard",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_frontend_accept_connection_duration_bucket{label=\"check-role\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_trace_collector_duration_seconds_bucket{type=\"export\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
-              "legendFormat": "check-role",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_frontend_accept_connection_duration_bucket{label=\"check-dbname\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "check-dbname",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_frontend_accept_connection_duration_bucket{label=\"init-global-sys-var\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "init-global-sys-var",
+              "legendFormat": "export",
               "refId": ""
             }
           ],
@@ -490,7 +442,7 @@
       ],
       "repeat": null,
       "showTitle": true,
-      "title": "Frontend overview"
+      "title": "Trace Collector duration"
     }
   ],
   "schemaVersion": 0,
@@ -649,7 +601,7 @@
     ]
   },
   "timezone": "",
-  "title": "Frontend Metrics",
-  "uid": "df694f14-03d2-4a4f-8804-54c94cc28878",
+  "title": "Trace Metrics",
+  "uid": "dbfa4919-4c7c-479b-b84d-f9546d5cd481",
   "version": 3
 }
