@@ -115,25 +115,25 @@ jobs:
         ls && pwd
         cd $GITHUB_WORKSPACE
         ls && pwd
+    # - name: Create Pull Request
+    #   uses: peter-evans/create-pull-request@v5
+    #   with:
+    #       token: ${{ secrets.TOKEN_ACTION }}
+    #       commit-message: Update dependencies
+    #       branch: main
+  Create-PR:
+    needs: Push
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout repository
+      uses: actions/checkout@v4
+      with:
+        ref: main
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v5
       with:
           token: ${{ secrets.TOKEN_ACTION }}
           commit-message: Update dependencies
-          branch: main
-  # Create-PR:
-  #   needs: Push
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - name: checkout repository
-  #     uses: actions/checkout@v4
-  #     with:
-  #       ref: ${{ inputs.gitops-branch}}
-  #   - name: Create Pull Request
-  #     uses: peter-evans/create-pull-request@v5
-  #     with:
-  #         token: ${{ secrets.TOKEN_ACTION }}
-  #         commit-message: Update dependencies
-  #         branch: main
+          branch: ${{ inputs.gitops-branch}}
     
   
