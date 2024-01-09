@@ -22,9 +22,10 @@ jobs:
     #     branch: ${{ github.event.pull_request.head.ref }}
     #     token: ${{ secrets.TOKEN_ACTION }}
     - name: Check Label
-      if: github.event.pull_request.merged == true && github.event.pull_request.labels == ${{ env.Label }}
+      if: ${{ github.event.pull_request.merged == true && github.event.pull_request.labels == ${{ env.Label }} }}
       run: |
         echo ${{ github.event.pull_request.labels }}
+        echo ${{ env.Label}}
     - name: delete branch
       
       uses: SvanBoxel/delete-merged-branch@main
