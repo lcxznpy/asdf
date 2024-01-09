@@ -4,7 +4,7 @@
   },
   "editable": true,
   "hideControls": false,
-  "id": 8,
+  "id": 10,
   "links": null,
   "originalTitle": "",
   "panels": null,
@@ -23,7 +23,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 459,
+          "id": 475,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -45,18 +45,60 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "span": 3,
+          "span": 6,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(go_gc_heap_objects_objects{namespace=~\"$namespace\", pod=~\"$pod\"}) by (pod)",
+              "expr": "sum(rate(mo_proxy_connect_counter{type=\"accepted\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
               "format": "time_series",
-              "legendFormat": "{{ pod }}",
+              "legendFormat": "accepted",
+              "refId": ""
+            },
+            {
+              "expr": "sum(rate(mo_proxy_connect_counter{type=\"current\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "legendFormat": "current",
+              "refId": ""
+            },
+            {
+              "expr": "sum(rate(mo_proxy_connect_counter{type=\"success\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "legendFormat": "success",
+              "refId": ""
+            },
+            {
+              "expr": "sum(rate(mo_proxy_connect_counter{type=\"route-fail\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "legendFormat": "route-fail",
+              "refId": ""
+            },
+            {
+              "expr": "sum(rate(mo_proxy_connect_counter{type=\"common-fail\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "legendFormat": "common-fail",
+              "refId": ""
+            },
+            {
+              "expr": "sum(rate(mo_proxy_connect_counter{type=\"retry\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "legendFormat": "retry",
+              "refId": ""
+            },
+            {
+              "expr": "sum(rate(mo_proxy_connect_counter{type=\"select\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "legendFormat": "select",
+              "refId": ""
+            },
+            {
+              "expr": "sum(rate(mo_proxy_connect_counter{type=\"reject\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "legendFormat": "reject",
               "refId": ""
             }
           ],
-          "title": "Live Objects",
+          "title": "Connect Counter",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -92,7 +134,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 460,
+          "id": 476,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -114,368 +156,24 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "span": 3,
+          "span": 6,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(go_memory_classes_heap_free_bytes{namespace=~\"$namespace\", pod=~\"$pod\"}) by (pod)",
+              "expr": "sum(rate(mo_proxy_disconnect_counter{type=\"server\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
               "format": "time_series",
-              "legendFormat": "{{ pod }}",
+              "legendFormat": "server",
               "refId": ""
-            }
-          ],
-          "title": "Free and ready to return system",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "bytes",
-              "logBase": 1,
-              "min": 0,
-              "show": true
             },
             {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 461,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(go_memory_classes_heap_objects_bytes{namespace=~\"$namespace\", pod=~\"$pod\"}) by (pod)",
+              "expr": "sum(rate(mo_proxy_disconnect_counter{type=\"client\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
               "format": "time_series",
-              "legendFormat": "{{ pod }}",
+              "legendFormat": "client",
               "refId": ""
             }
           ],
-          "title": "Dead objects and not marked free live objects",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "bytes",
-              "logBase": 1,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 462,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(go_memory_classes_heap_released_bytes{namespace=~\"$namespace\", pod=~\"$pod\"}) by (pod)",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}",
-              "refId": ""
-            }
-          ],
-          "title": "Released to system",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "bytes",
-              "logBase": 1,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 463,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(rate(go_gc_heap_allocs_bytes_total{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}",
-              "refId": ""
-            }
-          ],
-          "title": "Heap Allocation Bytes/s",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "bytes",
-              "logBase": 1,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 464,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(rate(go_gc_heap_frees_bytes_total{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}",
-              "refId": ""
-            }
-          ],
-          "title": "Heap Free Bytes/s",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "bytes",
-              "logBase": 1,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 465,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(rate(go_gc_heap_allocs_objects_total{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}",
-              "refId": ""
-            }
-          ],
-          "title": "Heap Allocation Object/s",
+          "title": "Disconnect Counter",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -502,7 +200,17 @@
               "show": false
             }
           ]
-        },
+        }
+      ],
+      "repeat": null,
+      "showTitle": true,
+      "title": "Proxy Connection"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
         {
           "aliasColors": {},
           "bars": false,
@@ -511,76 +219,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 466,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(rate(go_gc_heap_frees_objects_total{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}",
-              "refId": ""
-            }
-          ],
-          "title": "Heap Free Object/s",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 467,
+          "id": 477,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -607,129 +246,31 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(go_gc_heap_allocs_by_size_bytes_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_proxy_connection_transfer_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "format": "time_series",
+              "legendFormat": "P50.00%",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_proxy_connection_transfer_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P80.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(go_gc_heap_allocs_by_size_bytes_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_proxy_connection_transfer_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P90.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.950000, sum(rate(go_gc_heap_allocs_by_size_bytes_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P95.00%",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(go_gc_heap_allocs_by_size_bytes_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_proxy_connection_transfer_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P99.00%",
               "refId": ""
             }
           ],
-          "title": "Allocation bytes size",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "bytes",
-              "logBase": 1,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        }
-      ],
-      "repeat": null,
-      "showTitle": true,
-      "title": "Memory Status"
-    },
-    {
-      "collapse": false,
-      "editable": true,
-      "height": "250px",
-      "panels": [
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 468,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 12,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(go_gc_pauses_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}(P80.00%)",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(go_gc_pauses_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}(P90.00%)",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.950000, sum(rate(go_gc_pauses_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}(P95.00%)",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(go_gc_pauses_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}(P99.00%)",
-              "refId": ""
-            }
-          ],
-          "title": "STW duration",
+          "title": "connection transfer duration",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -761,7 +302,7 @@
       ],
       "repeat": null,
       "showTitle": true,
-      "title": "Go GC Status"
+      "title": "Connection transfer duration"
     },
     {
       "collapse": false,
@@ -776,7 +317,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 469,
+          "id": 478,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -803,13 +344,25 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(go_goroutines{namespace=~\"$namespace\", pod=~\"$pod\"}) by (pod)",
+              "expr": "sum(rate(mo_proxy_connection_transfer_counter{type=\"success\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
               "format": "time_series",
-              "legendFormat": "{{ pod }}",
+              "legendFormat": "success",
+              "refId": ""
+            },
+            {
+              "expr": "sum(rate(mo_proxy_connection_transfer_counter{type=\"fail\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "legendFormat": "fail",
+              "refId": ""
+            },
+            {
+              "expr": "sum(rate(mo_proxy_connection_transfer_counter{type=\"abort\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "legendFormat": "abort",
               "refId": ""
             }
           ],
-          "title": "Goroutine count",
+          "title": "Connection Transfer Counter",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -845,7 +398,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 470,
+          "id": 479,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -872,31 +425,12 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(go_sched_latencies_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
+              "expr": "sum(rate(mo_proxy_drain_counter{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
               "format": "time_series",
-              "legendFormat": "{{ pod }}(P80.00%)",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(go_sched_latencies_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}(P90.00%)",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.950000, sum(rate(go_sched_latencies_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}(P95.00%)",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(go_sched_latencies_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}(P99.00%)",
               "refId": ""
             }
           ],
-          "title": "Schedule latency duration",
+          "title": "Backend Server Drain Counter",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -913,9 +447,8 @@
           "y-axis": true,
           "yaxes": [
             {
-              "format": "s",
+              "format": "short",
               "logBase": 1,
-              "min": 0,
               "show": true
             },
             {
@@ -928,7 +461,221 @@
       ],
       "repeat": null,
       "showTitle": true,
-      "title": "Goroutine Status"
+      "title": "Proxy Transfer"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "Prometheus",
+          "editable": false,
+          "error": false,
+          "fill": 1,
+          "gridPos": {},
+          "id": 480,
+          "isNew": false,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(rate(mo_proxy_available_backend_server_num{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "refId": ""
+            }
+          ],
+          "title": "Available Backend Server Num",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": ""
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "xaxis": {
+            "format": "time",
+            "logBase": 1,
+            "show": true
+          },
+          "y-axis": true,
+          "yaxes": [
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "Prometheus",
+          "editable": false,
+          "error": false,
+          "fill": 1,
+          "gridPos": {},
+          "id": 481,
+          "isNew": false,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(rate(mo_proxy_transfer_queue_size{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "refId": ""
+            }
+          ],
+          "title": "Transfer Queue Size",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": ""
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "xaxis": {
+            "format": "time",
+            "logBase": 1,
+            "show": true
+          },
+          "y-axis": true,
+          "yaxes": [
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "Prometheus",
+          "editable": false,
+          "error": false,
+          "fill": 1,
+          "gridPos": {},
+          "id": 482,
+          "isNew": false,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(rate(mo_proxy_connections_need_to_transfer{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "refId": ""
+            }
+          ],
+          "title": "Connections Need To Transfer",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": ""
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "xaxis": {
+            "format": "time",
+            "logBase": 1,
+            "show": true
+          },
+          "y-axis": true,
+          "yaxes": [
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "showTitle": true,
+      "title": "Proxy Others State"
     }
   ],
   "schemaVersion": 0,
@@ -1087,7 +834,7 @@
     ]
   },
   "timezone": "",
-  "title": "Go Runtime Metrics",
-  "uid": "b5486713-1f03-428f-a4ba-de07d86bcb1d",
+  "title": "Proxy Metrics",
+  "uid": "d05fb7da-96ec-4f3e-baa9-9aee55e367d2",
   "version": 3
 }

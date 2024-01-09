@@ -88,9 +88,10 @@ jobs:
         ls
         cd ./${{ inputs.directory }}
         rm -rf 2.txt
-        echo "${{ github.event.pull_request.head.sha }} ${{ inputs.name }}" > 2.txt
+        echo $(date +%s) > 2.txt
         git add .
         git commit -m "create 2.txt"
+        git branch -vv
         # git pull --rebase
         # git branch -vv
     
@@ -99,5 +100,6 @@ jobs:
       with:
           token: ${{ secrets.TOKEN_ACTION }}
           commit-message: Update dependencies
-          branch: main
+          base: main
+          branch: ${{ inputs.branch}}
         
