@@ -132,7 +132,7 @@ jobs:
           token: ${{ secrets.TOKEN_ACTION }}
           commit-message: Update dependencies
           base: main
-          branch: ${{ Gitops_branch_name}}
+          branch: $Gitops_branch_name
           # delete-branch: true
   # Create-PR:
   #   needs: Push
