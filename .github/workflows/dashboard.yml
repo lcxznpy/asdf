@@ -4,10 +4,14 @@ on:
   workflow_dispatch:
     # Inputs the workflow accepts.
     inputs:
-      matrixone-branch_or_commitID:
-          description: 'matrixone-branch_or_commitID'
+      matrixone-branch:
+          description: 'matrixone-branch'
           default: 'main'
           required: true
+          type: string
+      Commit-id:
+          description: 'Commit-id'
+          default: ''
           type: string
 
 jobs:
@@ -18,12 +22,12 @@ jobs:
     steps:
     - id: get_gitops_branch_name
       run: |
-        echo "name=$(echo "$(date +%s)-${{ inputs.matrixone-branch_or_commitID }}")" >> "$GITHUB_OUTPUT"
+        echo "name=$(echo "$(matrixeone-dashboard-${{ inputs.matrixone-branch }}-${{ inputs.Commit-id }}")" >> "$GITHUB_OUTPUT"
     - name: checkout repository
       uses: actions/checkout@v4
       with:
         repository: lcxznpy/matrixone
-        ref: ${{ inputs.matrixone-branch_or_commitID }}
+        ref: ${{ inputs.Commit-id }}
         fetch-depth: 0
     - name: Use Golang
       uses: actions/setup-go@v4
@@ -111,4 +115,4 @@ jobs:
           base: main
           branch: ${{ env.Gitops_branch_name }}
           # delete-branch: true
-          labels: Grafana-Dashboard-json
+          # labels: Grafana-Dashboard-json
