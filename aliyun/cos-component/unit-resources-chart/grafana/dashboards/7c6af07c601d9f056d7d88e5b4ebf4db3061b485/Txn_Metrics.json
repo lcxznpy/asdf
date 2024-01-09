@@ -23,7 +23,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 325,
+          "id": 1,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -50,49 +50,43 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(rate(mo_txn_total{type=\"user\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "expr": "sum(rate(mo_txn_total{type=\"user\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))",
               "format": "time_series",
               "legendFormat": "user-txn",
               "refId": ""
             },
             {
-              "expr": "sum(rate(mo_txn_total{type=\"internal\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "expr": "sum(rate(mo_txn_total{type=\"internal\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))",
               "format": "time_series",
               "legendFormat": "internal-txn",
               "refId": ""
             },
             {
-              "expr": "sum(rate(mo_txn_total{type=\"leak\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
-              "format": "time_series",
-              "legendFormat": "leak",
-              "refId": ""
-            },
-            {
-              "expr": "sum(rate(mo_txn_statement_total{type=\"total\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "expr": "sum(rate(mo_txn_statement_total{type=\"total\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))",
               "format": "time_series",
               "legendFormat": "statement",
               "refId": ""
             },
             {
-              "expr": "sum(rate(mo_txn_statement_total{type=\"retry\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "expr": "sum(rate(mo_txn_statement_total{type=\"retry\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))",
               "format": "time_series",
               "legendFormat": "statement-retry",
               "refId": ""
             },
             {
-              "expr": "sum(rate(mo_txn_lock_total{type=\"total\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "expr": "sum(rate(mo_txn_lock_total{type=\"total\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))",
               "format": "time_series",
               "legendFormat": "lock",
               "refId": ""
             },
             {
-              "expr": "sum(rate(mo_txn_lock_total{type=\"local\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "expr": "sum(rate(mo_txn_lock_total{type=\"local\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))",
               "format": "time_series",
               "legendFormat": "local-lock",
               "refId": ""
             },
             {
-              "expr": "sum(rate(mo_txn_lock_total{type=\"remote\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "expr": "sum(rate(mo_txn_lock_total{type=\"remote\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))",
               "format": "time_series",
               "legendFormat": "remote-lock",
               "refId": ""
@@ -134,7 +128,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 326,
+          "id": 2,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -161,19 +155,19 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(rate(mo_txn_commit_total{type=\"cn\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "expr": "sum(rate(mo_txn_commit_total{type=\"cn\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))",
               "format": "time_series",
               "legendFormat": "cn",
               "refId": ""
             },
             {
-              "expr": "sum(rate(mo_txn_commit_total{type=\"tn-receive\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "expr": "sum(rate(mo_txn_commit_total{type=\"tn-receive\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))",
               "format": "time_series",
               "legendFormat": "tn-receive",
               "refId": ""
             },
             {
-              "expr": "sum(rate(mo_txn_commit_total{type=\"tn-handle\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "expr": "sum(rate(mo_txn_commit_total{type=\"tn-handle\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))",
               "format": "time_series",
               "legendFormat": "tn-handle",
               "refId": ""
@@ -215,7 +209,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 327,
+          "id": 3,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -242,7 +236,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(rate(mo_txn_rollback_total{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
+              "expr": "sum(rate(mo_txn_rollback_total{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (pod)",
               "format": "time_series",
               "legendFormat": "{{ pod }}",
               "refId": ""
@@ -284,7 +278,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 328,
+          "id": 4,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -311,25 +305,25 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(mo_txn_queue_size{type=\"active\",namespace=~\"$namespace\", pod=~\"$pod\"})",
+              "expr": "sum(mo_txn_queue_size{type=\"active\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"})",
               "format": "time_series",
               "legendFormat": "active",
               "refId": ""
             },
             {
-              "expr": "sum(mo_txn_queue_size{type=\"wait-active\",namespace=~\"$namespace\", pod=~\"$pod\"})",
+              "expr": "sum(mo_txn_queue_size{type=\"wait-active\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"})",
               "format": "time_series",
               "legendFormat": "wait-active",
               "refId": ""
             },
             {
-              "expr": "sum(mo_txn_queue_size{type=\"commit\",namespace=~\"$namespace\", pod=~\"$pod\"})",
+              "expr": "sum(mo_txn_queue_size{type=\"commit\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"})",
               "format": "time_series",
               "legendFormat": "commit",
               "refId": ""
             },
             {
-              "expr": "sum(mo_txn_queue_size{type=\"lock-rpc\",namespace=~\"$namespace\", pod=~\"$pod\"})",
+              "expr": "sum(mo_txn_queue_size{type=\"lock-rpc\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"})",
               "format": "time_series",
               "legendFormat": "lock-rpc",
               "refId": ""
@@ -381,7 +375,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 329,
+          "id": 5,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -408,25 +402,25 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_life_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_life_duration_seconds_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "life",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_create_duration_seconds_bucket{type=\"total\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_create_duration_seconds_bucket{type=\"total\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "create",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_create_duration_seconds_bucket{type=\"wait-active\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_create_duration_seconds_bucket{type=\"wait-active\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "wait-active",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_create_duration_seconds_bucket{type=\"determine-snapshot\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_create_duration_seconds_bucket{type=\"determine-snapshot\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "determine-snapshot",
               "refId": ""
@@ -469,7 +463,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 330,
+          "id": 6,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -496,25 +490,25 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_life_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_life_duration_seconds_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "life",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_create_duration_seconds_bucket{type=\"total\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_create_duration_seconds_bucket{type=\"total\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "create",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_create_duration_seconds_bucket{type=\"wait-active\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_create_duration_seconds_bucket{type=\"wait-active\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "wait-active",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_create_duration_seconds_bucket{type=\"determine-snapshot\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_create_duration_seconds_bucket{type=\"determine-snapshot\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "determine-snapshot",
               "refId": ""
@@ -557,7 +551,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 331,
+          "id": 7,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -584,25 +578,25 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_life_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_life_duration_seconds_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "life",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_create_duration_seconds_bucket{type=\"total\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_create_duration_seconds_bucket{type=\"total\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "create",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_create_duration_seconds_bucket{type=\"wait-active\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_create_duration_seconds_bucket{type=\"wait-active\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "wait-active",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_create_duration_seconds_bucket{type=\"determine-snapshot\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_create_duration_seconds_bucket{type=\"determine-snapshot\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "determine-snapshot",
               "refId": ""
@@ -645,7 +639,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 332,
+          "id": 8,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -672,25 +666,25 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_life_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_life_duration_seconds_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "life",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_create_duration_seconds_bucket{type=\"total\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_create_duration_seconds_bucket{type=\"total\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "create",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_create_duration_seconds_bucket{type=\"wait-active\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_create_duration_seconds_bucket{type=\"wait-active\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "wait-active",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_create_duration_seconds_bucket{type=\"determine-snapshot\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_create_duration_seconds_bucket{type=\"determine-snapshot\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "determine-snapshot",
               "refId": ""
@@ -743,7 +737,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 333,
+          "id": 9,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -770,31 +764,31 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "total",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-send\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-send\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "send",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-resp\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-resp\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "response",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-wait-logtail\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-wait-logtail\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "logtail-applied",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"tn\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"tn\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "tn",
               "refId": ""
@@ -837,7 +831,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 334,
+          "id": 10,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -864,31 +858,31 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "total",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-send\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-send\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "send",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-resp\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-resp\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "response",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-wait-logtail\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-wait-logtail\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "logtail-applied",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"tn\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"tn\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "tn",
               "refId": ""
@@ -931,7 +925,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 335,
+          "id": 11,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -958,31 +952,31 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "total",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-send\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-send\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "send",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-resp\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-resp\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "response",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-wait-logtail\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-wait-logtail\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "logtail-applied",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"tn\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"tn\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "tn",
               "refId": ""
@@ -1025,7 +1019,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 336,
+          "id": 12,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -1052,31 +1046,31 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "total",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-send\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-send\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "send",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-resp\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-resp\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "response",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-wait-logtail\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-wait-logtail\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "logtail-applied",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"tn\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"tn\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "tn",
               "refId": ""
@@ -1129,7 +1123,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 337,
+          "id": 13,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -1156,39 +1150,33 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_lock_duration_seconds_bucket{type=\"acquire\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_lock_duration_seconds_bucket{type=\"acquire\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "lock-total",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_lock_duration_seconds_bucket{type=\"acquire-wait\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_lock_duration_seconds_bucket{type=\"acquire-wait\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "lock-wait",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_unlock_duration_seconds_bucket{type=\"total\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_unlock_duration_seconds_bucket{type=\"total\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "unlock-total",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_unlock_duration_seconds_bucket{type=\"btree-get-lock\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_unlock_duration_seconds_bucket{type=\"btree-get-lock\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "unlock-btree-get-lock",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_unlock_duration_seconds_bucket{type=\"btree-total\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_unlock_duration_seconds_bucket{type=\"btree-total\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "unlock-btree-total",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_unlock_duration_seconds_bucket{type=\"worker-handle\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "worker-handle",
               "refId": ""
             }
           ],
@@ -1229,7 +1217,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 338,
+          "id": 14,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -1256,39 +1244,33 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_lock_duration_seconds_bucket{type=\"acquire\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_lock_duration_seconds_bucket{type=\"acquire\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "lock-total",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_lock_duration_seconds_bucket{type=\"acquire-wait\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_lock_duration_seconds_bucket{type=\"acquire-wait\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "lock-wait",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_unlock_duration_seconds_bucket{type=\"total\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_unlock_duration_seconds_bucket{type=\"total\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "unlock-total",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_unlock_duration_seconds_bucket{type=\"btree-get-lock\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_unlock_duration_seconds_bucket{type=\"btree-get-lock\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "unlock-btree-get-lock",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_unlock_duration_seconds_bucket{type=\"btree-total\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_unlock_duration_seconds_bucket{type=\"btree-total\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "unlock-btree-total",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_unlock_duration_seconds_bucket{type=\"worker-handle\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "worker-handle",
               "refId": ""
             }
           ],
@@ -1329,7 +1311,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 339,
+          "id": 15,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -1356,39 +1338,33 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_lock_duration_seconds_bucket{type=\"acquire\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_lock_duration_seconds_bucket{type=\"acquire\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "lock-total",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_lock_duration_seconds_bucket{type=\"acquire-wait\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_lock_duration_seconds_bucket{type=\"acquire-wait\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "lock-wait",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_unlock_duration_seconds_bucket{type=\"total\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_unlock_duration_seconds_bucket{type=\"total\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "unlock-total",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_unlock_duration_seconds_bucket{type=\"btree-get-lock\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_unlock_duration_seconds_bucket{type=\"btree-get-lock\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "unlock-btree-get-lock",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_unlock_duration_seconds_bucket{type=\"btree-total\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_unlock_duration_seconds_bucket{type=\"btree-total\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "unlock-btree-total",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_unlock_duration_seconds_bucket{type=\"worker-handle\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "worker-handle",
               "refId": ""
             }
           ],
@@ -1429,7 +1405,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 340,
+          "id": 16,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -1456,39 +1432,33 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_lock_duration_seconds_bucket{type=\"acquire\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_lock_duration_seconds_bucket{type=\"acquire\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "lock-total",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_lock_duration_seconds_bucket{type=\"acquire-wait\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_lock_duration_seconds_bucket{type=\"acquire-wait\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "lock-wait",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_unlock_duration_seconds_bucket{type=\"total\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_unlock_duration_seconds_bucket{type=\"total\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "unlock-total",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_unlock_duration_seconds_bucket{type=\"btree-get-lock\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_unlock_duration_seconds_bucket{type=\"btree-get-lock\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "unlock-btree-get-lock",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_unlock_duration_seconds_bucket{type=\"btree-total\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_unlock_duration_seconds_bucket{type=\"btree-total\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "unlock-btree-total",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_unlock_duration_seconds_bucket{type=\"worker-handle\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "worker-handle",
               "refId": ""
             }
           ],
@@ -1539,7 +1509,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 341,
+          "id": 17,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -1566,7 +1536,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_unlock_table_total_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_unlock_table_total_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "tables",
               "refId": ""
@@ -1608,7 +1578,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 342,
+          "id": 18,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -1635,7 +1605,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_unlock_table_total_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_unlock_table_total_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "tables",
               "refId": ""
@@ -1677,7 +1647,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 343,
+          "id": 19,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -1704,7 +1674,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_unlock_table_total_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_unlock_table_total_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "tables",
               "refId": ""
@@ -1746,7 +1716,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 344,
+          "id": 20,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -1773,7 +1743,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_unlock_table_total_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_unlock_table_total_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "tables",
               "refId": ""
@@ -1825,7 +1795,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 345,
+          "id": 21,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -1852,7 +1822,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_lock_waiters_total_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_lock_waiters_total_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "waiters",
               "refId": ""
@@ -1894,7 +1864,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 346,
+          "id": 22,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -1921,7 +1891,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_lock_waiters_total_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_lock_waiters_total_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "waiters",
               "refId": ""
@@ -1963,7 +1933,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 347,
+          "id": 23,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -1990,7 +1960,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_lock_waiters_total_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_lock_waiters_total_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "waiters",
               "refId": ""
@@ -2032,7 +2002,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 348,
+          "id": 24,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -2059,7 +2029,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_lock_waiters_total_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_lock_waiters_total_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "waiters",
               "refId": ""
@@ -2111,7 +2081,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 349,
+          "id": 25,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -2138,153 +2108,27 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"execute\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"execute\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "execute",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"execute-latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"execute-latency\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "execute-latency",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"build-plan\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"build-plan\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "build-plan",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"compile\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"compile\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "compile",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"scan\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "scan",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"external-scan\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "external-scan",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"insert-s3\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "insert-s3",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"stats\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "stats",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"resolve\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "resolve",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"resolve-udf\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "resolve-udf",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"update-stats\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "update-stats",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"update-info-from-zonemap\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "update-info-from-zonemap",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"update-stats-info-map\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "update-stats-info-map",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"nodes\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "nodes",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"compileScope\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "compileScope",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"compileQuery\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "compileQuery",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"compilePlanScope\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "compilePlanScope",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"BuildPlan\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "BuildPlan",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"BuildSelect\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "BuildSelect",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"BuildInsert\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "BuildInsert",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"BuildExplain\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "BuildExplain",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"BuildReplace\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "BuildReplace",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"BuildUpdate\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "BuildUpdate",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"BuildDelete\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "BuildDelete",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"BuildLoad\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "BuildLoad",
               "refId": ""
             }
           ],
@@ -2325,7 +2169,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 350,
+          "id": 26,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -2352,153 +2196,27 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"execute\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"execute\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "execute",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"execute-latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"execute-latency\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "execute-latency",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"build-plan\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"build-plan\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "build-plan",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"compile\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"compile\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "compile",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"scan\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "scan",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"external-scan\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "external-scan",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"insert-s3\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "insert-s3",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"stats\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "stats",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"resolve\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "resolve",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"resolve-udf\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "resolve-udf",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"update-stats\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "update-stats",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"update-info-from-zonemap\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "update-info-from-zonemap",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"update-stats-info-map\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "update-stats-info-map",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"nodes\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "nodes",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"compileScope\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "compileScope",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"compileQuery\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "compileQuery",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"compilePlanScope\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "compilePlanScope",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"BuildPlan\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "BuildPlan",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"BuildSelect\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "BuildSelect",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"BuildInsert\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "BuildInsert",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"BuildExplain\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "BuildExplain",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"BuildReplace\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "BuildReplace",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"BuildUpdate\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "BuildUpdate",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"BuildDelete\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "BuildDelete",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"BuildLoad\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "BuildLoad",
               "refId": ""
             }
           ],
@@ -2539,7 +2257,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 351,
+          "id": 27,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -2566,153 +2284,27 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"execute\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"execute\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "execute",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"execute-latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"execute-latency\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "execute-latency",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"build-plan\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"build-plan\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "build-plan",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"compile\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"compile\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "compile",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"scan\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "scan",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"external-scan\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "external-scan",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"insert-s3\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "insert-s3",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"stats\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "stats",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"resolve\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "resolve",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"resolve-udf\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "resolve-udf",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"update-stats\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "update-stats",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"update-info-from-zonemap\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "update-info-from-zonemap",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"update-stats-info-map\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "update-stats-info-map",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"nodes\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "nodes",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"compileScope\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "compileScope",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"compileQuery\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "compileQuery",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"compilePlanScope\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "compilePlanScope",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"BuildPlan\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "BuildPlan",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"BuildSelect\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "BuildSelect",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"BuildInsert\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "BuildInsert",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"BuildExplain\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "BuildExplain",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"BuildReplace\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "BuildReplace",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"BuildUpdate\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "BuildUpdate",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"BuildDelete\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "BuildDelete",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"BuildLoad\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "BuildLoad",
               "refId": ""
             }
           ],
@@ -2753,7 +2345,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 352,
+          "id": 28,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -2780,153 +2372,27 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"execute\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"execute\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "execute",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"execute-latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"execute-latency\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "execute-latency",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"build-plan\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"build-plan\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "build-plan",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"compile\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"compile\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "compile",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"scan\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "scan",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"external-scan\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "external-scan",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"insert-s3\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "insert-s3",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"stats\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "stats",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"resolve\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "resolve",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"resolve-udf\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "resolve-udf",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"update-stats\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "update-stats",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"update-info-from-zonemap\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "update-info-from-zonemap",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"update-stats-info-map\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "update-stats-info-map",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"nodes\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "nodes",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"compileScope\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "compileScope",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"compileQuery\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "compileQuery",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"compilePlanScope\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "compilePlanScope",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"BuildPlan\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "BuildPlan",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"BuildSelect\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "BuildSelect",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"BuildInsert\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "BuildInsert",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"BuildExplain\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "BuildExplain",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"BuildReplace\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "BuildReplace",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"BuildUpdate\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "BuildUpdate",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"BuildDelete\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "BuildDelete",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_statement_duration_seconds_bucket{type=\"BuildLoad\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "BuildLoad",
               "refId": ""
             }
           ],
@@ -2977,7 +2443,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 353,
+          "id": 29,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -3004,7 +2470,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_life_statements_total_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_life_statements_total_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "statements/txn",
               "refId": ""
@@ -3046,7 +2512,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 354,
+          "id": 30,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -3073,7 +2539,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_life_statements_total_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_life_statements_total_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "statements/txn",
               "refId": ""
@@ -3115,7 +2581,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 355,
+          "id": 31,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -3142,7 +2608,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_life_statements_total_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_life_statements_total_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "statements/txn",
               "refId": ""
@@ -3184,7 +2650,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 356,
+          "id": 32,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -3211,7 +2677,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_life_statements_total_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_life_statements_total_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "statements/txn",
               "refId": ""
@@ -3263,7 +2729,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 357,
+          "id": 33,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -3285,30 +2751,30 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "span": 12,
+          "span": 6,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_ranges_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_ranges_duration_seconds_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P50.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_ranges_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_ranges_duration_seconds_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P80.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_ranges_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_ranges_duration_seconds_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P90.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_ranges_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_ranges_duration_seconds_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P99.00%",
               "refId": ""
@@ -3342,17 +2808,7 @@
               "show": false
             }
           ]
-        }
-      ],
-      "repeat": null,
-      "showTitle": true,
-      "title": "Txn table ranges"
-    },
-    {
-      "collapse": false,
-      "editable": true,
-      "height": "250px",
-      "panels": [
+        },
         {
           "aliasColors": {},
           "bars": false,
@@ -3361,7 +2817,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 358,
+          "id": 34,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -3383,36 +2839,36 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "span": 12,
+          "span": 6,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_check_pk_dup_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_ranges_duration_size_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P50.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_check_pk_dup_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_ranges_duration_size_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P80.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_check_pk_dup_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_ranges_duration_size_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P90.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_check_pk_dup_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_ranges_duration_size_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P99.00%",
               "refId": ""
             }
           ],
-          "title": "Txn check pk dup duration",
+          "title": "Txn table ranges count",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -3429,9 +2885,8 @@
           "y-axis": true,
           "yaxes": [
             {
-              "format": "s",
+              "format": "short",
               "logBase": 1,
-              "min": 0,
               "show": true
             },
             {
@@ -3444,7 +2899,7 @@
       ],
       "repeat": null,
       "showTitle": true,
-      "title": "Txn check pk dup"
+      "title": "Txn table ranges"
     },
     {
       "collapse": false,
@@ -3459,7 +2914,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 359,
+          "id": 35,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -3486,19 +2941,19 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_reader_duration_seconds_bucket{type=\"block-reader\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_reader_duration_seconds_bucket{type=\"block-reader\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "block-reader",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_reader_duration_seconds_bucket{type=\"merge-reader\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_reader_duration_seconds_bucket{type=\"merge-reader\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "merge-reader",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_reader_duration_seconds_bucket{type=\"block-merge-reader\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_reader_duration_seconds_bucket{type=\"block-merge-reader\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "block-merge-reader",
               "refId": ""
@@ -3541,7 +2996,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 360,
+          "id": 36,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -3568,19 +3023,19 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_reader_duration_seconds_bucket{type=\"block-reader\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_reader_duration_seconds_bucket{type=\"block-reader\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "block-reader",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_reader_duration_seconds_bucket{type=\"merge-reader\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_reader_duration_seconds_bucket{type=\"merge-reader\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "merge-reader",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_reader_duration_seconds_bucket{type=\"block-merge-reader\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_reader_duration_seconds_bucket{type=\"block-merge-reader\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "block-merge-reader",
               "refId": ""
@@ -3623,7 +3078,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 361,
+          "id": 37,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -3650,19 +3105,19 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.950000, sum(rate(mo_txn_reader_duration_seconds_bucket{type=\"block-reader\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.950000, sum(rate(mo_txn_reader_duration_seconds_bucket{type=\"block-reader\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "block-reader",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.950000, sum(rate(mo_txn_reader_duration_seconds_bucket{type=\"merge-reader\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.950000, sum(rate(mo_txn_reader_duration_seconds_bucket{type=\"merge-reader\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "merge-reader",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.950000, sum(rate(mo_txn_reader_duration_seconds_bucket{type=\"block-merge-reader\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.950000, sum(rate(mo_txn_reader_duration_seconds_bucket{type=\"block-merge-reader\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "block-merge-reader",
               "refId": ""
@@ -3705,7 +3160,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 362,
+          "id": 38,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -3732,19 +3187,19 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_reader_duration_seconds_bucket{type=\"block-reader\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_reader_duration_seconds_bucket{type=\"block-reader\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "block-reader",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_reader_duration_seconds_bucket{type=\"merge-reader\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_reader_duration_seconds_bucket{type=\"merge-reader\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "merge-reader",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_reader_duration_seconds_bucket{type=\"block-merge-reader\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_reader_duration_seconds_bucket{type=\"block-merge-reader\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "block-merge-reader",
               "refId": ""
@@ -3797,7 +3252,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 363,
+          "id": 39,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -3824,25 +3279,25 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_mpool_duration_seconds_bucket{type=\"new\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_mpool_duration_seconds_bucket{type=\"new\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "new",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_mpool_duration_seconds_bucket{type=\"alloc\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_mpool_duration_seconds_bucket{type=\"alloc\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "alloc",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_mpool_duration_seconds_bucket{type=\"free\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_mpool_duration_seconds_bucket{type=\"free\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "free",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_mpool_duration_seconds_bucket{type=\"delete\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_mpool_duration_seconds_bucket{type=\"delete\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "delete",
               "refId": ""
@@ -3885,7 +3340,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 364,
+          "id": 40,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -3912,25 +3367,25 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_mpool_duration_seconds_bucket{type=\"new\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_mpool_duration_seconds_bucket{type=\"new\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "new",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_mpool_duration_seconds_bucket{type=\"alloc\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_mpool_duration_seconds_bucket{type=\"alloc\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "alloc",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_mpool_duration_seconds_bucket{type=\"free\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_mpool_duration_seconds_bucket{type=\"free\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "free",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_mpool_duration_seconds_bucket{type=\"delete\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_mpool_duration_seconds_bucket{type=\"delete\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "delete",
               "refId": ""
@@ -3973,7 +3428,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 365,
+          "id": 41,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -4000,25 +3455,25 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_mpool_duration_seconds_bucket{type=\"new\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_mpool_duration_seconds_bucket{type=\"new\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "new",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_mpool_duration_seconds_bucket{type=\"alloc\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_mpool_duration_seconds_bucket{type=\"alloc\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "alloc",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_mpool_duration_seconds_bucket{type=\"free\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_mpool_duration_seconds_bucket{type=\"free\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "free",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_mpool_duration_seconds_bucket{type=\"delete\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_mpool_duration_seconds_bucket{type=\"delete\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "delete",
               "refId": ""
@@ -4061,7 +3516,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 366,
+          "id": 42,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -4088,25 +3543,25 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_mpool_duration_seconds_bucket{type=\"new\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_mpool_duration_seconds_bucket{type=\"new\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "new",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_mpool_duration_seconds_bucket{type=\"alloc\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_mpool_duration_seconds_bucket{type=\"alloc\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "alloc",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_mpool_duration_seconds_bucket{type=\"free\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_mpool_duration_seconds_bucket{type=\"free\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "free",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_mpool_duration_seconds_bucket{type=\"delete\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_mpool_duration_seconds_bucket{type=\"delete\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "delete",
               "refId": ""
@@ -4159,7 +3614,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 367,
+          "id": 43,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -4181,300 +3636,36 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "span": 3,
+          "span": 12,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"on_prepare_wal_total\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"on_prepare_wal\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
-              "legendFormat": "total",
+              "legendFormat": "P50.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"on_prepare_wal_prepare_wal\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"on_prepare_wal\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
-              "legendFormat": "prepare wal",
+              "legendFormat": "P80.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"on_prepare_wal_end_prepare\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"on_prepare_wal\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
-              "legendFormat": "end prepare",
+              "legendFormat": "P90.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"on_prepare_wal_flush_queue\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"on_prepare_wal\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
-              "legendFormat": "enqueue flush",
+              "legendFormat": "P99.00%",
               "refId": ""
             }
           ],
-          "title": "P80.000000 time",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "s",
-              "logBase": 1,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 368,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"on_prepare_wal_total\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "total",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"on_prepare_wal_prepare_wal\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "prepare wal",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"on_prepare_wal_end_prepare\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "end prepare",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"on_prepare_wal_flush_queue\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "enqueue flush",
-              "refId": ""
-            }
-          ],
-          "title": "P90.000000 time",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "s",
-              "logBase": 1,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 369,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "histogram_quantile(0.950000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"on_prepare_wal_total\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "total",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.950000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"on_prepare_wal_prepare_wal\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "prepare wal",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.950000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"on_prepare_wal_end_prepare\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "end prepare",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.950000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"on_prepare_wal_flush_queue\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "enqueue flush",
-              "refId": ""
-            }
-          ],
-          "title": "P95.000000 time",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "s",
-              "logBase": 1,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 370,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"on_prepare_wal_total\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "total",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"on_prepare_wal_prepare_wal\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "prepare wal",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"on_prepare_wal_end_prepare\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "end prepare",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"on_prepare_wal_flush_queue\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "enqueue flush",
-              "refId": ""
-            }
-          ],
-          "title": "P99.000000 time",
+          "title": "txn on prepare wal duration",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -4521,7 +3712,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 371,
+          "id": 44,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -4548,25 +3739,25 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"before_txn_commit\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"before_txn_commit\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P50.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"before_txn_commit\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"before_txn_commit\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P80.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"before_txn_commit\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"before_txn_commit\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P90.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"before_txn_commit\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"before_txn_commit\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P99.00%",
               "refId": ""
@@ -4619,7 +3810,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 372,
+          "id": 45,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -4646,25 +3837,25 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"dequeue_prepared\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"dequeue_prepared\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P50.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"dequeue_prepared\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"dequeue_prepared\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P80.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"dequeue_prepared\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"dequeue_prepared\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P90.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"dequeue_prepared\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"dequeue_prepared\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P99.00%",
               "refId": ""
@@ -4717,7 +3908,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 373,
+          "id": 46,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -4744,25 +3935,25 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"dequeue_preparing\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"dequeue_preparing\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P50.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"dequeue_preparing\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"dequeue_preparing\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P80.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"dequeue_preparing\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"dequeue_preparing\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P90.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"dequeue_preparing\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_tn_side_duration_seconds_bucket{step=\"dequeue_preparing\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P99.00%",
               "refId": ""
@@ -4815,7 +4006,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 374,
+          "id": 47,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -4842,7 +4033,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(increase(mo_txn_ranges_loaded_object_meta_total{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod, type)",
+              "expr": "sum(increase(mo_txn_ranges_loaded_object_meta_total{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (pod, type)",
               "format": "time_series",
               "legendFormat": "{{ pod-type }}",
               "refId": ""
@@ -4894,467 +4085,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 375,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 4,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_ranges_selectivity_percentage_bucket{type=\"fast_block_selectivity\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P50.00%",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_ranges_selectivity_percentage_bucket{type=\"fast_block_selectivity\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P80.00%",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_ranges_selectivity_percentage_bucket{type=\"fast_block_selectivity\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P90.00%",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_ranges_selectivity_percentage_bucket{type=\"fast_block_selectivity\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P99.00%",
-              "refId": ""
-            }
-          ],
-          "title": "fast ranges block selectivity",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "",
-              "logBase": 1,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 376,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 4,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_ranges_selectivity_percentage_bucket{type=\"fast_zm_selectivity\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P50.00%",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_ranges_selectivity_percentage_bucket{type=\"fast_zm_selectivity\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P80.00%",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_ranges_selectivity_percentage_bucket{type=\"fast_zm_selectivity\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P90.00%",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_ranges_selectivity_percentage_bucket{type=\"fast_zm_selectivity\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P99.00%",
-              "refId": ""
-            }
-          ],
-          "title": "fast ranges zone map selectivity",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "",
-              "logBase": 1,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 377,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 4,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_ranges_duration_size_bucket{type=\"fast_ranges_len\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P50.00%",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_ranges_duration_size_bucket{type=\"fast_ranges_len\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P80.00%",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_ranges_duration_size_bucket{type=\"fast_ranges_len\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P90.00%",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_ranges_duration_size_bucket{type=\"fast_ranges_len\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P99.00%",
-              "refId": ""
-            }
-          ],
-          "title": "fast ranges result len",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "",
-              "logBase": 1,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        }
-      ],
-      "repeat": null,
-      "showTitle": true,
-      "title": "Txn Fast Ranges Selectivity"
-    },
-    {
-      "collapse": false,
-      "editable": true,
-      "height": "250px",
-      "panels": [
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 378,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 6,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_ranges_selectivity_percentage_bucket{type=\"block_selectivity\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P50.00%",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_ranges_selectivity_percentage_bucket{type=\"block_selectivity\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P80.00%",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_ranges_selectivity_percentage_bucket{type=\"block_selectivity\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P90.00%",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_ranges_selectivity_percentage_bucket{type=\"block_selectivity\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P99.00%",
-              "refId": ""
-            }
-          ],
-          "title": "ranges block selectivity",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "",
-              "logBase": 1,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 379,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 6,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_ranges_duration_size_bucket{type=\"ranges_len\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P50.00%",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_ranges_duration_size_bucket{type=\"ranges_len\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P80.00%",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_ranges_duration_size_bucket{type=\"ranges_len\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P90.00%",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_ranges_duration_size_bucket{type=\"ranges_len\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P99.00%",
-              "refId": ""
-            }
-          ],
-          "title": "ranges result len",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "",
-              "logBase": 1,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        }
-      ],
-      "repeat": null,
-      "showTitle": true,
-      "title": "Txn Ranges Selectivity"
-    },
-    {
-      "collapse": false,
-      "editable": true,
-      "height": "250px",
-      "panels": [
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 380,
+          "id": 48,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -5381,25 +4112,25 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_show_accounts_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_show_accounts_duration_seconds_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P50.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_show_accounts_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_show_accounts_duration_seconds_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P80.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_show_accounts_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_show_accounts_duration_seconds_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P90.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_show_accounts_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_show_accounts_duration_seconds_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P99.00%",
               "refId": ""
@@ -5452,7 +4183,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 381,
+          "id": 49,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -5479,7 +4210,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(mo_txn_cn_committed_location_quantity_size{type=\"meta_location\",namespace=~\"$namespace\", pod=~\"$pod\"})",
+              "expr": "sum(mo_txn_cn_committed_location_quantity_size{type=\"meta_location\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"})",
               "format": "time_series",
               "refId": ""
             }
@@ -5520,7 +4251,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 382,
+          "id": 50,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -5547,7 +4278,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(mo_txn_cn_committed_location_quantity_size{type=\"delta_location\",namespace=~\"$namespace\", pod=~\"$pod\"})",
+              "expr": "sum(mo_txn_cn_committed_location_quantity_size{type=\"delta_location\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"})",
               "format": "time_series",
               "refId": ""
             }
@@ -5664,10 +4395,10 @@
         "datasource": "Prometheus",
         "hide": 0,
         "includeAll": true,
-        "label": "namespace",
+        "label": "matrixone_cloud_main_cluster",
         "multi": true,
         "multiFormat": "",
-        "name": "namespace",
+        "name": "physicalCluster",
         "options": [
           {
             "selected": false,
@@ -5675,7 +4406,36 @@
             "value": "$__all"
           }
         ],
-        "query": "label_values(namespace)",
+        "query": "label_values(matrixone_cloud_main_cluster)",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "allFormat": "",
+        "allValue": "",
+        "current": {
+          "text": [
+            "All"
+          ],
+          "value": "$__all"
+        },
+        "datasource": "Prometheus",
+        "hide": 0,
+        "includeAll": true,
+        "label": "matrixone_cloud_cluster",
+        "multi": true,
+        "multiFormat": "",
+        "name": "cluster",
+        "options": [
+          {
+            "selected": false,
+            "text": "All",
+            "value": "$__all"
+          }
+        ],
+        "query": "label_values(matrixone_cloud_cluster)",
         "refresh": 1,
         "regex": "",
         "sort": 0,
@@ -5743,6 +4503,6 @@
   },
   "timezone": "",
   "title": "Txn Metrics",
-  "uid": "a6546e76-71d7-4ab0-83c1-9ae14d816e5f",
-  "version": 3
+  "uid": "cf15b603-8f67-4e4a-8aca-74dd813f934d",
+  "version": 1
 }
