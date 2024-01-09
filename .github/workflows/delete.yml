@@ -7,7 +7,7 @@ on:
 jobs:
   delete-branch:
     runs-on: ubuntu-latest
-    # if: ${{ github.event.pull_request.merged == true && github.event.pull_request.labels == Grafana-Dashboard-json }}
+    if: ${{ github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'Grafana-Dashboard-json') }}
     steps:
     - name: checkout repository
       uses: actions/checkout@v4
@@ -15,7 +15,8 @@ jobs:
         fetch-depth: 0
     - name: show
       run: |
-        echo ${{github.event.pull_request.labels }}
+        array = ${{github.event.pull_request.labels }}
+        echo "$array[*]"
     - name: delete branch
       uses: SvanBoxel/delete-merged-branch@main
       env:
