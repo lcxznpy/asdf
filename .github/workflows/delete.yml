@@ -2,7 +2,7 @@ name: Delete branch on PR Merge
 
 on:
   pull_request:
-    types: -closed
+    types: closed
 
 jobs:
   delete-branch:
