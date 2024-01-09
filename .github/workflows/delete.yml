@@ -7,7 +7,7 @@ on:
 jobs:
   delete-branch:
     runs-on: ubuntu-latest
-    if: ${{ github.event.pull_request.merged == true && github.event.pull_request.labels == 'Grafana-Dashboard-json' }}
+    if: ${{ github.event.pull_request.merged == true && github.event.pull_request.labels == Grafana-Dashboard-json }}
     steps:
     - name: checkout repository
       uses: actions/checkout@v4
