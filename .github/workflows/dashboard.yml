@@ -12,6 +12,7 @@ on:
       Commit-id:
           description: 'Commit-id'
           default: ''
+          required: true
           type: string
 
 jobs:
