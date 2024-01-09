@@ -22,7 +22,7 @@ jobs:
     #     branch: ${{ github.event.pull_request.head.ref }}
     #     token: ${{ secrets.TOKEN_ACTION }}
     - name: Check Label
-      if: ${{ github.event.pull_request.merged == true && github.event.pull_request.labels == ${{ env.Label }} }}
+      if: ${{ github.event.pull_request.merged == true && github.event.pull_request.labels == 'Grafana-Dashboard-json' }}
       run: |
         echo ${{ github.event.pull_request.labels }}
         echo ${{ env.Label}}
