@@ -75,39 +75,39 @@ jobs:
     - name: Show test
       run: 
         echo ${{ env.Gitops_branch_name }}
-    # - name: create branch 
-    #   uses: peterjgrainger/action-create-branch@v2.2.0
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.TOKEN_ACTION }}
-    #   with:
-    #     branch: ${{ env.Gitops_branch_name }}
-    #     sha: '${{ github.event.pull_request.head.sha }}'
-    # - name: change branch 
-    #   run: |
-    #     git config --global user.name "github-action-robot"
-    #     git config --global user.email "github-action-robot@github.com"
-    #     git branch -vv
-    #     git fetch
-    #     git checkout ${{ env.Gitops_branch_name }}
-    #     git branch -vv
-    # - name: Download Json
-    #   uses: actions/download-artifact@v3
-    #   with:
-    #     path: dashboard
-    #     name: dashboard
-    # - name: checkout folder exist
-    #   run: |
-    #     rm -rf $GITHUB_WORKSPACE/aliyun/cos-component/unit-resources-chart/grafana/dashboards/json-file
-    #     mkdir -p  $GITHUB_WORKSPACE/aliyun/cos-component/unit-resources-chart/grafana/dashboards/json-file
-    #     mv ./dashboard/* $GITHUB_WORKSPACE/aliyun/cos-component/unit-resources-chart/grafana/dashboards/json-file/
-    #     cd $GITHUB_WORKSPACE/aliyun/cos-component/unit-resources-chart/grafana/dashboards/json-file
-    #     cd $GITHUB_WORKSPACE
-    #     git add .
-    #     git commit -m "update dashboard"
-    # - name: Create Pull Request
-    #   uses: peter-evans/create-pull-request@v5
-    #   with:
-    #       token: ${{ secrets.TOKEN_ACTION }}
-    #       commit-message: Update dependencies
-    #       base: main
-    #       branch: ${{ env.Gitops_branch_name }}
+    - name: create branch 
+      uses: peterjgrainger/action-create-branch@v2.2.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.TOKEN_ACTION }}
+      with:
+        branch: ${{ env.Gitops_branch_name }}
+        sha: '${{ github.event.pull_request.head.sha }}'
+    - name: change branch 
+      run: |
+        git config --global user.name "github-action-robot"
+        git config --global user.email "github-action-robot@github.com"
+        git branch -vv
+        git fetch
+        git checkout ${{ env.Gitops_branch_name }}
+        git branch -vv
+    - name: Download Json
+      uses: actions/download-artifact@v3
+      with:
+        path: dashboard
+        name: dashboard
+    - name: checkout folder exist
+      run: |
+        rm -rf $GITHUB_WORKSPACE/aliyun/cos-component/unit-resources-chart/grafana/dashboards/json-file
+        mkdir -p  $GITHUB_WORKSPACE/aliyun/cos-component/unit-resources-chart/grafana/dashboards/json-file
+        mv ./dashboard/* $GITHUB_WORKSPACE/aliyun/cos-component/unit-resources-chart/grafana/dashboards/json-file/
+        cd $GITHUB_WORKSPACE/aliyun/cos-component/unit-resources-chart/grafana/dashboards/json-file
+        cd $GITHUB_WORKSPACE
+        git add .
+        git commit -m "update dashboard"
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v5
+      with:
+          token: ${{ secrets.TOKEN_ACTION }}
+          commit-message: Update dependencies
+          base: main
+          branch: ${{ env.Gitops_branch_name }}
