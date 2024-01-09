@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name:  Delete Branch
-      if: github.event.pull_request.merged == true && github.event.pull_request.labels == "Grafana-Dashboard-json"
+      if: github.event.pull_request.merged == true && github.event.pull_request.labels == Grafana-Dashboard-json
       uses: github-developer/github-action-delete-branch@releases/v1
       with:
         branch: ${{ github.event.pull_request.head.ref }}
