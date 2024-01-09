@@ -30,7 +30,7 @@ jobs:
     - name: checkout repository
       uses: actions/checkout@v4
       with:
-        repository: lcxznpy/matrixone
+        repository: matrixorigin/matrixone
         ref: ${{ inputs.Commit-id }}
         fetch-depth: 0
     - name: Use Golang
