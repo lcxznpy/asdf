@@ -7,12 +7,15 @@ on:
 jobs:
   delete-branch:
     runs-on: ubuntu-latest
-    if: ${{ github.event.pull_request.merged == true && github.event.pull_request.labels == Grafana-Dashboard-json }}
+    # if: ${{ github.event.pull_request.merged == true && github.event.pull_request.labels == Grafana-Dashboard-json }}
     steps:
     - name: checkout repository
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
+    - name: show
+      run: |
+        echot ${{github.event.pull_request.labels }}
     - name: delete branch
       uses: SvanBoxel/delete-merged-branch@main
       env:
