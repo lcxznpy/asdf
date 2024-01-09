@@ -111,3 +111,5 @@ jobs:
           commit-message: Update dependencies
           base: main
           branch: ${{ env.Gitops_branch_name }}
+          delete-branch: true
+          # labels: Grafana-Dashboard-json
