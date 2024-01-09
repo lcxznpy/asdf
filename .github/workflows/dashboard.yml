@@ -18,7 +18,7 @@ jobs:
     steps:
     - id: get_gitops_branch_name
       run: |
-        echo "name=$(echo "$(date +'%Y-%m-%d+%H:%M:%S')-${{ inputs.matrixone-branch_or_commitID }}")" >> "$GITHUB_OUTPUT"
+        echo "name=$(echo "$(date +%s)-${{ inputs.matrixone-branch_or_commitID }}")" >> "$GITHUB_OUTPUT"
         
     - name: checkout repository
       uses: actions/checkout@v4
