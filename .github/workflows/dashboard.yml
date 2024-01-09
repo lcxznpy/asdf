@@ -25,7 +25,7 @@ jobs:
     - id: get_gitops_branch_name
       run: |
         commitid=$(echo "${{ inputs.Commit-id }}" | cut -c 1-9)
-        echo "commit_id=$commitid")" >> "$GITHUB_OUTPUT"
+        echo "commit_id=$commitid" >> "$GITHUB_OUTPUT"
         echo "name=$(echo "matrixeone-dashboard-${{ inputs.matrixone-branch }}-$commitid")" >> "$GITHUB_OUTPUT"
     - name: checkout repository
       uses: actions/checkout@v4
