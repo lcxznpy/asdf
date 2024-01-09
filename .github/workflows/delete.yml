@@ -26,6 +26,7 @@ jobs:
         echo ${{ github.event.pull_request.labels }}
     - name: Check Label
       if: ${{ github.event.pull_request.merged == true && github.event.pull_request.labels == 'Grafana-Dashboard-json' }}
+      run: echo name
     - name: delete branch
       
       uses: SvanBoxel/delete-merged-branch@main
