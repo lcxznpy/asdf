@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       Label: "Grafana-Dashboard-json"
+    if: github.event.pull_request.merged == true && github.event.pull_request.labels == ${{ env.Label }}
     steps:
     - name: checkout repository
       uses: actions/checkout@v4
@@ -21,7 +22,7 @@ jobs:
     #     branch: ${{ github.event.pull_request.head.ref }}
     #     token: ${{ secrets.TOKEN_ACTION }}
     - name: delete branch
-      if: github.event.pull_request.merged == true && github.event.pull_request.labels == ${{ env.Label }}
+      
       uses: SvanBoxel/delete-merged-branch@main
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN_ACTION }}
