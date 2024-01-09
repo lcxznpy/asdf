@@ -23,7 +23,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 383,
+          "id": 41,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -50,55 +50,55 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_append_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_append_duration_seconds_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "append",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"total\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"total\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "send",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"latency\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "send-latency",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"network\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"network\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "send-network",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "apply",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-latency\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "apply-latency",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-notify\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-notify\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "apply-notify",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-notify-latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-notify-latency\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "apply-notify-latency",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-wait-logtail\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-wait-logtail\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "wait-commit-apply",
               "refId": ""
@@ -141,7 +141,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 384,
+          "id": 42,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -168,55 +168,55 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_append_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_append_duration_seconds_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "append",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"total\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"total\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "send",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"latency\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "send-latency",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"network\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"network\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "send-network",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "apply",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-latency\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "apply-latency",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-notify\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-notify\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "apply-notify",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-notify-latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-notify-latency\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "apply-notify-latency",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-wait-logtail\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-wait-logtail\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "wait-commit-apply",
               "refId": ""
@@ -259,7 +259,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 385,
+          "id": 43,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -286,55 +286,55 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_append_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_append_duration_seconds_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "append",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"total\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"total\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "send",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"latency\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "send-latency",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"network\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"network\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "send-network",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "apply",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-latency\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "apply-latency",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-notify\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-notify\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "apply-notify",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-notify-latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-notify-latency\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "apply-notify-latency",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-wait-logtail\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-wait-logtail\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "wait-commit-apply",
               "refId": ""
@@ -377,7 +377,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 386,
+          "id": 44,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -404,55 +404,55 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_append_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_append_duration_seconds_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "append",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"total\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"total\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "send",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"latency\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "send-latency",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"network\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"network\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "send-network",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "apply",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-latency\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "apply-latency",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-notify\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-notify\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "apply-notify",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-notify-latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-notify-latency\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "apply-notify-latency",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-wait-logtail\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-wait-logtail\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
               "legendFormat": "wait-commit-apply",
               "refId": ""
@@ -505,7 +505,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 387,
+          "id": 45,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -527,123 +527,30 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "span": 4,
+          "span": 6,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(rate(mo_logtail_received_total{type=\"total\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}: total",
-              "refId": ""
-            },
-            {
-              "expr": "sum(rate(mo_logtail_received_total{type=\"subscribe\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}: subscribe",
-              "refId": ""
-            },
-            {
-              "expr": "sum(rate(mo_logtail_received_total{type=\"unsubscribe\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}: unsubscribe",
-              "refId": ""
-            },
-            {
-              "expr": "sum(rate(mo_logtail_received_total{type=\"update\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}: update",
-              "refId": ""
-            },
-            {
-              "expr": "sum(rate(mo_logtail_received_total{type=\"heartbeat\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}: heartbeat",
-              "refId": ""
-            }
-          ],
-          "title": "CN Received status",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 388,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 4,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(mo_logtail_queue_size{type=\"send\",namespace=~\"$namespace\", pod=~\"$pod\"})",
+              "expr": "sum(mo_logtail_queue_size{type=\"send\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"})",
               "format": "time_series",
               "legendFormat": "send",
               "refId": ""
             },
             {
-              "expr": "sum(mo_logtail_queue_size{type=\"receive\",namespace=~\"$namespace\", pod=~\"$pod\"})",
+              "expr": "sum(mo_logtail_queue_size{type=\"receive\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"})",
               "format": "time_series",
               "legendFormat": "receive",
               "refId": ""
             },
             {
-              "expr": "sum(mo_logtail_queue_size{type=\"apply\",namespace=~\"$namespace\", pod=~\"$pod\"})",
+              "expr": "sum(mo_logtail_queue_size{type=\"apply\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"})",
               "format": "time_series",
               "legendFormat": "apply",
               "refId": ""
             }
           ],
-          "title": "Queue status",
+          "title": "Sending Queue",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -679,7 +586,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 389,
+          "id": 46,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -701,12 +608,12 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "span": 4,
+          "span": 6,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(rate(mo_logtail_load_checkpoint_total{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
+              "expr": "sum(rate(mo_logtail_load_checkpoint_total{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (pod)",
               "format": "time_series",
               "legendFormat": "{{ pod }}",
               "refId": ""
@@ -758,7 +665,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 390,
+          "id": 47,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -785,25 +692,25 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_bytes_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_bytes_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P50.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_bytes_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_bytes_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P80.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_bytes_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_bytes_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P90.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_bytes_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_bytes_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P99.00%",
               "refId": ""
@@ -856,7 +763,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 391,
+          "id": 48,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -883,25 +790,25 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_load_checkpoint_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_load_checkpoint_duration_seconds_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P50.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_load_checkpoint_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_load_checkpoint_duration_seconds_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P80.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_load_checkpoint_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_load_checkpoint_duration_seconds_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P90.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_load_checkpoint_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_load_checkpoint_duration_seconds_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P99.00%",
               "refId": ""
@@ -954,7 +861,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 392,
+          "id": 49,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -981,25 +888,25 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_collect_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_collect_duration_seconds_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P50.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_collect_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_collect_duration_seconds_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P80.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_collect_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_collect_duration_seconds_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P90.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_collect_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_collect_duration_seconds_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P99.00%",
               "refId": ""
@@ -1052,7 +959,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 393,
+          "id": 50,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -1079,7 +986,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(increase(mo_logtail_subscription_request_total{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
+              "expr": "sum(increase(mo_logtail_subscription_request_total{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (pod)",
               "format": "time_series",
               "legendFormat": "{{ pod }}",
               "refId": ""
@@ -1121,7 +1028,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 394,
+          "id": 51,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -1148,7 +1055,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(increase(mo_logtail_subscription_request_total{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
+              "expr": "sum(increase(mo_logtail_subscription_request_total{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (pod)",
               "format": "time_series",
               "legendFormat": "{{ pod }}",
               "refId": ""
@@ -1266,10 +1173,10 @@
         "datasource": "Prometheus",
         "hide": 0,
         "includeAll": true,
-        "label": "namespace",
+        "label": "matrixone_cloud_main_cluster",
         "multi": true,
         "multiFormat": "",
-        "name": "namespace",
+        "name": "physicalCluster",
         "options": [
           {
             "selected": false,
@@ -1277,7 +1184,36 @@
             "value": "$__all"
           }
         ],
-        "query": "label_values(namespace)",
+        "query": "label_values(matrixone_cloud_main_cluster)",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "allFormat": "",
+        "allValue": "",
+        "current": {
+          "text": [
+            "All"
+          ],
+          "value": "$__all"
+        },
+        "datasource": "Prometheus",
+        "hide": 0,
+        "includeAll": true,
+        "label": "matrixone_cloud_cluster",
+        "multi": true,
+        "multiFormat": "",
+        "name": "cluster",
+        "options": [
+          {
+            "selected": false,
+            "text": "All",
+            "value": "$__all"
+          }
+        ],
+        "query": "label_values(matrixone_cloud_cluster)",
         "refresh": 1,
         "regex": "",
         "sort": 0,
@@ -1345,6 +1281,6 @@
   },
   "timezone": "",
   "title": "Logtail Metrics",
-  "uid": "eed5ce48-fbd5-43e8-bf2a-5043b093c7bc",
-  "version": 3
+  "uid": "d6dca4e2-cbf7-4fd6-b3de-45f951430eb0",
+  "version": 1
 }

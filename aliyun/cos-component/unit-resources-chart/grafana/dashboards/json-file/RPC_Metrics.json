@@ -23,7 +23,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 431,
+          "id": 82,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -50,147 +50,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(irate(mo_rpc_network_bytes{type=\"input\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}",
-              "refId": ""
-            }
-          ],
-          "title": "RPC Network Input",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "bytes",
-              "logBase": 1,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 432,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 6,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(irate(mo_rpc_network_bytes{type=\"output\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}",
-              "refId": ""
-            }
-          ],
-          "title": "RPC Network Output",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "bytes",
-              "logBase": 1,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 433,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 6,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(rate(mo_rpc_client_create_total{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (name)",
+              "expr": "sum(rate(mo_rpc_client_create_total{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (name)",
               "format": "time_series",
               "legendFormat": "{{ name }}",
               "refId": ""
@@ -232,7 +92,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 434,
+          "id": 83,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -259,7 +119,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(mo_rpc_backend_pool_size{namespace=~\"$namespace\", pod=~\"$pod\"}) by (name)",
+              "expr": "sum(mo_rpc_backend_pool_size{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}) by (name)",
               "format": "time_series",
               "legendFormat": "{{ name }}",
               "refId": ""
@@ -301,7 +161,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 435,
+          "id": 84,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -328,7 +188,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(mo_rpc_sending_queue_size{namespace=~\"$namespace\", pod=~\"$pod\"}) by (name, side)",
+              "expr": "sum(mo_rpc_sending_queue_size{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}) by (name, side)",
               "format": "time_series",
               "legendFormat": "{{ name }}({{ side }})",
               "refId": ""
@@ -370,7 +230,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 436,
+          "id": 85,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -397,7 +257,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(mo_rpc_sending_batch_size{namespace=~\"$namespace\", pod=~\"$pod\"}) by (name)",
+              "expr": "sum(mo_rpc_sending_batch_size{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}) by (name)",
               "format": "time_series",
               "legendFormat": "{{ name }}",
               "refId": ""
@@ -439,7 +299,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 437,
+          "id": 86,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -466,7 +326,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(mo_rpc_server_session_size{namespace=~\"$namespace\", pod=~\"$pod\"}) by (name)",
+              "expr": "sum(mo_rpc_server_session_size{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}) by (name)",
               "format": "time_series",
               "legendFormat": "{{ name }}",
               "refId": ""
@@ -518,7 +378,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 438,
+          "id": 87,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -545,7 +405,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(rate(mo_rpc_backend_create_total{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (name)",
+              "expr": "sum(rate(mo_rpc_backend_create_total{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (name)",
               "format": "time_series",
               "legendFormat": "{{ name }}",
               "refId": ""
@@ -587,7 +447,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 439,
+          "id": 88,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -614,7 +474,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(rate(mo_rpc_backend_close_total{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (name)",
+              "expr": "sum(rate(mo_rpc_backend_close_total{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (name)",
               "format": "time_series",
               "legendFormat": "{{ name }}",
               "refId": ""
@@ -656,7 +516,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 440,
+          "id": 89,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -683,7 +543,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(rate(mo_rpc_backend_connect_total{type=\"total\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (name)",
+              "expr": "sum(rate(mo_rpc_backend_connect_total{type=\"total\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (name)",
               "format": "time_series",
               "legendFormat": "{{ name }}",
               "refId": ""
@@ -725,7 +585,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 441,
+          "id": 90,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -752,7 +612,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(rate(mo_rpc_backend_connect_total{type=\"failed\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (name)",
+              "expr": "sum(rate(mo_rpc_backend_connect_total{type=\"failed\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (name)",
               "format": "time_series",
               "legendFormat": "{{ name }}",
               "refId": ""
@@ -804,7 +664,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 442,
+          "id": 91,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -831,25 +691,25 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_rpc_backend_connect_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, name))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_rpc_backend_connect_duration_seconds_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le, name))",
               "format": "time_series",
               "legendFormat": "{{ name }}(P50.00%)",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_rpc_backend_connect_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, name))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_rpc_backend_connect_duration_seconds_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le, name))",
               "format": "time_series",
               "legendFormat": "{{ name }}(P80.00%)",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_rpc_backend_connect_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, name))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_rpc_backend_connect_duration_seconds_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le, name))",
               "format": "time_series",
               "legendFormat": "{{ name }}(P90.00%)",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_rpc_backend_connect_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, name))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_rpc_backend_connect_duration_seconds_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le, name))",
               "format": "time_series",
               "legendFormat": "{{ name }}(P99.00%)",
               "refId": ""
@@ -902,7 +762,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 443,
+          "id": 92,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -929,25 +789,25 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_rpc_write_duration_seconds_bucket{side=\"client\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, name))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_rpc_write_duration_seconds_bucket{side=\"client\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le, name))",
               "format": "time_series",
               "legendFormat": "{{ name }}(P50.00%)",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_rpc_write_duration_seconds_bucket{side=\"client\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, name))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_rpc_write_duration_seconds_bucket{side=\"client\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le, name))",
               "format": "time_series",
               "legendFormat": "{{ name }}(P80.00%)",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_rpc_write_duration_seconds_bucket{side=\"client\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, name))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_rpc_write_duration_seconds_bucket{side=\"client\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le, name))",
               "format": "time_series",
               "legendFormat": "{{ name }}(P90.00%)",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_rpc_write_duration_seconds_bucket{side=\"client\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, name))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_rpc_write_duration_seconds_bucket{side=\"client\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le, name))",
               "format": "time_series",
               "legendFormat": "{{ name }}(P99.00%)",
               "refId": ""
@@ -990,7 +850,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 444,
+          "id": 93,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -1017,25 +877,25 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_rpc_write_latency_duration_seconds_bucket{side=\"client\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, name))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_rpc_write_latency_duration_seconds_bucket{side=\"client\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le, name))",
               "format": "time_series",
               "legendFormat": "{{ name }}(P50.00%)",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_rpc_write_latency_duration_seconds_bucket{side=\"client\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, name))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_rpc_write_latency_duration_seconds_bucket{side=\"client\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le, name))",
               "format": "time_series",
               "legendFormat": "{{ name }}(P80.00%)",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_rpc_write_latency_duration_seconds_bucket{side=\"client\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, name))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_rpc_write_latency_duration_seconds_bucket{side=\"client\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le, name))",
               "format": "time_series",
               "legendFormat": "{{ name }}(P90.00%)",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_rpc_write_latency_duration_seconds_bucket{side=\"client\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, name))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_rpc_write_latency_duration_seconds_bucket{side=\"client\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le, name))",
               "format": "time_series",
               "legendFormat": "{{ name }}(P99.00%)",
               "refId": ""
@@ -1078,7 +938,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 445,
+          "id": 94,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -1105,25 +965,25 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_rpc_write_duration_seconds_bucket{side=\"server\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, name))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_rpc_write_duration_seconds_bucket{side=\"server\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le, name))",
               "format": "time_series",
               "legendFormat": "{{ name }}(P50.00%)",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_rpc_write_duration_seconds_bucket{side=\"server\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, name))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_rpc_write_duration_seconds_bucket{side=\"server\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le, name))",
               "format": "time_series",
               "legendFormat": "{{ name }}(P80.00%)",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_rpc_write_duration_seconds_bucket{side=\"server\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, name))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_rpc_write_duration_seconds_bucket{side=\"server\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le, name))",
               "format": "time_series",
               "legendFormat": "{{ name }}(P90.00%)",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_rpc_write_duration_seconds_bucket{side=\"server\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, name))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_rpc_write_duration_seconds_bucket{side=\"server\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le, name))",
               "format": "time_series",
               "legendFormat": "{{ name }}(P99.00%)",
               "refId": ""
@@ -1166,7 +1026,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 446,
+          "id": 95,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -1193,25 +1053,25 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_rpc_write_latency_duration_seconds_bucket{side=\"server\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, name))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_rpc_write_latency_duration_seconds_bucket{side=\"server\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le, name))",
               "format": "time_series",
               "legendFormat": "{{ name }}(P50.00%)",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_rpc_write_latency_duration_seconds_bucket{side=\"server\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, name))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_rpc_write_latency_duration_seconds_bucket{side=\"server\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le, name))",
               "format": "time_series",
               "legendFormat": "{{ name }}(P80.00%)",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_rpc_write_latency_duration_seconds_bucket{side=\"server\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, name))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_rpc_write_latency_duration_seconds_bucket{side=\"server\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le, name))",
               "format": "time_series",
               "legendFormat": "{{ name }}(P90.00%)",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_rpc_write_latency_duration_seconds_bucket{side=\"server\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, name))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_rpc_write_latency_duration_seconds_bucket{side=\"server\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le, name))",
               "format": "time_series",
               "legendFormat": "{{ name }}(P99.00%)",
               "refId": ""
@@ -1264,7 +1124,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 447,
+          "id": 96,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -1291,25 +1151,25 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_rpc_backend_done_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, name))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_rpc_backend_done_duration_seconds_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le, name))",
               "format": "time_series",
               "legendFormat": "{{ name }}(P50.00%)",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_rpc_backend_done_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, name))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_rpc_backend_done_duration_seconds_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le, name))",
               "format": "time_series",
               "legendFormat": "{{ name }}(P80.00%)",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_rpc_backend_done_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, name))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_rpc_backend_done_duration_seconds_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le, name))",
               "format": "time_series",
               "legendFormat": "{{ name }}(P90.00%)",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_rpc_backend_done_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, name))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_rpc_backend_done_duration_seconds_bucket{matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le, name))",
               "format": "time_series",
               "legendFormat": "{{ name }}(P99.00%)",
               "refId": ""
@@ -1428,10 +1288,10 @@
         "datasource": "Prometheus",
         "hide": 0,
         "includeAll": true,
-        "label": "namespace",
+        "label": "matrixone_cloud_main_cluster",
         "multi": true,
         "multiFormat": "",
-        "name": "namespace",
+        "name": "physicalCluster",
         "options": [
           {
             "selected": false,
@@ -1439,7 +1299,36 @@
             "value": "$__all"
           }
         ],
-        "query": "label_values(namespace)",
+        "query": "label_values(matrixone_cloud_main_cluster)",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "allFormat": "",
+        "allValue": "",
+        "current": {
+          "text": [
+            "All"
+          ],
+          "value": "$__all"
+        },
+        "datasource": "Prometheus",
+        "hide": 0,
+        "includeAll": true,
+        "label": "matrixone_cloud_cluster",
+        "multi": true,
+        "multiFormat": "",
+        "name": "cluster",
+        "options": [
+          {
+            "selected": false,
+            "text": "All",
+            "value": "$__all"
+          }
+        ],
+        "query": "label_values(matrixone_cloud_cluster)",
         "refresh": 1,
         "regex": "",
         "sort": 0,
@@ -1507,6 +1396,6 @@
   },
   "timezone": "",
   "title": "RPC Metrics",
-  "uid": "e631e162-8e98-4d62-b99c-c45f84bc6185",
-  "version": 3
+  "uid": "aa0c9c56-9573-4d96-a722-ba62a109a7e8",
+  "version": 1
 }
