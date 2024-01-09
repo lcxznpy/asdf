@@ -19,7 +19,6 @@ jobs:
     - id: get_gitops_branch_name
       run: |
         echo "name=$(echo "$(date +%s)-${{ inputs.matrixone-branch_or_commitID }}")" >> "$GITHUB_OUTPUT"
-        
     - name: checkout repository
       uses: actions/checkout@v4
       with:
@@ -81,7 +80,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.TOKEN_ACTION }}
       with:
         branch: ${{ env.Gitops_branch_name }}
-        sha: '${{ github.event.pull_request.head.sha }}'
     - name: Change Branch 
       run: |
         git config --global user.name "github-action-robot"
@@ -100,7 +98,8 @@ jobs:
         rm -rf $GITHUB_WORKSPACE/aliyun/cos-component/unit-resources-chart/grafana/dashboards/json-file
         mkdir -p  $GITHUB_WORKSPACE/aliyun/cos-component/unit-resources-chart/grafana/dashboards/json-file
         mv ./dashboard/* $GITHUB_WORKSPACE/aliyun/cos-component/unit-resources-chart/grafana/dashboards/json-file/
-        cd $GITHUB_WORKSPACE/aliyun/cos-component/unit-resources-chart/grafana/dashboards/json-file
+        # cd $GITHUB_WORKSPACE/aliyun/cos-component/unit-resources-chart/grafana/dashboards/json-file
+        ls -l
         cd $GITHUB_WORKSPACE
         git add .
         git commit -m "update dashboard"
