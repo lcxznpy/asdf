@@ -4,7 +4,7 @@
   },
   "editable": true,
   "hideControls": false,
-  "id": 8,
+  "id": 4,
   "links": null,
   "originalTitle": "",
   "panels": null,
@@ -23,7 +23,8 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 459,
+          "height": "400px",
+          "id": 123,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -50,13 +51,13 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(go_gc_heap_objects_objects{namespace=~\"$namespace\", pod=~\"$pod\"}) by (pod)",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_task_duration_seconds_bucket{type=\"flush_table_tail\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le, pod))",
               "format": "time_series",
               "legendFormat": "{{ pod }}",
               "refId": ""
             }
           ],
-          "title": "Live Objects",
+          "title": "P50.000000 time",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -73,76 +74,7 @@
           "y-axis": true,
           "yaxes": [
             {
-              "format": "short",
-              "logBase": 1,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 460,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(go_memory_classes_heap_free_bytes{namespace=~\"$namespace\", pod=~\"$pod\"}) by (pod)",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}",
-              "refId": ""
-            }
-          ],
-          "title": "Free and ready to return system",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "bytes",
+              "format": "s",
               "logBase": 1,
               "min": 0,
               "show": true
@@ -162,7 +94,8 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 461,
+          "height": "400px",
+          "id": 124,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -189,13 +122,13 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(go_memory_classes_heap_objects_bytes{namespace=~\"$namespace\", pod=~\"$pod\"}) by (pod)",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_task_duration_seconds_bucket{type=\"flush_table_tail\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le, pod))",
               "format": "time_series",
               "legendFormat": "{{ pod }}",
               "refId": ""
             }
           ],
-          "title": "Dead objects and not marked free live objects",
+          "title": "P80.000000 time",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -212,7 +145,7 @@
           "y-axis": true,
           "yaxes": [
             {
-              "format": "bytes",
+              "format": "s",
               "logBase": 1,
               "min": 0,
               "show": true
@@ -232,7 +165,8 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 462,
+          "height": "400px",
+          "id": 125,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -259,13 +193,13 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(go_memory_classes_heap_released_bytes{namespace=~\"$namespace\", pod=~\"$pod\"}) by (pod)",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_task_duration_seconds_bucket{type=\"flush_table_tail\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le, pod))",
               "format": "time_series",
               "legendFormat": "{{ pod }}",
               "refId": ""
             }
           ],
-          "title": "Released to system",
+          "title": "P90.000000 time",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -282,7 +216,7 @@
           "y-axis": true,
           "yaxes": [
             {
-              "format": "bytes",
+              "format": "s",
               "logBase": 1,
               "min": 0,
               "show": true
@@ -302,7 +236,8 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 463,
+          "height": "400px",
+          "id": 126,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -329,407 +264,13 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(rate(go_gc_heap_allocs_bytes_total{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_task_duration_seconds_bucket{type=\"flush_table_tail\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le, pod))",
               "format": "time_series",
               "legendFormat": "{{ pod }}",
               "refId": ""
             }
           ],
-          "title": "Heap Allocation Bytes/s",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "bytes",
-              "logBase": 1,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 464,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(rate(go_gc_heap_frees_bytes_total{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}",
-              "refId": ""
-            }
-          ],
-          "title": "Heap Free Bytes/s",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "bytes",
-              "logBase": 1,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 465,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(rate(go_gc_heap_allocs_objects_total{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}",
-              "refId": ""
-            }
-          ],
-          "title": "Heap Allocation Object/s",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 466,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(rate(go_gc_heap_frees_objects_total{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}",
-              "refId": ""
-            }
-          ],
-          "title": "Heap Free Object/s",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 467,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 12,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(go_gc_heap_allocs_by_size_bytes_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P80.00%",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(go_gc_heap_allocs_by_size_bytes_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P90.00%",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.950000, sum(rate(go_gc_heap_allocs_by_size_bytes_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P95.00%",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(go_gc_heap_allocs_by_size_bytes_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P99.00%",
-              "refId": ""
-            }
-          ],
-          "title": "Allocation bytes size",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "bytes",
-              "logBase": 1,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        }
-      ],
-      "repeat": null,
-      "showTitle": true,
-      "title": "Memory Status"
-    },
-    {
-      "collapse": false,
-      "editable": true,
-      "height": "250px",
-      "panels": [
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 468,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 12,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(go_gc_pauses_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}(P80.00%)",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(go_gc_pauses_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}(P90.00%)",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.950000, sum(rate(go_gc_pauses_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}(P95.00%)",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(go_gc_pauses_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}(P99.00%)",
-              "refId": ""
-            }
-          ],
-          "title": "STW duration",
+          "title": "P99.000000 time",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -761,7 +302,7 @@
       ],
       "repeat": null,
       "showTitle": true,
-      "title": "Go GC Status"
+      "title": "Flush Table Tail Duration"
     },
     {
       "collapse": false,
@@ -776,7 +317,8 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 469,
+          "height": "400px",
+          "id": 127,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -798,18 +340,312 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "span": 6,
+          "span": 3,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(go_goroutines{namespace=~\"$namespace\", pod=~\"$pod\"}) by (pod)",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_task_duration_seconds_bucket{type=\"ckp_entry_pending\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le, pod))",
               "format": "time_series",
               "legendFormat": "{{ pod }}",
               "refId": ""
             }
           ],
-          "title": "Goroutine count",
+          "title": "P50.000000 time",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": ""
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "xaxis": {
+            "format": "time",
+            "logBase": 1,
+            "show": true
+          },
+          "y-axis": true,
+          "yaxes": [
+            {
+              "format": "s",
+              "logBase": 1,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "Prometheus",
+          "editable": false,
+          "error": false,
+          "fill": 1,
+          "gridPos": {},
+          "height": "400px",
+          "id": 128,
+          "isNew": false,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_task_duration_seconds_bucket{type=\"ckp_entry_pending\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le, pod))",
+              "format": "time_series",
+              "legendFormat": "{{ pod }}",
+              "refId": ""
+            }
+          ],
+          "title": "P80.000000 time",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": ""
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "xaxis": {
+            "format": "time",
+            "logBase": 1,
+            "show": true
+          },
+          "y-axis": true,
+          "yaxes": [
+            {
+              "format": "s",
+              "logBase": 1,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "Prometheus",
+          "editable": false,
+          "error": false,
+          "fill": 1,
+          "gridPos": {},
+          "height": "400px",
+          "id": 129,
+          "isNew": false,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_task_duration_seconds_bucket{type=\"ckp_entry_pending\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le, pod))",
+              "format": "time_series",
+              "legendFormat": "{{ pod }}",
+              "refId": ""
+            }
+          ],
+          "title": "P90.000000 time",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": ""
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "xaxis": {
+            "format": "time",
+            "logBase": 1,
+            "show": true
+          },
+          "y-axis": true,
+          "yaxes": [
+            {
+              "format": "s",
+              "logBase": 1,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "Prometheus",
+          "editable": false,
+          "error": false,
+          "fill": 1,
+          "gridPos": {},
+          "height": "400px",
+          "id": 130,
+          "isNew": false,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "span": 3,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_task_duration_seconds_bucket{type=\"ckp_entry_pending\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (le, pod))",
+              "format": "time_series",
+              "legendFormat": "{{ pod }}",
+              "refId": ""
+            }
+          ],
+          "title": "P99.000000 time",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": ""
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "xaxis": {
+            "format": "time",
+            "logBase": 1,
+            "show": true
+          },
+          "y-axis": true,
+          "yaxes": [
+            {
+              "format": "s",
+              "logBase": 1,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "showTitle": true,
+      "title": "Checkpoint Entry Pending Time"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "Prometheus",
+          "editable": false,
+          "error": false,
+          "fill": 1,
+          "gridPos": {},
+          "height": "400px",
+          "id": 131,
+          "isNew": false,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(rate(mo_task_scheduled_by_total{type=\"merge\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (pod, type)",
+              "format": "time_series",
+              "legendFormat": "{{pod-type }}",
+              "refId": ""
+            }
+          ],
+          "title": "Scheduled By Counting",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -845,7 +681,8 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 470,
+          "height": "400px",
+          "id": 132,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -867,36 +704,18 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "span": 6,
+          "span": 4,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(go_sched_latencies_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
+              "expr": "sum(rate(mo_task_execute_results_total{type=\"merged_block\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (pod, type)",
               "format": "time_series",
-              "legendFormat": "{{ pod }}(P80.00%)",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(go_sched_latencies_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}(P90.00%)",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.950000, sum(rate(go_sched_latencies_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}(P95.00%)",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(go_sched_latencies_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}(P99.00%)",
+              "legendFormat": "{{pod-type }}",
               "refId": ""
             }
           ],
-          "title": "Schedule latency duration",
+          "title": "Merged Blocks Each Schedule",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -913,9 +732,78 @@
           "y-axis": true,
           "yaxes": [
             {
-              "format": "s",
+              "format": "short",
               "logBase": 1,
-              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "Prometheus",
+          "editable": false,
+          "error": false,
+          "fill": 1,
+          "gridPos": {},
+          "height": "400px",
+          "id": 133,
+          "isNew": false,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(rate(mo_task_execute_results_total{type=\"merged_size\",matrixone_cloud_main_cluster=~\"$physicalCluster\", matrixone_cloud_cluster=~\"$cluster\", pod=~\"$pod\"}[$interval])) by (pod, type)",
+              "format": "time_series",
+              "legendFormat": "{{ pod-type }}",
+              "refId": ""
+            }
+          ],
+          "title": "Merged Size Each Schedule",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": ""
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "xaxis": {
+            "format": "time",
+            "logBase": 1,
+            "show": true
+          },
+          "y-axis": true,
+          "yaxes": [
+            {
+              "format": "short",
+              "logBase": 1,
               "show": true
             },
             {
@@ -928,7 +816,7 @@
       ],
       "repeat": null,
       "showTitle": true,
-      "title": "Goroutine Status"
+      "title": "Task Merge Related Status"
     }
   ],
   "schemaVersion": 0,
@@ -1009,10 +897,10 @@
         "datasource": "Prometheus",
         "hide": 0,
         "includeAll": true,
-        "label": "namespace",
+        "label": "matrixone_cloud_main_cluster",
         "multi": true,
         "multiFormat": "",
-        "name": "namespace",
+        "name": "physicalCluster",
         "options": [
           {
             "selected": false,
@@ -1020,7 +908,36 @@
             "value": "$__all"
           }
         ],
-        "query": "label_values(namespace)",
+        "query": "label_values(matrixone_cloud_main_cluster)",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "allFormat": "",
+        "allValue": "",
+        "current": {
+          "text": [
+            "All"
+          ],
+          "value": "$__all"
+        },
+        "datasource": "Prometheus",
+        "hide": 0,
+        "includeAll": true,
+        "label": "matrixone_cloud_cluster",
+        "multi": true,
+        "multiFormat": "",
+        "name": "cluster",
+        "options": [
+          {
+            "selected": false,
+            "text": "All",
+            "value": "$__all"
+          }
+        ],
+        "query": "label_values(matrixone_cloud_cluster)",
         "refresh": 1,
         "regex": "",
         "sort": 0,
@@ -1058,7 +975,7 @@
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {
@@ -1087,7 +1004,7 @@
     ]
   },
   "timezone": "",
-  "title": "Go Runtime Metrics",
-  "uid": "c8c7c1a3-0daa-42ec-aa58-d972022b085d",
-  "version": 3
+  "title": "Task Metrics",
+  "uid": "b9c82fa9-f356-4bd0-b903-ee8e3c43477e",
+  "version": 1
 }
