@@ -9,27 +9,29 @@ on:
           default: 'main'
           required: true
           type: string
-      gitops-branch:
-          description: 'gitops-branch'
-          default: 'main'
+      Commit-id:
+          description: 'Commit-id'
+          default: ''
           required: true
           type: string
-      directory:
-          description: 'directory'
-          default: 'test'
-          required: true
-          type: string
-
 
 jobs:
   Get-Json-File:
     runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.get_gitops_branch_name.outputs.name }}
+      output2: ${{ steps.get_gitops_branch_name.outputs.commit_id }}
     steps:
+    - id: get_gitops_branch_name
+      run: |
+        commitid=$(echo "${{ inputs.Commit-id }}" | cut -c 1-9)
+        echo "commit_id=$commitid" >> "$GITHUB_OUTPUT"
+        echo "name=$(echo "matrixeone-dashboard-${{ inputs.matrixone-branch }}-$commitid")" >> "$GITHUB_OUTPUT"
     - name: checkout repository
       uses: actions/checkout@v4
       with:
-        repository: lcxznpy/matrixone
-        ref: ${{ inputs.matrixone-branch }}
+        repository: matrixorigin/matrixone
+        ref: ${{ inputs.Commit-id }}
         fetch-depth: 0
     - name: Use Golang
       uses: actions/setup-go@v4
@@ -39,104 +41,84 @@ jobs:
     - name: Deploy Grafana
       run: |
         docker pull grafana/grafana
-        docker run -d -p 80:3000 --name=grafana grafana/grafana
+        docker run -d -p 80:3000 -p 3000:3000 --name=grafana grafana/grafana
     - name: Upload Dashboard configuration
       run: |
-        docker ps -a 
-        ls
-        pwd
         cd ./pkg/util/metric/v2/dashboard
-        go test
+        go test -v -run TestCreateCloudDashboard
     - name: Save file
       run: |
         cd $GITHUB_WORKSPACE
         mkdir dashboard
-        uid_array=($(curl http://admin:admin@localhost:80/api/search\?type\=dash-db | jq -r '.[].uid'))
-        # echo $uid_array
-        for element in "${uid_array[@]}"; do
-            # echo "$element"
-            curl -s "http://admin:admin@localhost:80/api/dashboards/uid/$element" | jq .dashboard > $GITHUB_WORKSPACE/dashboard/$element.json
+        curl -s "http://admin:admin@localhost:80/api/search" | jq -r > data.json
+        count=$(jq '. | length' data.json)
+        echo $count
+
+        for ((i=0;i < count;i++));do
+                uid=$(jq --arg i $i '.[$i|tonumber].uid' data.json)
+                uid=${uid//\"}
+                title=$(jq --arg i $i '.[$i|tonumber].title' data.json)
+                title=${title//\"}
+                title=${title// /_}
+                curl -s "http://admin:admin@localhost:80/api/dashboards/uid/$uid" | jq .dashboard  > "$GITHUB_WORKSPACE/dashboard/$title.json"
         done
-        ls -la $GITHUB_WORKSPACE/dashboard
+        
     - name: upload json artifacts
       uses: actions/upload-artifact@v3
       with:
         name: dashboard
         path: |
           ./dashboard/*
-  Create-branch:
+  Create-branch-And-Pr:
+    runs-on: ubuntu-latest
     needs: Get-Json-File
-    runs-on: ubuntu-latest
-    steps:
-    - name: checkout repository
-      uses: actions/checkout@v4
-    - name: create branch 
-      uses: peterjgrainger/action-create-branch@v2.2.0
-      env:
-        GITHUB_TOKEN: ${{ secrets.TOKEN_ACTION }}
-      with:
-        branch: ${{ inputs.gitops-branch}}
-        sha: '${{ github.event.pull_request.head.sha }}'
-  Push:
-    needs: Create-branch
-    runs-on: ubuntu-latest
+    env: 
+      Gitops_branch_name: ${{ needs.Get-Json-File.outputs.output1 }}
+      Commit_id: ${{ needs.Get-Json-File.outputs.output2 }}
     steps:
     - name: checkout repository
       uses: actions/checkout@v4
       with: 
-        ref: ${{ inputs.gitops-branch}}
+        fetch-depth: 0
+        token: ${{ secrets.TOKEN_ACTION }}
+    - name: Show test
+      run: 
+        echo ${{ env.Gitops_branch_name }}
+    - name: Create Branch 
+      uses: peterjgrainger/action-create-branch@v2.2.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.TOKEN_ACTION }}
+      with:
+        branch: ${{ env.Gitops_branch_name }}
+    - name: Change Branch 
+      run: |
+        git config --global user.name "github-action-robot"
+        git config --global user.email "github-action-robot@github.com"
+        git branch -vv
+        git fetch
+        git checkout ${{ env.Gitops_branch_name }}
+        git branch -vv
     - name: Download Json
       uses: actions/download-artifact@v3
       with:
         path: dashboard
         name: dashboard
-    - name: ls dashboard file
+    - name: Move File to Destination Directory
       run: |
-        
-        git config --global user.name "github-action-robot"
-        git config --global user.email "github-action-robot@github.com"
-        git branch -vv
-        ls -la
-        ls -la ./dashboard
-        git fetch
-        git checkout ${{ inputs.gitops-branch}}
-        git branch -vv
-        pwd
-        ls -la
-        ls -la ./dashboard
-        # tail 10 ./dashboard/*
-    - name: checkout folder exist
-      run: |
-        ls -la
-        rm -rf ${{ inputs.directory }}
-        mkdir -p ${{ inputs.directory }}
-        ls && pwd 
-        mv ./dashboard/* $GITHUB_WORKSPACE/${{ inputs.directory }}/
-        cd $GITHUB_WORKSPACE/${{ inputs.directory }}
-        ls && pwd
+        rm -rf $GITHUB_WORKSPACE/aliyun/cos-component/unit-resources-chart/grafana/dashboards/json-file
+        mkdir -p  $GITHUB_WORKSPACE/aliyun/cos-component/unit-resources-chart/grafana/dashboards/json-file
+        mv ./dashboard/* $GITHUB_WORKSPACE/aliyun/cos-component/unit-resources-chart/grafana/dashboards/json-file/
+        # cd $GITHUB_WORKSPACE/aliyun/cos-component/unit-resources-chart/grafana/dashboards/json-file
+        ls -l
         cd $GITHUB_WORKSPACE
-        ls && pwd
         git add .
-        git commit -m "update dashboard"
-        git push origin ${{ inputs.gitops-branch}}
-    # - name: Create Pull Request
-    #   uses: peter-evans/create-pull-request@v5
-    #   with:
-    #       token: ${{ secrets.TOKEN_ACTION }}
-    #       commit-message: Update dependencies
-    #       branch: main
-  Create-PR:
-    needs: Push
-    runs-on: ubuntu-latest
-    steps:
-    - name: checkout repository
-      uses: actions/checkout@v4
+        git commit -m "update dashboard: matrixorigin/matrixone@${{ env.Gitops_branch_name }}, commit: ${{ env.Commit_id }}"
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v5
       with:
           token: ${{ secrets.TOKEN_ACTION }}
           commit-message: Update dependencies
           base: main
-          branch: ${{ inputs.gitops-branch}}
-    
-  
+          branch: ${{ env.Gitops_branch_name }}
+          # delete-branch: true
+          # labels: Grafana-Dashboard-json
