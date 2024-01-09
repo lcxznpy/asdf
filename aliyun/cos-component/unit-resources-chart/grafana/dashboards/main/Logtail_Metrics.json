@@ -4,7 +4,7 @@
   },
   "editable": true,
   "hideControls": false,
-  "id": 8,
+  "id": 3,
   "links": null,
   "originalTitle": "",
   "panels": null,
@@ -23,7 +23,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 459,
+          "id": 383,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -50,82 +50,61 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(go_gc_heap_objects_objects{namespace=~\"$namespace\", pod=~\"$pod\"}) by (pod)",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_append_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
-              "legendFormat": "{{ pod }}",
+              "legendFormat": "append",
               "refId": ""
-            }
-          ],
-          "title": "Live Objects",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": true
             },
             {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 460,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(go_memory_classes_heap_free_bytes{namespace=~\"$namespace\", pod=~\"$pod\"}) by (pod)",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"total\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
-              "legendFormat": "{{ pod }}",
+              "legendFormat": "send",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "format": "time_series",
+              "legendFormat": "send-latency",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"network\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "format": "time_series",
+              "legendFormat": "send-network",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "format": "time_series",
+              "legendFormat": "apply",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "format": "time_series",
+              "legendFormat": "apply-latency",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-notify\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "format": "time_series",
+              "legendFormat": "apply-notify",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-notify-latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "format": "time_series",
+              "legendFormat": "apply-notify-latency",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-wait-logtail\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "format": "time_series",
+              "legendFormat": "wait-commit-apply",
               "refId": ""
             }
           ],
-          "title": "Free and ready to return system",
+          "title": "P50.000000 time",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -142,7 +121,7 @@
           "y-axis": true,
           "yaxes": [
             {
-              "format": "bytes",
+              "format": "s",
               "logBase": 1,
               "min": 0,
               "show": true
@@ -162,7 +141,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 461,
+          "id": 384,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -189,13 +168,61 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(go_memory_classes_heap_objects_bytes{namespace=~\"$namespace\", pod=~\"$pod\"}) by (pod)",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_append_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
-              "legendFormat": "{{ pod }}",
+              "legendFormat": "append",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"total\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "format": "time_series",
+              "legendFormat": "send",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "format": "time_series",
+              "legendFormat": "send-latency",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"network\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "format": "time_series",
+              "legendFormat": "send-network",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "format": "time_series",
+              "legendFormat": "apply",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "format": "time_series",
+              "legendFormat": "apply-latency",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-notify\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "format": "time_series",
+              "legendFormat": "apply-notify",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-notify-latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "format": "time_series",
+              "legendFormat": "apply-notify-latency",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-wait-logtail\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "format": "time_series",
+              "legendFormat": "wait-commit-apply",
               "refId": ""
             }
           ],
-          "title": "Dead objects and not marked free live objects",
+          "title": "P80.000000 time",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -212,7 +239,7 @@
           "y-axis": true,
           "yaxes": [
             {
-              "format": "bytes",
+              "format": "s",
               "logBase": 1,
               "min": 0,
               "show": true
@@ -232,7 +259,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 462,
+          "id": 385,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -259,13 +286,61 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(go_memory_classes_heap_released_bytes{namespace=~\"$namespace\", pod=~\"$pod\"}) by (pod)",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_append_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
-              "legendFormat": "{{ pod }}",
+              "legendFormat": "append",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"total\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "format": "time_series",
+              "legendFormat": "send",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "format": "time_series",
+              "legendFormat": "send-latency",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"network\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "format": "time_series",
+              "legendFormat": "send-network",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "format": "time_series",
+              "legendFormat": "apply",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "format": "time_series",
+              "legendFormat": "apply-latency",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-notify\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "format": "time_series",
+              "legendFormat": "apply-notify",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-notify-latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "format": "time_series",
+              "legendFormat": "apply-notify-latency",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-wait-logtail\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "format": "time_series",
+              "legendFormat": "wait-commit-apply",
               "refId": ""
             }
           ],
-          "title": "Released to system",
+          "title": "P90.000000 time",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -282,7 +357,7 @@
           "y-axis": true,
           "yaxes": [
             {
-              "format": "bytes",
+              "format": "s",
               "logBase": 1,
               "min": 0,
               "show": true
@@ -302,7 +377,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 463,
+          "id": 386,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -329,13 +404,61 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(rate(go_gc_heap_allocs_bytes_total{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_append_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
               "format": "time_series",
-              "legendFormat": "{{ pod }}",
+              "legendFormat": "append",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"total\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "format": "time_series",
+              "legendFormat": "send",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "format": "time_series",
+              "legendFormat": "send-latency",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_send_duration_seconds_bucket{step=\"network\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "format": "time_series",
+              "legendFormat": "send-network",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "format": "time_series",
+              "legendFormat": "apply",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "format": "time_series",
+              "legendFormat": "apply-latency",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-notify\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "format": "time_series",
+              "legendFormat": "apply-notify",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_apply_duration_seconds_bucket{step=\"apply-notify-latency\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "format": "time_series",
+              "legendFormat": "apply-notify-latency",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_commit_duration_seconds_bucket{type=\"cn-wait-logtail\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
+              "format": "time_series",
+              "legendFormat": "wait-commit-apply",
               "refId": ""
             }
           ],
-          "title": "Heap Allocation Bytes/s",
+          "title": "P99.000000 time",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -352,7 +475,7 @@
           "y-axis": true,
           "yaxes": [
             {
-              "format": "bytes",
+              "format": "s",
               "logBase": 1,
               "min": 0,
               "show": true
@@ -363,7 +486,17 @@
               "show": false
             }
           ]
-        },
+        }
+      ],
+      "repeat": null,
+      "showTitle": true,
+      "title": "Logtail overview"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
         {
           "aliasColors": {},
           "bars": false,
@@ -372,7 +505,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 464,
+          "id": 387,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -394,88 +527,42 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "span": 3,
+          "span": 4,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(rate(go_gc_heap_frees_bytes_total{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
+              "expr": "sum(rate(mo_logtail_received_total{type=\"total\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
               "format": "time_series",
-              "legendFormat": "{{ pod }}",
+              "legendFormat": "{{ pod }}: total",
               "refId": ""
-            }
-          ],
-          "title": "Heap Free Bytes/s",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "bytes",
-              "logBase": 1,
-              "min": 0,
-              "show": true
             },
             {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 465,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(rate(go_gc_heap_allocs_objects_total{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
+              "expr": "sum(rate(mo_logtail_received_total{type=\"subscribe\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
               "format": "time_series",
-              "legendFormat": "{{ pod }}",
+              "legendFormat": "{{ pod }}: subscribe",
+              "refId": ""
+            },
+            {
+              "expr": "sum(rate(mo_logtail_received_total{type=\"unsubscribe\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
+              "format": "time_series",
+              "legendFormat": "{{ pod }}: unsubscribe",
+              "refId": ""
+            },
+            {
+              "expr": "sum(rate(mo_logtail_received_total{type=\"update\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
+              "format": "time_series",
+              "legendFormat": "{{ pod }}: update",
+              "refId": ""
+            },
+            {
+              "expr": "sum(rate(mo_logtail_received_total{type=\"heartbeat\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
+              "format": "time_series",
+              "legendFormat": "{{ pod }}: heartbeat",
               "refId": ""
             }
           ],
-          "title": "Heap Allocation Object/s",
+          "title": "CN Received status",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -511,7 +598,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 466,
+          "id": 388,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -533,18 +620,30 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "span": 3,
+          "span": 4,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(rate(go_gc_heap_frees_objects_total{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
+              "expr": "sum(mo_logtail_queue_size{type=\"send\",namespace=~\"$namespace\", pod=~\"$pod\"})",
               "format": "time_series",
-              "legendFormat": "{{ pod }}",
+              "legendFormat": "send",
+              "refId": ""
+            },
+            {
+              "expr": "sum(mo_logtail_queue_size{type=\"receive\",namespace=~\"$namespace\", pod=~\"$pod\"})",
+              "format": "time_series",
+              "legendFormat": "receive",
+              "refId": ""
+            },
+            {
+              "expr": "sum(mo_logtail_queue_size{type=\"apply\",namespace=~\"$namespace\", pod=~\"$pod\"})",
+              "format": "time_series",
+              "legendFormat": "apply",
               "refId": ""
             }
           ],
-          "title": "Heap Free Object/s",
+          "title": "Queue status",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -580,7 +679,86 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 467,
+          "id": 389,
+          "isNew": false,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(rate(mo_logtail_load_checkpoint_total{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
+              "format": "time_series",
+              "legendFormat": "{{ pod }}",
+              "refId": ""
+            }
+          ],
+          "title": "Checkpoint logtail",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": ""
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "xaxis": {
+            "format": "time",
+            "logBase": 1,
+            "show": true
+          },
+          "y-axis": true,
+          "yaxes": [
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "showTitle": true,
+      "title": "Logtail Queue Status"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "Prometheus",
+          "editable": false,
+          "error": false,
+          "fill": 1,
+          "gridPos": {},
+          "id": 390,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -607,31 +785,31 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(go_gc_heap_allocs_by_size_bytes_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_bytes_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "format": "time_series",
+              "legendFormat": "P50.00%",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_bytes_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P80.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(go_gc_heap_allocs_by_size_bytes_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_bytes_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P90.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.950000, sum(rate(go_gc_heap_allocs_by_size_bytes_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P95.00%",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(go_gc_heap_allocs_by_size_bytes_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_bytes_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
               "legendFormat": "P99.00%",
               "refId": ""
             }
           ],
-          "title": "Allocation bytes size",
+          "title": "Logtail size",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -663,7 +841,7 @@
       ],
       "repeat": null,
       "showTitle": true,
-      "title": "Memory Status"
+      "title": "Logtail size"
     },
     {
       "collapse": false,
@@ -678,7 +856,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 468,
+          "id": 391,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -705,31 +883,31 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(go_gc_pauses_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_load_checkpoint_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
-              "legendFormat": "{{ pod }}(P80.00%)",
+              "legendFormat": "P50.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.900000, sum(rate(go_gc_pauses_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_load_checkpoint_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
-              "legendFormat": "{{ pod }}(P90.00%)",
+              "legendFormat": "P80.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.950000, sum(rate(go_gc_pauses_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_load_checkpoint_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
-              "legendFormat": "{{ pod }}(P95.00%)",
+              "legendFormat": "P90.00%",
               "refId": ""
             },
             {
-              "expr": "histogram_quantile(0.990000, sum(rate(go_gc_pauses_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_load_checkpoint_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
               "format": "time_series",
-              "legendFormat": "{{ pod }}(P99.00%)",
+              "legendFormat": "P99.00%",
               "refId": ""
             }
           ],
-          "title": "STW duration",
+          "title": "Logtail load checkpoint",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -761,7 +939,7 @@
       ],
       "repeat": null,
       "showTitle": true,
-      "title": "Go GC Status"
+      "title": "Logtail load checkpoint"
     },
     {
       "collapse": false,
@@ -776,7 +954,105 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 469,
+          "id": 392,
+          "isNew": false,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_logtail_collect_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "format": "time_series",
+              "legendFormat": "P50.00%",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_logtail_collect_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "format": "time_series",
+              "legendFormat": "P80.00%",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_logtail_collect_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "format": "time_series",
+              "legendFormat": "P90.00%",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_logtail_collect_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
+              "format": "time_series",
+              "legendFormat": "P99.00%",
+              "refId": ""
+            }
+          ],
+          "title": "collect duration",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": ""
+          },
+          "transparent": false,
+          "type": "graph",
+          "x-axis": true,
+          "xaxis": {
+            "format": "time",
+            "logBase": 1,
+            "show": true
+          },
+          "y-axis": true,
+          "yaxes": [
+            {
+              "format": "s",
+              "logBase": 1,
+              "min": 0,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "showTitle": true,
+      "title": "Logtail collect duration"
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "Prometheus",
+          "editable": false,
+          "error": false,
+          "fill": 1,
+          "gridPos": {},
+          "id": 393,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -803,13 +1079,13 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(go_goroutines{namespace=~\"$namespace\", pod=~\"$pod\"}) by (pod)",
+              "expr": "sum(increase(mo_logtail_subscription_request_total{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
               "format": "time_series",
               "legendFormat": "{{ pod }}",
               "refId": ""
             }
           ],
-          "title": "Goroutine count",
+          "title": "logtail subscription average increase",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -845,7 +1121,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 470,
+          "id": 394,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -872,31 +1148,13 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.800000, sum(rate(go_sched_latencies_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
+              "expr": "sum(increase(mo_logtail_subscription_request_total{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod)",
               "format": "time_series",
-              "legendFormat": "{{ pod }}(P80.00%)",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(go_sched_latencies_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}(P90.00%)",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.950000, sum(rate(go_sched_latencies_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}(P95.00%)",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(go_sched_latencies_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
-              "format": "time_series",
-              "legendFormat": "{{ pod }}(P99.00%)",
+              "legendFormat": "{{ pod }}",
               "refId": ""
             }
           ],
-          "title": "Schedule latency duration",
+          "title": "logtail subscription average increase, sensitive",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -913,9 +1171,8 @@
           "y-axis": true,
           "yaxes": [
             {
-              "format": "s",
+              "format": "short",
               "logBase": 1,
-              "min": 0,
               "show": true
             },
             {
@@ -928,7 +1185,7 @@
       ],
       "repeat": null,
       "showTitle": true,
-      "title": "Goroutine Status"
+      "title": "logtail subscription the tn have received"
     }
   ],
   "schemaVersion": 0,
@@ -1087,7 +1344,7 @@
     ]
   },
   "timezone": "",
-  "title": "Go Runtime Metrics",
-  "uid": "c8c7c1a3-0daa-42ec-aa58-d972022b085d",
+  "title": "Logtail Metrics",
+  "uid": "e0c49511-0451-478b-bd6a-1f30754af890",
   "version": 3
 }
