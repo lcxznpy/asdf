@@ -23,7 +23,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 383,
+          "id": 364,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -141,7 +141,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 384,
+          "id": 365,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -259,7 +259,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 385,
+          "id": 366,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -377,7 +377,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 386,
+          "id": 367,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -505,7 +505,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 387,
+          "id": 368,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -598,7 +598,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 388,
+          "id": 369,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -679,7 +679,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 389,
+          "id": 370,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -758,7 +758,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 390,
+          "id": 371,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -856,7 +856,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 391,
+          "id": 372,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -954,7 +954,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 392,
+          "id": 373,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -1052,7 +1052,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 393,
+          "id": 374,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -1121,7 +1121,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 394,
+          "id": 375,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -1345,6 +1345,6 @@
   },
   "timezone": "",
   "title": "Logtail Metrics",
-  "uid": "f97dcb2e-1580-4705-a70d-502642161aa4",
+  "uid": "e69948fd-7021-4784-a344-225e5abfb2eb",
   "version": 3
 }

@@ -66,7 +66,7 @@
           },
           "gridPos": {},
           "height": "300px",
-          "id": 395,
+          "id": 376,
           "isNew": false,
           "options": {
             "legend": {
@@ -143,7 +143,7 @@
           },
           "gridPos": {},
           "height": "300px",
-          "id": 396,
+          "id": 377,
           "isNew": false,
           "options": {
             "legend": {
@@ -238,7 +238,7 @@
           },
           "gridPos": {},
           "height": "300px",
-          "id": 397,
+          "id": 378,
           "isNew": false,
           "options": {
             "legend": {
@@ -333,7 +333,7 @@
           },
           "gridPos": {},
           "height": "300px",
-          "id": 398,
+          "id": 379,
           "isNew": false,
           "options": {
             "legend": {
@@ -438,7 +438,7 @@
           },
           "gridPos": {},
           "height": "300px",
-          "id": 399,
+          "id": 380,
           "isNew": false,
           "options": {
             "legend": {
@@ -521,7 +521,7 @@
           },
           "gridPos": {},
           "height": "300px",
-          "id": 400,
+          "id": 381,
           "isNew": false,
           "options": {
             "legend": {
@@ -608,7 +608,7 @@
           },
           "gridPos": {},
           "height": "300px",
-          "id": 401,
+          "id": 382,
           "isNew": false,
           "options": {
             "legend": {
@@ -621,7 +621,7 @@
               "mode": "single"
             }
           },
-          "span": 12,
+          "span": 3,
           "targets": [
             {
               "expr": "histogram_quantile(0.500000, sum(rate(mo_task_long_duration_seconds_bucket{type=\"ckp_entry_pending\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
@@ -649,6 +649,279 @@
             }
           ],
           "title": "Checkpoint Entry Pending",
+          "transparent": false,
+          "type": "timeseries"
+        },
+        {
+          "datasource": "Prometheus",
+          "editable": false,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "fixedColor": "green",
+                "mode": "palette-classic",
+                "seriesBy": "last"
+              },
+              "custom": {
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "opacity",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineStyle": {
+                  "fill": "solid"
+                },
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "",
+                  "mode": ""
+                },
+                "thresholdsStyle": {
+                  "mode": ""
+                }
+              },
+              "thresholds": {
+                "mode": "",
+                "steps": null
+              },
+              "unit": "s"
+            },
+            "overrides": null
+          },
+          "gridPos": {},
+          "height": "300px",
+          "id": 383,
+          "isNew": false,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single"
+            }
+          },
+          "span": 3,
+          "targets": [
+            {
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_task_short_duration_seconds_bucket{type=\"ickp_collect_uage\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
+              "format": "time_series",
+              "legendFormat": "P50",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_task_short_duration_seconds_bucket{type=\"ickp_collect_uage\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
+              "format": "time_series",
+              "legendFormat": "P80",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_task_short_duration_seconds_bucket{type=\"ickp_collect_uage\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
+              "format": "time_series",
+              "legendFormat": "P90",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_task_short_duration_seconds_bucket{type=\"ickp_collect_uage\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
+              "format": "time_series",
+              "legendFormat": "P99",
+              "refId": ""
+            }
+          ],
+          "title": "ICheckpoint Collecting Duration",
+          "transparent": false,
+          "type": "timeseries"
+        },
+        {
+          "datasource": "Prometheus",
+          "editable": false,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "fixedColor": "green",
+                "mode": "palette-classic",
+                "seriesBy": "last"
+              },
+              "custom": {
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "opacity",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineStyle": {
+                  "fill": "solid"
+                },
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "",
+                  "mode": ""
+                },
+                "thresholdsStyle": {
+                  "mode": ""
+                }
+              },
+              "thresholds": {
+                "mode": "",
+                "steps": null
+              },
+              "unit": ""
+            },
+            "overrides": null
+          },
+          "gridPos": {},
+          "height": "300px",
+          "id": 384,
+          "isNew": false,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single"
+            }
+          },
+          "span": 3,
+          "targets": [
+            {
+              "expr": "sum by (pod) (increase(mo_task_execute_results_total{type=\"gckp_load_object\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "legendFormat": "GCheckpoint",
+              "refId": ""
+            },
+            {
+              "expr": "sum by (pod) (increase(mo_task_execute_results_total{type=\"ickp_load_object\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))",
+              "format": "time_series",
+              "legendFormat": "ICheckpoint",
+              "refId": ""
+            }
+          ],
+          "title": "Checkpoint Load Object Count",
+          "transparent": false,
+          "type": "timeseries"
+        },
+        {
+          "datasource": "Prometheus",
+          "editable": false,
+          "error": false,
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "fixedColor": "green",
+                "mode": "palette-classic",
+                "seriesBy": "last"
+              },
+              "custom": {
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "opacity",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineStyle": {
+                  "fill": "solid"
+                },
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "",
+                  "mode": ""
+                },
+                "thresholdsStyle": {
+                  "mode": ""
+                }
+              },
+              "thresholds": {
+                "mode": "",
+                "steps": null
+              },
+              "unit": "s"
+            },
+            "overrides": null
+          },
+          "gridPos": {},
+          "height": "300px",
+          "id": 385,
+          "isNew": false,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single"
+            }
+          },
+          "span": 3,
+          "targets": [
+            {
+              "expr": "histogram_quantile(0.500000, sum(rate(mo_task_short_duration_seconds_bucket{type=\"gckp_collect_uage\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
+              "format": "time_series",
+              "legendFormat": "P50",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.800000, sum(rate(mo_task_short_duration_seconds_bucket{type=\"gckp_collect_uage\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
+              "format": "time_series",
+              "legendFormat": "P80",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.900000, sum(rate(mo_task_short_duration_seconds_bucket{type=\"gckp_collect_uage\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
+              "format": "time_series",
+              "legendFormat": "P90",
+              "refId": ""
+            },
+            {
+              "expr": "histogram_quantile(0.990000, sum(rate(mo_task_short_duration_seconds_bucket{type=\"gckp_collect_uage\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le, pod))",
+              "format": "time_series",
+              "legendFormat": "P99",
+              "refId": ""
+            }
+          ],
+          "title": "GCheckpoint Collecting Duration",
           "transparent": false,
           "type": "timeseries"
         }
@@ -713,7 +986,7 @@
           },
           "gridPos": {},
           "height": "300px",
-          "id": 402,
+          "id": 386,
           "isNew": false,
           "options": {
             "legend": {
@@ -790,7 +1063,7 @@
           },
           "gridPos": {},
           "height": "300px",
-          "id": 403,
+          "id": 387,
           "isNew": false,
           "options": {
             "legend": {
@@ -867,7 +1140,7 @@
           },
           "gridPos": {},
           "height": "300px",
-          "id": 404,
+          "id": 388,
           "isNew": false,
           "options": {
             "legend": {
@@ -944,7 +1217,7 @@
           },
           "gridPos": {},
           "height": "300px",
-          "id": 405,
+          "id": 389,
           "isNew": false,
           "options": {
             "legend": {
@@ -1021,7 +1294,7 @@
           },
           "gridPos": {},
           "height": "300px",
-          "id": 406,
+          "id": 390,
           "isNew": false,
           "options": {
             "legend": {
@@ -1098,7 +1371,7 @@
           },
           "gridPos": {},
           "height": "300px",
-          "id": 407,
+          "id": 391,
           "isNew": false,
           "options": {
             "legend": {
@@ -1175,7 +1448,7 @@
           },
           "gridPos": {},
           "height": "300px",
-          "id": 408,
+          "id": 392,
           "isNew": false,
           "options": {
             "legend": {
@@ -1237,7 +1510,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 409,
+          "id": 393,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -1302,485 +1575,6 @@
       "repeat": null,
       "showTitle": true,
       "title": "Task Merge Transfer Page Length"
-    },
-    {
-      "collapse": false,
-      "editable": true,
-      "height": "250px",
-      "panels": [
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 410,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_task_short_duration_seconds_bucket{type=\"gckp_collect_usage\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "gckp_collect_usage",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_task_short_duration_seconds_bucket{type=\"ickp_collect_usage\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "ickp_collect_usage",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_task_short_duration_seconds_bucket{type=\"handle_usage_request\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "handle_usage_request",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_task_short_duration_seconds_bucket{type=\"show_accounts_get_table_stats\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "show_accounts_get_table_stats",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_task_short_duration_seconds_bucket{type=\"show_accounts_get_storage_usage\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "show_accounts_get_storage_usage",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_task_short_duration_seconds_bucket{type=\"show_accounts_total_duration\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "show_accounts_total_duration",
-              "refId": ""
-            }
-          ],
-          "title": "P50.000000 time",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "s",
-              "logBase": 1,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 411,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_task_short_duration_seconds_bucket{type=\"gckp_collect_usage\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "gckp_collect_usage",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_task_short_duration_seconds_bucket{type=\"ickp_collect_usage\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "ickp_collect_usage",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_task_short_duration_seconds_bucket{type=\"handle_usage_request\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "handle_usage_request",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_task_short_duration_seconds_bucket{type=\"show_accounts_get_table_stats\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "show_accounts_get_table_stats",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_task_short_duration_seconds_bucket{type=\"show_accounts_get_storage_usage\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "show_accounts_get_storage_usage",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_task_short_duration_seconds_bucket{type=\"show_accounts_total_duration\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "show_accounts_total_duration",
-              "refId": ""
-            }
-          ],
-          "title": "P80.000000 time",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "s",
-              "logBase": 1,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 412,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_task_short_duration_seconds_bucket{type=\"gckp_collect_usage\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "gckp_collect_usage",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_task_short_duration_seconds_bucket{type=\"ickp_collect_usage\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "ickp_collect_usage",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_task_short_duration_seconds_bucket{type=\"handle_usage_request\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "handle_usage_request",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_task_short_duration_seconds_bucket{type=\"show_accounts_get_table_stats\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "show_accounts_get_table_stats",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_task_short_duration_seconds_bucket{type=\"show_accounts_get_storage_usage\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "show_accounts_get_storage_usage",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_task_short_duration_seconds_bucket{type=\"show_accounts_total_duration\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "show_accounts_total_duration",
-              "refId": ""
-            }
-          ],
-          "title": "P90.000000 time",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "s",
-              "logBase": 1,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 413,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 3,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_task_short_duration_seconds_bucket{type=\"gckp_collect_usage\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "gckp_collect_usage",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_task_short_duration_seconds_bucket{type=\"ickp_collect_usage\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "ickp_collect_usage",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_task_short_duration_seconds_bucket{type=\"handle_usage_request\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "handle_usage_request",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_task_short_duration_seconds_bucket{type=\"show_accounts_get_table_stats\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "show_accounts_get_table_stats",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_task_short_duration_seconds_bucket{type=\"show_accounts_get_storage_usage\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "show_accounts_get_storage_usage",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_task_short_duration_seconds_bucket{type=\"show_accounts_total_duration\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "show_accounts_total_duration",
-              "refId": ""
-            }
-          ],
-          "title": "P99.000000 time",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "s",
-              "logBase": 1,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 414,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 12,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(mo_task_storage_usage_cache_size{namespace=~\"$namespace\", pod=~\"$pod\"})",
-              "format": "time_series",
-              "legendFormat": "cache mem used",
-              "refId": ""
-            }
-          ],
-          "title": "tn storage usage cache mem used",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "mb",
-              "logBase": 1,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        }
-      ],
-      "repeat": null,
-      "showTitle": true,
-      "title": "Storage Usage Overview"
     }
   ],
   "schemaVersion": 0,
@@ -1940,6 +1734,6 @@
   },
   "timezone": "",
   "title": "Task Metrics",
-  "uid": "a7603cf5-967a-459a-9174-e0669f66a200",
+  "uid": "e8716013-17c1-4f7c-bb5e-7be4c971f239",
   "version": 3
 }

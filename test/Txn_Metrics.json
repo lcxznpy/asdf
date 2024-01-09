@@ -23,7 +23,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 325,
+          "id": 307,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -134,7 +134,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 326,
+          "id": 308,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -215,7 +215,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 327,
+          "id": 309,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -284,7 +284,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 328,
+          "id": 310,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -381,7 +381,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 329,
+          "id": 311,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -469,7 +469,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 330,
+          "id": 312,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -557,7 +557,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 331,
+          "id": 313,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -645,7 +645,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 332,
+          "id": 314,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -743,7 +743,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 333,
+          "id": 315,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -837,7 +837,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 334,
+          "id": 316,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -931,7 +931,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 335,
+          "id": 317,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -1025,7 +1025,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 336,
+          "id": 318,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -1129,7 +1129,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 337,
+          "id": 319,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -1184,12 +1184,6 @@
               "format": "time_series",
               "legendFormat": "unlock-btree-total",
               "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_unlock_duration_seconds_bucket{type=\"worker-handle\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "worker-handle",
-              "refId": ""
             }
           ],
           "title": "P50.000000 time",
@@ -1229,7 +1223,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 338,
+          "id": 320,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -1284,12 +1278,6 @@
               "format": "time_series",
               "legendFormat": "unlock-btree-total",
               "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_unlock_duration_seconds_bucket{type=\"worker-handle\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "worker-handle",
-              "refId": ""
             }
           ],
           "title": "P80.000000 time",
@@ -1329,7 +1317,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 339,
+          "id": 321,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -1384,12 +1372,6 @@
               "format": "time_series",
               "legendFormat": "unlock-btree-total",
               "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_unlock_duration_seconds_bucket{type=\"worker-handle\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "worker-handle",
-              "refId": ""
             }
           ],
           "title": "P90.000000 time",
@@ -1429,7 +1411,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 340,
+          "id": 322,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -1484,12 +1466,6 @@
               "format": "time_series",
               "legendFormat": "unlock-btree-total",
               "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_unlock_duration_seconds_bucket{type=\"worker-handle\",namespace=~\"$namespace\", pod=~\"$pod\"}[$interval]))  by (le))",
-              "format": "time_series",
-              "legendFormat": "worker-handle",
-              "refId": ""
             }
           ],
           "title": "P99.000000 time",
@@ -1539,7 +1515,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 341,
+          "id": 323,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -1608,7 +1584,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 342,
+          "id": 324,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -1677,7 +1653,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 343,
+          "id": 325,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -1746,7 +1722,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 344,
+          "id": 326,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -1825,7 +1801,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 345,
+          "id": 327,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -1894,7 +1870,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 346,
+          "id": 328,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -1963,7 +1939,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 347,
+          "id": 329,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -2032,7 +2008,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 348,
+          "id": 330,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -2111,7 +2087,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 349,
+          "id": 331,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -2325,7 +2301,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 350,
+          "id": 332,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -2539,7 +2515,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 351,
+          "id": 333,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -2753,7 +2729,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 352,
+          "id": 334,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -2977,7 +2953,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 353,
+          "id": 335,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -3046,7 +3022,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 354,
+          "id": 336,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -3115,7 +3091,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 355,
+          "id": 337,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -3184,7 +3160,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 356,
+          "id": 338,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -3263,7 +3239,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 357,
+          "id": 339,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -3361,105 +3337,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 358,
-          "isNew": false,
-          "legend": {
-            "alignAsTable": false,
-            "avg": false,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": true,
-            "max": false,
-            "min": false,
-            "rightSide": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null as zero",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "span": 12,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "histogram_quantile(0.500000, sum(rate(mo_txn_check_pk_dup_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P50.00%",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.800000, sum(rate(mo_txn_check_pk_dup_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P80.00%",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.900000, sum(rate(mo_txn_check_pk_dup_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P90.00%",
-              "refId": ""
-            },
-            {
-              "expr": "histogram_quantile(0.990000, sum(rate(mo_txn_check_pk_dup_duration_seconds_bucket{namespace=~\"$namespace\", pod=~\"$pod\"}[$interval])) by (le))",
-              "format": "time_series",
-              "legendFormat": "P99.00%",
-              "refId": ""
-            }
-          ],
-          "title": "Txn check pk dup duration",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": ""
-          },
-          "transparent": false,
-          "type": "graph",
-          "x-axis": true,
-          "xaxis": {
-            "format": "time",
-            "logBase": 1,
-            "show": true
-          },
-          "y-axis": true,
-          "yaxes": [
-            {
-              "format": "s",
-              "logBase": 1,
-              "min": 0,
-              "show": true
-            },
-            {
-              "format": "short",
-              "logBase": 1,
-              "show": false
-            }
-          ]
-        }
-      ],
-      "repeat": null,
-      "showTitle": true,
-      "title": "Txn check pk dup"
-    },
-    {
-      "collapse": false,
-      "editable": true,
-      "height": "250px",
-      "panels": [
-        {
-          "aliasColors": {},
-          "bars": false,
-          "datasource": "Prometheus",
-          "editable": false,
-          "error": false,
-          "fill": 1,
-          "gridPos": {},
-          "id": 359,
+          "id": 340,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -3541,7 +3419,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 360,
+          "id": 341,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -3623,7 +3501,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 361,
+          "id": 342,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -3705,7 +3583,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 362,
+          "id": 343,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -3797,7 +3675,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 363,
+          "id": 344,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -3885,7 +3763,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 364,
+          "id": 345,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -3973,7 +3851,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 365,
+          "id": 346,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -4061,7 +3939,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 366,
+          "id": 347,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -4159,7 +4037,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 367,
+          "id": 348,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -4247,7 +4125,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 368,
+          "id": 349,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -4335,7 +4213,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 369,
+          "id": 350,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -4423,7 +4301,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 370,
+          "id": 351,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -4521,7 +4399,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 371,
+          "id": 352,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -4619,7 +4497,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 372,
+          "id": 353,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -4717,7 +4595,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 373,
+          "id": 354,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -4815,7 +4693,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 374,
+          "id": 355,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -4894,7 +4772,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 375,
+          "id": 356,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -4982,7 +4860,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 376,
+          "id": 357,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -5070,7 +4948,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 377,
+          "id": 358,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -5168,7 +5046,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 378,
+          "id": 359,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -5256,7 +5134,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 379,
+          "id": 360,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -5354,7 +5232,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 380,
+          "id": 361,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -5452,7 +5330,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 381,
+          "id": 362,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -5520,7 +5398,7 @@
           "error": false,
           "fill": 1,
           "gridPos": {},
-          "id": 382,
+          "id": 363,
           "isNew": false,
           "legend": {
             "alignAsTable": false,
@@ -5743,6 +5621,6 @@
   },
   "timezone": "",
   "title": "Txn Metrics",
-  "uid": "a6546e76-71d7-4ab0-83c1-9ae14d816e5f",
+  "uid": "bbc9171d-8ce5-442d-96e0-df77cadd311f",
   "version": 3
 }
