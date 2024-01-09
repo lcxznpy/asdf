@@ -1,4 +1,4 @@
-name: Get Grafana Dashboard Json File
+name: Maunal Test
 
 on:
   workflow_dispatch:
