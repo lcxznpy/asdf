@@ -22,7 +22,7 @@ jobs:
     steps:
     - id: get_gitops_branch_name
       run: |
-        echo "name=$(echo "$(matrixeone-dashboard-${{ inputs.matrixone-branch }}-${{ inputs.Commit-id }}")" >> "$GITHUB_OUTPUT"
+        echo "name=$(echo "$(matrixeone-dashboard-${{ inputs.matrixone-branch }}-${{ inputs.Commit-id }})" >> "$GITHUB_OUTPUT"
     - name: checkout repository
       uses: actions/checkout@v4
       with:
