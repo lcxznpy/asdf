@@ -34,7 +34,7 @@ jobs:
     - name: Deploy Grafana
       run: |
         docker pull grafana/grafana
-        docker run -d -p 80:3000 --name=grafana grafana/grafana
+        docker run -d -p 80:3000 -p 3000:3000 --name=grafana grafana/grafana
     - name: Upload Dashboard configuration
       run: |
         cd ./pkg/util/metric/v2/dashboard
