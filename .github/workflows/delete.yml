@@ -10,6 +10,10 @@ jobs:
     env:
       Label: "Grafana-Dashboard-json"
     steps:
+    - name: checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
     - name:  Delete Branch
       if: github.event.pull_request.merged == true && github.event.pull_request.labels == ${{ env.Label }}
       uses: github-developer/github-action-delete-branch@releases/v1
