@@ -20,10 +20,13 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       output1: ${{ steps.get_gitops_branch_name.outputs.name }}
+      output2: ${{ steps.get_gitops_branch_name.outputs.commit_id }}
     steps:
     - id: get_gitops_branch_name
       run: |
-        echo "name=$(echo "matrixeone-dashboard-${{ inputs.matrixone-branch }}-${{ inputs.Commit-id }}")" >> "$GITHUB_OUTPUT"
+        commitid=$(echo "$${{ inputs.Commit-id }}" | cut -c 1-9)
+        echo "commit_id=$commitid")" >> "$GITHUB_OUTPUT"
+        echo "name=$(echo "matrixeone-dashboard-${{ inputs.matrixone-branch }}-$commitid")" >> "$GITHUB_OUTPUT"
     - name: checkout repository
       uses: actions/checkout@v4
       with:
@@ -71,6 +74,7 @@ jobs:
     needs: Get-Json-File
     env: 
       Gitops_branch_name: ${{ needs.Get-Json-File.outputs.output1 }}
+      Commit_id: ${{ needs.Get-Json-File.outputs.output2 }}
     steps:
     - name: checkout repository
       uses: actions/checkout@v4
