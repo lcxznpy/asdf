@@ -14,22 +14,21 @@ on:
       #     default: ''
       #     required: false
       #     type: string
-      gitops-branch:
-          description: 'gitops-branch'
-          default: 'main'
-          required: true
-          type: string
-      directory:
-          description: 'directory'
-          default: 'test'
-          required: true
-          type: string
+      # gitops-branch:
+      #     description: 'gitops-branch'
+      #     default: 'main'
+      #     required: true
+      #     type: string
 
 
 jobs:
   Get-Json-File:
     runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.get_gitops_branch_name.uotputs.name }}
     steps:
+    - id: get_gitops_branch_name
+      run: echo "name=$(date+${{ inputs.matrixone-branch_or_commitID }}" >> "$GITHUB_OUTPUT"
     - name: checkout repository
       uses: actions/checkout@v4
       with:
@@ -47,17 +46,14 @@ jobs:
         docker run -d -p 80:3000 --name=grafana grafana/grafana
     - name: Upload Dashboard configuration
       run: |
-        docker ps -a 
-        ls
-        pwd
+        # docker ps -a 
+        # ls && pwd
         cd ./pkg/util/metric/v2/dashboard
         go test
     - name: Save file
       run: |
         cd $GITHUB_WORKSPACE
         mkdir dashboard
-        # uid_array=($(curl http://admin:admin@localhost:80/api/search\?type\=dash-db | jq -r '.[].uid'))
-        # echo $uid_array
         curl -s "http://admin:admin@localhost:80/api/search?type=dash-db" | jq -r > data.json
         count=$(jq '. | length' data.json)
         echo $count
@@ -65,29 +61,23 @@ jobs:
         for ((i=0;i < count;i++));do
                 uid=$(jq --arg i $i '.[$i|tonumber].uid' data.json)
                 uid=${uid//\"}
-                 ##echo $uid
                 title=$(jq --arg i $i '.[$i|tonumber].title' data.json)
                 title=${title//\"}
-                 ##echo $title
-                 title=${title// /_}
-                 ##echo $title
+                title=${title// /_}
                 curl -s "http://admin:admin@localhost:80/api/dashboards/uid/$uid" | jq .dashboard  > "$GITHUB_WORKSPACE/dashboard/$title.json"
         done
-
-        # for element in "${uid_array[@]}"; do
-        #     # echo "$element"
-        #     curl -s "http://admin:admin@localhost:80/api/dashboards/uid/$element" | jq .dashboard > $GITHUB_WORKSPACE/dashboard/$element.json
-        # done
-        ls -la $GITHUB_WORKSPACE/dashboard
+        
     - name: upload json artifacts
       uses: actions/upload-artifact@v3
       with:
         name: dashboard
         path: |
           ./dashboard/*
-  Create-branch:
-    needs: Get-Json-File
+  Create-branch_And_Pr:
     runs-on: ubuntu-latest
+    needs: Get-Json-File
+    env: 
+      Gitops_branch_name: ${{ needs.Get-Json-File.outputs.output1 }}
     steps:
     - name: checkout repository
       uses: actions/checkout@v4
@@ -98,7 +88,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN_ACTION }}
       with:
-        branch: ${{ inputs.gitops-branch}}
+        branch: ${{ Gitops_branch_name}}
         sha: '${{ github.event.pull_request.head.sha }}'
     - name: change branch 
       run: |
@@ -106,7 +96,7 @@ jobs:
         git config --global user.email "github-action-robot@github.com"
         git branch -vv
         git fetch
-        git checkout ${{ inputs.gitops-branch}}
+        git checkout ${{ Gitops_branch_name}}
         git branch -vv
     - name: Download Json
       uses: actions/download-artifact@v3
@@ -124,11 +114,11 @@ jobs:
     - name: checkout folder exist
       run: |
         ls -la
-        rm -rf ${{ inputs.directory }}
-        mkdir -p  $GITHUB_WORKSPACE/aliyun/cos-component/unit-resources-chart/grafana/dashboards/${{ inputs.matrixone-branch_or_commitID }}
+        rm -rf $GITHUB_WORKSPACE/aliyun/cos-component/unit-resources-chart/grafana/dashboards/json-file
+        mkdir -p  $GITHUB_WORKSPACE/aliyun/cos-component/unit-resources-chart/grafana/dashboards/json-file
         ls && pwd 
-        mv ./dashboard/* $GITHUB_WORKSPACE/aliyun/cos-component/unit-resources-chart/grafana/dashboards/${{ inputs.matrixone-branch_or_commitID }}/
-        cd $GITHUB_WORKSPACE/aliyun/cos-component/unit-resources-chart/grafana/dashboards/${{ inputs.matrixone-branch_or_commitID }}
+        mv ./dashboard/* $GITHUB_WORKSPACE/aliyun/cos-component/unit-resources-chart/grafana/dashboards/json-file/
+        cd $GITHUB_WORKSPACE/aliyun/cos-component/unit-resources-chart/grafana/dashboards/json-file
         ls && pwd
         cd $GITHUB_WORKSPACE
         ls && pwd
@@ -142,8 +132,8 @@ jobs:
           token: ${{ secrets.TOKEN_ACTION }}
           commit-message: Update dependencies
           base: main
-          branch: ${{ inputs.gitops-branch}}
-          delete-branch: true
+          branch: ${{ Gitops_branch_name}}
+          # delete-branch: true
   # Create-PR:
   #   needs: Push
   #   runs-on: ubuntu-latest
