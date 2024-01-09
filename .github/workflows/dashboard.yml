@@ -58,7 +58,7 @@ jobs:
         mkdir dashboard
         # uid_array=($(curl http://admin:admin@localhost:80/api/search\?type\=dash-db | jq -r '.[].uid'))
         # echo $uid_array
-        curl -s "http://admin:admin@localhost:80/api/search" | jq -r > data.json
+        curl -s "http://admin:admin@localhost:80/api/search?type=dash-db" | jq -r > data.json
         count=$(jq '. | length' data.json)
         echo $count
 
