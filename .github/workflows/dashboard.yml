@@ -43,7 +43,7 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE
         mkdir dashboard
-        curl -s "http://admin:admin@localhost:80/api/search?type=dash-db" | jq -r > data.json
+        curl -s "http://admin:admin@localhost:80/api/search" | jq -r > data.json
         count=$(jq '. | length' data.json)
         echo $count
 
