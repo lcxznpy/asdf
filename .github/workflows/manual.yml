@@ -14,7 +14,7 @@ jobs:
   Get-Json-File:
     runs-on: ubuntu-latest
     outputs:
-      output1: ${{ steps.get_gitops_branch_name.uotputs.name }}
+      output1: ${{ steps.get_gitops_branch_name.outputs.name }}
     steps:
     - id: get_gitops_branch_name
       run: |
