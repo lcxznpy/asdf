@@ -125,10 +125,10 @@ jobs:
       run: |
         ls -la
         rm -rf ${{ inputs.directory }}
-        mkdir -p ${{ inputs.directory }}
+        mkdir -p  $GITHUB_WORKSPACE/aliyun/cos-component/unit-resources-chart/grafana/dashboards/${{ inputs.matrixone-branch_or_commitID }}
         ls && pwd 
-        mv ./dashboard/* $GITHUB_WORKSPACE/${{ inputs.directory }}/
-        cd $GITHUB_WORKSPACE/${{ inputs.directory }}
+        mv ./dashboard/* $GITHUB_WORKSPACE/aliyun/cos-component/unit-resources-chart/grafana/dashboards/${{ inputs.matrixone-branch_or_commitID }}/
+        cd $GITHUB_WORKSPACE/aliyun/cos-component/unit-resources-chart/grafana/dashboards/${{ inputs.matrixone-branch_or_commitID }}
         ls && pwd
         cd $GITHUB_WORKSPACE
         ls && pwd
