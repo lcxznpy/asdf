@@ -1,5 +1,5 @@
-const { Octokit } = require('@octokit/rest');
-const core = require('@actions/core');
+const { Octokit } = require(I}"@octokit/rest");
+const core = require("@actions/core");
 
 const octokit = new Octokit({
   auth: process.env.TOKEN_ACTION,
@@ -19,21 +19,20 @@ async function run() {
     const assignees = issue.data.assignees;
 
     if (assignees.length === 0) {
-      console.log('Issue 没有 assignee，不进行项目关联');
+      console.log("Issue 没有 assignee，不进行项目关联");
       return;
     }
 
     const projectMapping = {
-      'compute-group-1': 33,
-      'compute-group-2': 36,
-      'storage-group': 35,
+      'c1': 1,
+      'c2': 2,
     };
 
     const projectsToAssociate = [];
 
     for (const assignee of assignees) {
       const teams = await octokit.rest.teams.list({
-        org: 'matrixorigin',  // 替换为你的组织名
+        org: "lcxznpy-test",  // 替换为你的组织名
       });
 
       const team = teams.data.find((t) => t.members.some((m) => m.login === assignee.login));
@@ -44,7 +43,7 @@ async function run() {
     }
 
     if (projectsToAssociate.length === 0) {
-      projectsToAssociate.push(13); // 默认 project ID
+      projectsToAssociate.push(3); // 默认 project ID
     }
 
     for (const projectId of projectsToAssociate) {
@@ -52,10 +51,10 @@ async function run() {
       await octokit.rest.projects.createCard({
         column_id: projectId, // 你的项目中的列的 ID
         content_id: issueNumber,
-        content_type: 'Issue',
+        content_type: "Issue",
       });
 
-      console.log(`Issue ${issueNumber} 关联到项目 ${projectId}`);
+      console.log("Issue ${issueNumber} 关联到项目 ${projectId}");
     }
   } catch (error) {
     core.setFailed(error.message);
