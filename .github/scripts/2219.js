@@ -12,6 +12,9 @@ async function run() {
 
     // 获取 issue 的信息
     console.log("尝试获取issue的详细信息");
+    console.log(process.env.GITHUB_REPOSITORY_OWNER);
+    console.log(process.env.GITHUB_REPOSITORY);
+    console.log(issueNumber);
     const issue = await octokit.rest.issues.get({
       owner: process.env.GITHUB_REPOSITORY_OWNER,
       repo: process.env.GITHUB_REPOSITORY,
