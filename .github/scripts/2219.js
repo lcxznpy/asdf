@@ -7,9 +7,11 @@ const octokit = new Octokit({
 
 async function run() {
   try {
+    console.log("开始啦");
     const issueNumber = process.env.GITHUB_EVENT.issue.number;
 
     // 获取 issue 的信息
+    console.log("尝试获取issue的详细信息");
     const issue = await octokit.rest.issues.get({
       owner: process.env.GITHUB_REPOSITORY_OWNER,
       repo: process.env.GITHUB_REPOSITORY,
