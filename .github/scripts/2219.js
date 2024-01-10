@@ -18,9 +18,9 @@ async function run() {
       repo: "asdf",
       issue_number: issueNumber,
     });
-    console.log("成功获得issue信息：${issueNumber}");
+    console.log("成功获得issue信息：$issueNumber");
     const assignees = issue.data.assignees;
-    console.log("成功获得assignee信息：${assignees}");
+    console.log("成功获得assignee信息：$assignees");
     if (assignees.length === 0) {
       console.log("Issue 没有 assignee，不进行项目关联");
       return;
@@ -37,7 +37,7 @@ async function run() {
       const teams = await octokit.rest.teams.list({
         org: "lcxznpy-test",  // 替换为你的组织名
       });
-      console.log("成功获得team信息：${teams}");
+      console.log("成功获得team信息：$teams");
       const team = teams.data.find((t) => t.members.some((m) => m.login === assignee.login));
       
       if (team && projectMapping[team.slug]) {
