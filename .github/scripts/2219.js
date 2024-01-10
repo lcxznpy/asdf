@@ -1,5 +1,5 @@
 const { Octokit } = require("@octokit/action");
-const core = require('@actions/core');
+// const core = require('@actions/core');
 
 const octokit = new Octokit({
   auth: process.env.TOKEN_ACTION,
@@ -57,7 +57,8 @@ async function run() {
       console.log("Issue ${issueNumber} 关联到项目 ${projectId}");
     }
   } catch (error) {
-    core.setFailed(error.message);
+    // core.setFailed(error.message);
+    console.log(error.message)
   }
 }
 
