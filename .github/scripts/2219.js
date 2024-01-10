@@ -1,4 +1,4 @@
-const { Octokit } = require(I}"@octokit/rest");
+const { Octokit } = require("@octokit/rest");
 const core = require("@actions/core");
 
 const octokit = new Octokit({
