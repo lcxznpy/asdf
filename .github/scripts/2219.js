@@ -84,7 +84,7 @@ async function run() {
     }
   } catch (error) {
     // core.setFailed(error.message);
-    console.log(error.message)
+    console.log(error)
   }
 }
 
