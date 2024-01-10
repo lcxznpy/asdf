@@ -8,7 +8,7 @@ const octokit = new Octokit({
 async function run() {
   try {
     console.log("开始啦");
-    const issueNumber = process.github.event.issue.number;
+    const issueNumber = process.env.Issue_ID;
 
     // 获取 issue 的信息
     console.log("尝试获取issue的详细信息");
