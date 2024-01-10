@@ -1,5 +1,4 @@
-const { Octokit } = require("@octokit/rest");
-const core = require("@actions/core");
+const { Octokit } = require("@octokit/action");
 
 const octokit = new Octokit({
   auth: process.env.TOKEN_ACTION,
