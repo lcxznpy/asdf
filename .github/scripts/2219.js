@@ -45,7 +45,7 @@ async function run() {
       for(const assignee of assignees){
         if(team_member.data.find((m) => m.login === assignee.login)){
           if(projectMapping[team_data.slug]){
-            projectsToAssociate.push(projectMapping[team.slug]);
+            projectsToAssociate.push(projectMapping[team_data.slug]);
             console.log("成功push一个信息");
           }
         }
