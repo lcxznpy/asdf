@@ -26,3 +26,4 @@ jobs:
       - run: node .github/scripts/2219.js
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_ACTION }}
+          Issue_ID: ${{ github.event.issue.number }}
