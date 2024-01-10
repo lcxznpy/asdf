@@ -42,7 +42,7 @@ async function run() {
             team_slug: team_data.slug,
           });
       for(const assignee of assignees){
-        if(team_member.find((m) => m.login === assignee.login)){
+        if(team_member.some((m) => m.login === assignee.login)){
           if(projectMapping[team_data.slug]){
             projectsToAssociate.push(projectMapping[team.slug]);
             console.log("成功push一个信息");
