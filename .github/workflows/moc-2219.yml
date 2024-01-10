@@ -20,6 +20,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+      - run: echo ${{ env.GITHUB_EVENT.issue.number }}
+        
       - run: npm install @octokit/action
       - run: node .github/scripts/2219.js
         env:
