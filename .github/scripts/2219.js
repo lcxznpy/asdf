@@ -18,9 +18,9 @@ async function run() {
       repo: "asdf",
       issue_number: issueNumber,
     });
-    console.log("成功获得issue信息",issue);
+    // console.log("成功获得issue信息",issue);
     const assignees = issue.data.assignees;
-    console.log("成功获得assignee信息",assignees);
+    // console.log("成功获得assignee信息",assignees);
     if (assignees.length === 0) {
       console.log("Issue 没有 assignee，不进行项目关联");
       return;
@@ -41,6 +41,7 @@ async function run() {
             org: "lcxznpy-test",
             team_slug: team_data.slug,
           });
+      console.log(team_member);
       for(const assignee of assignees){
         if(team_member.some((m) => m.login === assignee.login)){
           if(projectMapping[team_data.slug]){
