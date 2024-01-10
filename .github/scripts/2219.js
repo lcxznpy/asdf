@@ -1,9 +1,7 @@
 const { Octokit } = require("@octokit/action");
 // const core = require('@actions/core');
 
-const octokit = new Octokit({
-  auth: process.env.GITHUB_TOKEN,
-});
+const octokit = new Octokit();
 
 async function run() {
   try {
