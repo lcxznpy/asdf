@@ -1,0 +1,30 @@
+name: Auto-assign-to-project
+
+on:
+  issues:
+    types:
+      - assigned
+      # - unassigned
+
+jobs:
+  auto-assign-to-project:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          repository: 'lcxznpy/asdf'
+          fetch-depth: 0
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 14
+
+      - name: Install dependencies
+        run: npm install @actions/core
+
+      - name: Run script
+        run: node .github/scripts/2219.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN_ACTION }}
