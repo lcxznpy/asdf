@@ -10,9 +10,9 @@ async function run() {
 
     // 获取 issue 的信息
     console.log("尝试获取issue的详细信息");
-    console.log(process.env.GITHUB_REPOSITORY_OWNER);
-    console.log(process.env.GITHUB_REPOSITORY);
-    console.log(issueNumber);
+    // console.log(process.env.GITHUB_REPOSITORY_OWNER);
+    // console.log(process.env.GITHUB_REPOSITORY);
+    // console.log(issueNumber);
     const issue = await octokit.rest.issues.get({
       owner: process.env.GITHUB_REPOSITORY_OWNER,
       repo: "asdf",
@@ -41,9 +41,9 @@ async function run() {
             org: "lcxznpy-test",
             team_slug: team_data.slug,
           });
-      console.log(team_member);
+      console.log("team_member",team_member);
       for(const assignee of assignees){
-        if(team_member.some((m) => m.login === assignee.login)){
+        if(team_member.data.find((m) => m.login === assignee.login)){
           if(projectMapping[team_data.slug]){
             projectsToAssociate.push(projectMapping[team.slug]);
             console.log("成功push一个信息");
