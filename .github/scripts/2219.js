@@ -76,11 +76,19 @@ async function run() {
     for (const projectId of result) {
       // 将 issue 添加到项目
       console.log("开始将issue关联到项目");
-      await octokit.rest.projects.createCard({
-        column_id: projectId, // 你的项目中的列的 ID
-        content_id: issueNumber,
-        content_type: "Issue",
-      });
+      // await octokit.rest.projects.createCard({
+      //   column_id: projectId, // 你的项目中的列的 ID
+        // content_id: issueNumber,
+        // content_type: "Issue",
+      // });
+      await octokit.request('POST /projects/columns/{column_id}/cards', {
+      column_id: projectId,
+      note: 'Add payload for delete Project column',
+      content_id: issueNumber,
+      content_type: "Issue",
+      headers: {
+        'X-GitHub-Api-Version': '2022-11-28'
+      }
         
       console.log("Issue ${issueNumber} 关联到项目 ${projectId}");
     }
