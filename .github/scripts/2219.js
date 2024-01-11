@@ -73,20 +73,25 @@ async function run() {
     }
     const result = Array.from(new Set(projectsToAssociate))
     console.log(result)
-    for (const projectId of result) {
-      const project = await octokit.rest.projects.get({
-        project_id: projectId,
-      });
-      console.log(project);
-      // 将 issue 添加到项目
-      console.log("开始将issue关联到项目");
-      await octokit.rest.projects.createCard({
-        column_id: projectId, // 你的项目中的列的 ID
-        content_id: issueNumber,
-        content_type: "Issue",
-      });
-      console.log("Issue ${issueNumber} 关联到项目 ${projectId}");
-    }
+
+    const listorg = await octokit.rest.projects.listForOrg({
+      org,
+    });
+    console.log(listorg)
+    // for (const projectId of result) {
+    //   const project = await octokit.rest.projects.get({
+    //     project_id: projectId,
+    //   });
+    //   console.log(project);
+    //   // 将 issue 添加到项目
+    //   console.log("开始将issue关联到项目");
+    //   await octokit.rest.projects.createCard({
+    //     column_id: projectId, // 你的项目中的列的 ID
+    //     content_id: issueNumber,
+    //     content_type: "Issue",
+    //   });
+    //   console.log("Issue ${issueNumber} 关联到项目 ${projectId}");
+    // }
   } catch (error) {
     // core.setFailed(error.message);
     console.log(error.message)
