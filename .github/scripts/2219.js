@@ -1,4 +1,5 @@
-const { Octokit } = require("@octokit/action");
+// const { Octokit } = require("@octokit/action");
+import Octokit from "@octokit/action";
 import fetch from "node-fetch";
 // const core = require('@actions/core');
 
