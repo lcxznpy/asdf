@@ -88,7 +88,7 @@ async function run() {
       content_type: "Issue",
       headers: {
         'X-GitHub-Api-Version': '2022-11-28'
-      }
+      };
         
       console.log("Issue ${issueNumber} 关联到项目 ${projectId}");
     }
