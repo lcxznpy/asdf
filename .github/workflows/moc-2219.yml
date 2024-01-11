@@ -25,6 +25,8 @@ jobs:
           npm install @octokit/action
           npm install node-fetch
           cat package.json
+          node -e 'const fs = require("fs"); const pkgData = JSON.parse(fs.readFileSync("package.json", "utf8")); pkgData.type = "module"; fs.writeFileSync("package.json", JSON.stringify(pkgData, null, 2));'
+          cat package.json
       - run: node .github/scripts/2219.js
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_ACTION }}
