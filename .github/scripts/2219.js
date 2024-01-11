@@ -1,13 +1,13 @@
 const { Octokit } = require("@octokit/action");
-const { fetch } = require('node-fetch');
+const { fetch } = require("node-fetch");
 // const core = require('@actions/core');
 
 // const octokit = new Octokit();
 const octokit = new Octokit({
   auth: process.env.GITHUB_TOKEN,
 });
-const githubApiEndpoint = 'https://api.github.com/graphql';
-const organizationLogin = 'lcxznpy-test';
+const githubApiEndpoint = "https://api.github.com/graphql";
+const organizationLogin = "lcxznpy-test";
 const token = process.env.GITHUB_TOKEN;
 async function run() {
   try {
