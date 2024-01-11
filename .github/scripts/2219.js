@@ -49,7 +49,7 @@ async function run() {
             org: organizationLogin,
             team_slug: team_data.slug,
           });
-      console.log("team_member",team_member);
+      // console.log("team_member",team_member);
       for(const assignee of assignees){
         if(team_member.data.find((m) => m.login === assignee.login)){
           if(projectMapping[team_data.slug]){
@@ -81,6 +81,7 @@ async function run() {
           }
         }
       `;
+      console.log(JSON.stringify({ query }));
       const headers = {
         'Authorization': 'Bearer ${process.env.GITHUB_TOKEN}',
         'Content-Type': 'application/json',
@@ -94,6 +95,7 @@ async function run() {
       const resp = await fetch(githubApiEndpoint, options);
       const resp_json = resp.json();
       console.log(resp_json);
+      console.log(organizationLogin);
       // pid = resp_json.data.organization.projectV2.id;
       // console.log('Project ID:', pid);
                 // .then(resp => resp.json())
