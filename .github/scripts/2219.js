@@ -93,6 +93,7 @@ async function run() {
         };
       let pid;
       const resp = await fetch(githubApiEndpoint, options);
+      console.log(resp);
       const resp_json = resp.json();
       console.log(resp_json);
       console.log(organizationLogin);
