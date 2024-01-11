@@ -1,20 +1,24 @@
 const { Octokit } = require("@octokit/action");
+const fetch = require('node-fetch');
 // const core = require('@actions/core');
 
 // const octokit = new Octokit();
 const octokit = new Octokit({
   auth: process.env.GITHUB_TOKEN,
 });
+const githubApiEndpoint = 'https://api.github.com/graphql';
+const organizationLogin = 'lcxznpy-test';
+const token = process.env.GITHUB_TOKEN;
 async function run() {
   try {
     console.log("开始啦");
     const issueNumber = process.env.Issue_ID;
 
-    // 获取 issue 的信息
-    console.log("尝试获取issue的详细信息");
-    console.log(process.env.GITHUB_REPOSITORY_OWNER);
-    console.log(process.env.GITHUB_REPOSITORY);
-    console.log(issueNumber);
+    // // 获取 issue 的信息
+    // console.log("尝试获取issue的详细信息");
+    // console.log(process.env.GITHUB_REPOSITORY_OWNER);
+    // console.log(process.env.GITHUB_REPOSITORY);
+    // console.log(issueNumber);
     const issue = await octokit.rest.issues.get({
       owner: process.env.GITHUB_REPOSITORY_OWNER,
       repo: "asdf",
@@ -36,11 +40,11 @@ async function run() {
     const projectsToAssociate = [];
 
     const teams = await octokit.rest.teams.list({
-        org: "lcxznpy-test",  // 替换为你的组织名
+        org: organizationLogin,  // 替换为你的组织名
       });
     for(const team_data of teams.data){
       const team_member = await octokit.rest.teams.listMembersInOrg({
-            org: "lcxznpy-test",
+            org: organizationLogin,
             team_slug: team_data.slug,
           });
       console.log("team_member",team_member);
@@ -53,18 +57,6 @@ async function run() {
         }
       }
     }
-    // for (const assignee of assignees) {
-    //   const teams = await octokit.rest.teams.list({
-    //     org: "lcxznpy-test",  // 替换为你的组织名
-    //   });
-    //   console.log("成功获得team信息",teams);
-    //   const team = teams.data.find((t) => t.members.some((m) => m.login === assignee.login));
-      
-    //   if (team && projectMapping[team.slug]) {
-        // projectsToAssociate.push(projectMapping[team.slug]);
-        // console.log("成功push一个信息");
-    //   }
-    // }
 
     if (projectsToAssociate.length === 0) {
       console.log("没有组织，使用默认组织");
@@ -74,21 +66,41 @@ async function run() {
     console.log(result)
 
     // const listorg = await octokit.rest.projects.listForOrg({
-    //         org: "lcxznpy-test",
+    //         org: organizationLogin,
     //       });
     // console.log(listorg)
     for (const projectId of result) {
-    const qaq = await fetch('https://api.github.com/graphql', {
-        method: 'POST',
-        headers: {
-          'Authorization': 'Bearer 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',
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: '{"query":"query{organization(login: \\"lcxznpy-test\\") {projectV2(number: projectId ){id}}}"}'
-      });
-      console.log(qaq)
-      console.log(qaq.data.organization.projectV2.id)
-      console.log("Issue ${issueNumber} 关联到项目 ${projectId}");
+    const query = `
+        query {
+          organization(login: "${organizationLogin}") {
+            projectV2(number: ${projectId}) {
+              id
+            }
+          }
+        }
+      `;
+      const headers = {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      };
+      const options = {
+          method: 'POST',
+          headers: headers,
+          body: JSON.stringify({ query }),
+        };
+      let pid;
+      fetch(githubApiEndpoint, options)
+        .then(response => response.json())
+        .then(data => {
+          // 检查是否存在错误
+          if (data.errors) {
+            throw new Error(data.errors[0].message);
+          }
+      
+          // 提取项目 ID
+          pid = data.data.organization.projectV2.id;
+          console.log('Project ID:', pid);
+        })
     }
   } catch (error) {
     // core.setFailed(error.message);
