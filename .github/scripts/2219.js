@@ -83,7 +83,7 @@ async function run() {
       `;
       console.log(JSON.stringify({ query }));
       const headers = {
-        'Authorization': 'Bearer ${process.env.GITHUB_TOKEN}',
+        'Authorization': 'Bearer ${token}',
         'Content-Type': 'application/json',
       };
       const options = {
