@@ -75,8 +75,8 @@ async function run() {
     console.log(result)
 
     const listorg = await octokit.rest.projects.listForOrg({
-      org,
-    });
+            org: "lcxznpy-test",
+          });
     console.log(listorg)
     // for (const projectId of result) {
     //   const project = await octokit.rest.projects.get({
