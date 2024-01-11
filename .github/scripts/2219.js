@@ -43,7 +43,7 @@ async function run() {
             org: "lcxznpy-test",
             team_slug: team_data.slug,
           });
-      console.log("team_member",team_member);
+      // console.log("team_member",team_member);
       for(const assignee of assignees){
         if(team_member.data.find((m) => m.login === assignee.login)){
           if(projectMapping[team_data.slug]){
@@ -74,6 +74,10 @@ async function run() {
     const result = Array.from(new Set(projectsToAssociate))
     console.log(result)
     for (const projectId of result) {
+      const project = await octokit.rest.projects.get({
+        project_id: projectId,
+      });
+      console.log(project);
       // 将 issue 添加到项目
       console.log("开始将issue关联到项目");
       await octokit.rest.projects.createCard({
