@@ -25,6 +25,7 @@ jobs:
           npm install @octokit/action
           npm install node-fetch
           ls -l ./node_modules
+          ls -l
       - run: node .github/scripts/2219.js
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_ACTION }}
