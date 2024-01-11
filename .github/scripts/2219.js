@@ -91,9 +91,9 @@ async function run() {
           body: JSON.stringify({ query }),
         };
       let pid;
-      const respnse = await fetch(githubApiEndpoint, options)
-                .then(response => response.json())
-                .then(pid = response.data.organization.projectV2.id)
+      const resp = await fetch(githubApiEndpoint, options)
+                .then(resp => resp.json())
+                .then(pid = resp.data.organization.projectV2.id)
                 .then(console.log('Project ID:', pid))
         
     }
