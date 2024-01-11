@@ -91,10 +91,10 @@ async function run() {
           body: JSON.stringify({ query }),
         };
       let pid;
-      fetch(githubApiEndpoint, options)
-        .then(response => response.json())
-        .then(pid = response.data.organization.projectV2.id)
-        .then(console.log('Project ID:', pid))
+      const respnse = await fetch(githubApiEndpoint, options)
+                .then(response => response.json())
+                .then(pid = response.data.organization.projectV2.id)
+                .then(console.log('Project ID:', pid))
         
     }
   } catch (error) {
