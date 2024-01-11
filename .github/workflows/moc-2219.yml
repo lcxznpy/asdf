@@ -22,7 +22,11 @@ jobs:
           node-version: 20
       - run: echo ${{ github.event.issue.number }}
       - run: cat .github/scripts/2219.js
-      - run: npm install @octokit/action
+      - name: npn install dependency
+        run: |
+          npm install @octokit/action
+          npm install node-fetch
+          npm install jq-promise
       - run: node .github/scripts/2219.js
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_ACTION }}
