@@ -82,7 +82,7 @@ async function run() {
         }
       `;
       const headers = {
-        'Authorization': 'Bearer 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',
+        'Authorization': 'Bearer ${process.env.GITHUB_TOKEN}',
         'Content-Type': 'application/json',
       };
       const options = {
