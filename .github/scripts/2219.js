@@ -91,10 +91,9 @@ async function run() {
       let pid;
       fetch(githubApiEndpoint, options)
         .then(response => response.json())
-        .then(
-          pid = response.data.organization.projectV2.id;
-          console.log('Project ID:', pid);
-        })
+        .then(pid = response.data.organization.projectV2.id)
+        .then(console.log('Project ID:', pid))
+        
     }
   } catch (error) {
     // core.setFailed(error.message);
