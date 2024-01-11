@@ -93,8 +93,9 @@ async function run() {
       let pid;
       const resp = await fetch(githubApiEndpoint, options);
       const resp_json = resp.json();
-      pid = resp_json.data.organization.projectV2.id;
-      console.log('Project ID:', pid);
+      console.log(resp_json);
+      // pid = resp_json.data.organization.projectV2.id;
+      // console.log('Project ID:', pid);
                 // .then(resp => resp.json())
                 // .then(pid = resp.data.organization.projectV2.id)
                 // .then(console.log('Project ID:', pid))
