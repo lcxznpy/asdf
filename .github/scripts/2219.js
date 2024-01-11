@@ -1,5 +1,5 @@
 const { Octokit } = require("@octokit/action");
-const { fetch } = require("node-fetch");
+import fetch from 'node-fetch';
 // const core = require('@actions/core');
 
 // const octokit = new Octokit();
@@ -91,14 +91,8 @@ async function run() {
       let pid;
       fetch(githubApiEndpoint, options)
         .then(response => response.json())
-        .then(data => {
-          // 检查是否存在错误
-          if (data.errors) {
-            throw new Error(data.errors[0].message);
-          }
-      
-          // 提取项目 ID
-          pid = data.data.organization.projectV2.id;
+        .then(
+          pid = response.data.organization.projectV2.id;
           console.log('Project ID:', pid);
         })
     }
