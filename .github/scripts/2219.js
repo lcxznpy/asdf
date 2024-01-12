@@ -26,9 +26,9 @@ async function run() {
       repo: "asdf",
       issue_number: issueNumber,
     });
-    // console.log("成功获得issue信息",issue);
+    console.log("成功获得issue信息",issue);
     const assignees = issue.data.assignees;
-    // console.log("成功获得assignee信息",assignees);
+    console.log("成功获得assignee信息",assignees);
     if (assignees.length === 0) {
       console.log("Issue 没有 assignee，不进行项目关联");
       return;
