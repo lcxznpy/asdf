@@ -11,6 +11,7 @@ const octokit = new Octokit({
 const githubApiEndpoint = "https://api.github.com/graphql";
 const organizationLogin = "lcxznpy-test";
 const token = process.env.GITHUB_TOKEN;
+const art = "Bearer "+token;
 async function run() {
   try {
     console.log("开始啦");
@@ -28,6 +29,8 @@ async function run() {
     });
     console.log("成功获得issue信息",issue);
     const assignees = issue.data.assignees;
+    const issue_title = issue.data.title;
+    const issue_body = issue.data.body;
     console.log("成功获得assignee信息",assignees);
     if (assignees.length === 0) {
       console.log("Issue 没有 assignee，不进行项目关联");
@@ -71,8 +74,12 @@ async function run() {
     //         org: organizationLogin,
     //       });
     // console.log(listorg)
+    const headers = {
+        'Authorization': art,
+        'Content-Type': 'application/json',
+      };
     for (const projectId of result) {
-    const query = `
+    var query = `
         query {
           organization(login: "${organizationLogin}") {
             projectV2(number: ${projectId}) {
@@ -81,28 +88,39 @@ async function run() {
           }
         }
       `;
-      console.log(JSON.stringify({ query }));
-      const headers = {
-        'Authorization': 'Bearer ${token}',
-        'Content-Type': 'application/json',
-      };
-      const options = {
+      var options = {
           method: 'POST',
           headers: headers,
           body: JSON.stringify({ query }),
         };
       let pid;
       const resp = await fetch(githubApiEndpoint, options);
-      console.log(resp);
-      const resp_json = resp.json();
-      console.log(resp_json);
-      console.log(organizationLogin);
-      // pid = resp_json.data.organization.projectV2.id;
-      // console.log('Project ID:', pid);
-                // .then(resp => resp.json())
-                // .then(pid = resp.data.organization.projectV2.id)
-                // .then(console.log('Project ID:', pid))
-        
+      const resp_json = await resp.json();
+      pid = resp_json.data.organization.projectV2.id;
+      console.log('Project ID:', pid);
+      var query=`
+          mutation{
+            addProjectV2DraftIssue(input:{projectId: \"${pid}\" title: \"1\" body: \"1\"}){
+                projectItem {
+                   id   
+                  }
+                }
+          }
+        `;
+      var options = {
+          method: 'POST',
+          headers: headers,
+          body: JSON.stringify({ query }),
+        };
+      const resp_add = await fetch(githubApiEndpoint, options);
+        const resp_add_json = await resp_add.json();
+        //console.log(resp_add_json.errors.path);
+
+        //console.log(resp_add_json.errors.extensions);
+        //console.log(resp_add_json.errors.locations);
+        let add_ans = resp_add_json.data.addProjectV2DraftIssue.projectItem.id;
+        console.log(add_ans);
+
     }
   } catch (error) {
     // core.setFailed(error.message);
