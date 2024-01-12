@@ -29,8 +29,7 @@ async function run() {
     });
     console.log("成功获得issue信息",issue);
     const assignees = issue.data.assignees;
-    const issue_title = issue.data.title;
-    const issue_body = issue.data.body;
+    const issue_node_id = issue.data.node_id;
     console.log("成功获得assignee信息",assignees);
     if (assignees.length === 0) {
       console.log("Issue 没有 assignee，不进行项目关联");
@@ -100,8 +99,8 @@ async function run() {
       console.log('Project ID:', pid);
       var query=`
           mutation{
-            addProjectV2DraftIssue(input:{projectId: \"${pid}\" title: \"1\" body: \"1\"}){
-                projectItem {
+            addProjectV2ItemById(input:{projectId: \"${pid}\" contentId: \"${issue_node_id}\" }){
+                item  {
                    id   
                   }
                 }
@@ -118,7 +117,7 @@ async function run() {
 
         //console.log(resp_add_json.errors.extensions);
         //console.log(resp_add_json.errors.locations);
-        let add_ans = resp_add_json.data.addProjectV2DraftIssue.projectItem.id;
+        let add_ans = resp_add_json.data.addProjectV2ItemById.item.id;
         console.log(add_ans);
 
     }
