@@ -3,9 +3,15 @@ name: MOC-565
 on:
   workflow_dispatch:
     inputs:
-      matrixone-branch_or_commitID:
-          description: 'test'
-          default: '1'
+      start-time:
+          description: '开始时间'
+          default: '2020-01-01T00:00:00Z'
+          required: true
+          type: string
+      end-time:
+          description: '结束时间'
+          default: '2020-01-01T00:00:00Z'
+          required: true
           type: string
 jobs:
   Statistic-issue:
@@ -17,20 +23,46 @@ jobs:
         with:
           repository: 'lcxznpy/asdf'
           fetch-depth: 0
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      - name: npn install dependency
+      - name: Get Open issue numbers
         run: |
-          npm install @octokit/action
-          cat .github/scripts/565.js
-          # npm install node-fetch
-          # cat package.json
-          # ls -l
-          # node -e 'const fs = require("fs"); const pkgData = JSON.parse(fs.readFileSync("package.json", "utf8")); pkgData.main = ".github/scripts/565.js"; fs.writeFileSync("package.json", JSON.stringify(pkgData, null, 2));'
-          # # cat package.json
-          # npm i node-fetch@2.6.1
-      - run: node .github/scripts/565.js
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN_ACTION }}
+          so=$(curl -L \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer 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" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/lcxznpy/asdf/issues?state=open&since=${{ inputs.start-time}}" | jq length)
+          eo=$(curl -L \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer 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" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/lcxznpy/asdf/issues?state=open&since=${{ inputs.end-time}}" | jq length)
+          echo $(expr $so - $eo)
+      - name: Get Close issue numbers
+        run: |
+          sc=$(curl -L \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer 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" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/lcxznpy/asdf/issues?state=close&since=${{ inputs.start-time}}" | jq length)
+          ec=$(curl -L \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer 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" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/lcxznpy/asdf/issues?state=close&since=${{ inputs.end-time}}" | jq length)
+          echo $(expr $sc - $ec)
+      # - name: Set up Node.js
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     node-version: 20
+      # - name: npn install dependency
+      #   run: |
+      #     npm install @octokit/action
+      #     cat .github/scripts/565.js
+      #     # npm install node-fetch
+      #     # cat package.json
+      #     # ls -l
+      #     # node -e 'const fs = require("fs"); const pkgData = JSON.parse(fs.readFileSync("package.json", "utf8")); pkgData.main = ".github/scripts/565.js"; fs.writeFileSync("package.json", JSON.stringify(pkgData, null, 2));'
+      #     # # cat package.json
+      #     # npm i node-fetch@2.6.1
+      # - run: node .github/scripts/565.js
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.TOKEN_ACTION }}
