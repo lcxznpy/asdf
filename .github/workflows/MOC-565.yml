@@ -33,4 +33,3 @@ jobs:
       - run: node .github/scripts/565.js
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_ACTION }}
-          Issue_ID: ${{ github.event.issue.number }}
