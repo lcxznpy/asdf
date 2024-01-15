@@ -1,36 +1,25 @@
 const { Octokit } = require("@octokit/action");
-// import Octokit from "@octokit/action";
 const fetch = require("node-fetch");
-// import fetch from "node-fetch";
-// const core = require('@actions/core');
 
-// const octokit = new Octokit();
 const octokit = new Octokit({
   auth: process.env.GITHUB_TOKEN,
 });
+
 const githubApiEndpoint = "https://api.github.com/graphql";
 const organizationLogin = "lcxznpy-test";
 const token = process.env.GITHUB_TOKEN;
 const art = "Bearer "+token;
 async function run() {
   try {
-    console.log("开始啦");
     const issueNumber = process.env.Issue_ID;
 
-    // // 获取 issue 的信息
-    // console.log("尝试获取issue的详细信息");
-    // console.log(process.env.GITHUB_REPOSITORY_OWNER);
-    // console.log(process.env.GITHUB_REPOSITORY);
-    // console.log(issueNumber);
     const issue = await octokit.rest.issues.get({
       owner: process.env.GITHUB_REPOSITORY_OWNER,
       repo: "asdf",
       issue_number: issueNumber,
     });
-    console.log("成功获得issue信息",issue);
     const assignees = issue.data.assignees;
     const issue_node_id = issue.data.node_id;
-    console.log("成功获得assignee信息",assignees);
     if (assignees.length === 0) {
       console.log("Issue 没有 assignee，不进行项目关联");
       return;
@@ -113,10 +102,6 @@ async function run() {
         };
       const resp_add = await fetch(githubApiEndpoint, options);
         const resp_add_json = await resp_add.json();
-        //console.log(resp_add_json.errors.path);
-
-        //console.log(resp_add_json.errors.extensions);
-        //console.log(resp_add_json.errors.locations);
         let add_ans = resp_add_json.data.addProjectV2ItemById.item.id;
         console.log(add_ans);
 
