@@ -5,7 +5,8 @@ const octokit = new Octokit({
 });
 
 async function getIssueStats() {
-  const { data: issues } = await octokit.issues.listForRepo({
+  try{
+    const { data: issues } = await octokit.issues.listForRepo({
     owner: 'matrixorigin',
     repo: 'matrixone',
     state: 'all',
@@ -19,6 +20,9 @@ async function getIssueStats() {
 
   // console.log(`Number of issues added: ${addedIssues.length}`);
   // console.log(`Number of issues closed: ${closedIssues.length}`);
+  } catch(error){
+    console.log(error.message);
+  }
 }
 
 getIssueStats();
