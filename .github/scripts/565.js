@@ -11,7 +11,7 @@ async function getIssueStats() {
     repo: 'matrixone',
     state: 'all',
     per_page: 10,
-    page: 1,
+    page: 0,
   });
   console.log(issue);
   // // Add your logic to calculate issue stats based on time period and tags
