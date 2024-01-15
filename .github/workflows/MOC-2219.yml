@@ -13,9 +13,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          repository: 'lcxznpy/asdf'
-          fetch-depth: 0
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -24,10 +21,7 @@ jobs:
         run: |
           npm install @octokit/action
           npm install node-fetch
-          cat package.json
-          ls -l
-          # node -e 'const fs = require("fs"); const pkgData = JSON.parse(fs.readFileSync("package.json", "utf8")); pkgData.main = ".github/scripts/2219.js"; fs.writeFileSync("package.json", JSON.stringify(pkgData, null, 2));'
-          # cat package.json
+          # node-fetch downgrade
           npm i node-fetch@2.6.1
       - run: node .github/scripts/2219.js
         env:
