@@ -7,8 +7,8 @@ const octokit = new Octokit({
 async function getIssueStats() {
   try{
     const { data: issues } = await octokit.issues.listForRepo({
-    owner: 'matrixorigin',
-    repo: 'matrixone',
+    owner: process.env.GITHUB_REPOSITORY_OWNER,,
+    repo: "asdf",
     state: 'all',
     per_page: 10,
     page: 0,
