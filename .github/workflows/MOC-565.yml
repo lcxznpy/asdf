@@ -1,0 +1,36 @@
+name: MOC-565
+
+on:
+  workflow_dispatch:
+    inputs:
+      matrixone-branch_or_commitID:
+          description: 'test'
+          default: '1'
+          type: string
+jobs:
+  Statistic-issue:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          repository: 'matrixorigin/matrixone'
+          fetch-depth: 0
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: npn install dependency
+        run: |
+          npm install @octokit/action
+          # npm install node-fetch
+          # cat package.json
+          # ls -l
+          # # node -e 'const fs = require("fs"); const pkgData = JSON.parse(fs.readFileSync("package.json", "utf8")); pkgData.main = ".github/scripts/2219.js"; fs.writeFileSync("package.json", JSON.stringify(pkgData, null, 2));'
+          # # cat package.json
+          # npm i node-fetch@2.6.1
+      - run: node .github/scripts/565.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN_ACTION }}
+          Issue_ID: ${{ github.event.issue.number }}
