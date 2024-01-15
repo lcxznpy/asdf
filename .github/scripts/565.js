@@ -9,9 +9,6 @@ async function getIssueStats() {
     const { data: issues } = await octokit.issues.listForRepo({
     owner: process.env.GITHUB_REPOSITORY_OWNER,
     repo: "asdf",
-    state: 'all',
-    per_page: 10,
-    page: 0,
   });
   console.log(issue);
   // // Add your logic to calculate issue stats based on time period and tags
