@@ -53,12 +53,11 @@ jobs:
           echo $(expr $sc - $ec)
       - name: Get tag open issue numbers
         run: |
-          tag=$(curl -L \
+          tag_time=$(curl -L \
               -H "Accept: application/vnd.github+json" \
               -H "Authorization: Bearer ${{ secrets.TOKEN_ACTION}}" \
               -H "X-GitHub-Api-Version: 2022-11-28" \
-              "https://api.github.com/repos/lcxznpy/asdf/commits/${{ inputs.tag}}" | jq '.commit.author.date')
-          tag_time=$(echo $tag | sed 's/"//g' )
+              "https://api.github.com/repos/lcxznpy/asdf/commits/${{ inputs.tag}}" | jq '.commit.author.date' | sed 's/"//g' )
           echo ${{ inputs.end-time}}
           u1=$(date -d "$tag_time" +"%s")
           u2=$(date -d "${{ inputs.end-time}}" +"%s")
@@ -66,9 +65,9 @@ jobs:
           echo $u2
           end_time=${{ inputs.end-time}}
           // 如果tag的创建时间比end_time晚,就用now来算
-          if [ $u1 -gt $u2 ]; then
+          if [ "$u1" -gt "$u2" ]; then
             end_time=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-          echo "tag later than end_time"
+            echo "tag later than end_time"
           fi
 
           sc=$(curl -L \
