@@ -41,45 +41,45 @@ jobs:
       - name: Get Close issue numbers
         run: |
           sc=$(curl -L \
-            -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${{ secrets.TOKEN_ACTION}}" \
-            -H "X-GitHub-Api-Version: 2022-11-28" \
-            "https://api.github.com/repos/lcxznpy/asdf/issues?state=closed&since=${{ inputs.start-time}}" | jq length)
+              -H "Accept: application/vnd.github+json" \
+              -H "Authorization: Bearer ${{ secrets.TOKEN_ACTION}}" \
+              -H "X-GitHub-Api-Version: 2022-11-28" \
+              "https://api.github.com/repos/lcxznpy/asdf/issues?state=closed&since=${{ inputs.start-time}}" | jq length)
           ec=$(curl -L \
-            -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${{ secrets.TOKEN_ACTION}}" \
-            -H "X-GitHub-Api-Version: 2022-11-28" \
-            "https://api.github.com/repos/lcxznpy/asdf/issues?state=closed&since=${{ inputs.end-time}}" | jq length)
+              -H "Accept: application/vnd.github+json" \
+              -H "Authorization: Bearer ${{ secrets.TOKEN_ACTION}}" \
+              -H "X-GitHub-Api-Version: 2022-11-28" \
+              "https://api.github.com/repos/lcxznpy/asdf/issues?state=closed&since=${{ inputs.end-time}}" | jq length)
           echo $(expr $sc - $ec)
       - name: Get tag open issue numbers
         run: |
           tag_time=$(curl -L \
-            -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer $token" \
-            -H "X-GitHub-Api-Version: 2022-11-28" \
-            "https://api.github.com/repos/$repo/commits/${{ inputs.tag}}" | jq '.commit.author.date')
+              -H "Accept: application/vnd.github+json" \
+              -H "Authorization: Bearer $token" \
+              -H "X-GitHub-Api-Version: 2022-11-28" \
+              "https://api.github.com/repos/$repo/commits/${{ inputs.tag}}" | jq '.commit.author.date')
           unix_timestamp1=$(date -d "$tag_time" +"%s")
           unix_timestamp2=$(date -d "${{ inputs.end-time}}" +"%s")
           echo $unix_timestamp1
           echo $unix_timestamp2
 
-          // 如果tag的创建时间比end_time晚,就用now来算
-          if [ $unix_timestamp1 -gt $unix_timestamp2 ]; then
-            sc=$(curl -L \
-            -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${{ secrets.TOKEN_ACTION}}" \
-            -H "X-GitHub-Api-Version: 2022-11-28" \
-            "https://api.github.com/repos/lcxznpy/asdf/issues?state=open&since=$tag_time" | jq length)
-            now_time=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-          ec=$(curl -L \
-            -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${{ secrets.TOKEN_ACTION}}" \
-            -H "X-GitHub-Api-Version: 2022-11-28" \
-            "https://api.github.com/repos/lcxznpy/asdf/issues?state=open&since=$now_time" | jq length)
-          echo "tag later than end_time"
-          echo "tag closed issue number is $(expr $sc - $ec )"
-          exit;
-          fi
+          # // 如果tag的创建时间比end_time晚,就用now来算
+          # if [ $unix_timestamp1 -gt $unix_timestamp2 ]; then
+          #   sc=$(curl -L \
+          #   -H "Accept: application/vnd.github+json" \
+          #   -H "Authorization: Bearer ${{ secrets.TOKEN_ACTION}}" \
+          #   -H "X-GitHub-Api-Version: 2022-11-28" \
+          #   "https://api.github.com/repos/lcxznpy/asdf/issues?state=open&since=$tag_time" | jq length)
+          #   now_time=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          # ec=$(curl -L \
+          #   -H "Accept: application/vnd.github+json" \
+          #   -H "Authorization: Bearer ${{ secrets.TOKEN_ACTION}}" \
+          #   -H "X-GitHub-Api-Version: 2022-11-28" \
+          #   "https://api.github.com/repos/lcxznpy/asdf/issues?state=open&since=$now_time" | jq length)
+          # echo "tag later than end_time"
+          # echo "tag closed issue number is $(expr $sc - $ec )"
+          # exit;
+          # fi
 
           // tag创建时间比end_time早，用end_time来算
           sc=$(curl -L \
