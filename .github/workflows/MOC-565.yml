@@ -5,12 +5,12 @@ on:
     inputs:
       start-time:
           description: 'start-time'
-          default: '2020-01-01T00:00:00Z'
+          default: '2024-01-09T00:00:00Z'
           required: true
           type: string
       end-time:
           description: 'end-time'
-          default: '2020-01-01T00:00:00Z'
+          default: '2024-01-10T00:00:00Z'
           required: true
           type: string
       tag:
