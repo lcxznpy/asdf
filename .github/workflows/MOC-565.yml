@@ -60,7 +60,7 @@ jobs:
               "https://api.github.com/repos/lcxznpy/asdf/commits/${{ inputs.tag}}" | jq '.commit.author.date')
           echo $tag_time
           echo ${{ inputs.end-time}}
-          unix_timestamp1=$(date -d "$tag_time" +"%s")
+          unix_timestamp1=$(date -d $tag_time +"%s")
           unix_timestamp2=$(date -d "${{ inputs.end-time}}" +"%s")
           echo $unix_timestamp1
           echo $unix_timestamp2
