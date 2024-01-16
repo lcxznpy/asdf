@@ -63,7 +63,7 @@ jobs:
           u2=$(date -d "${{ inputs.end-time}}" +"%s")
           echo $u1
           echo $u2
-          end_time=${{ inputs.end-time}}
+          end_time=${{ inputs.end-time }}
           // 如果tag的创建时间比end_time晚,就用now来算
           if [ "$u1" -gt "$u2" ]; then
             end_time=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
