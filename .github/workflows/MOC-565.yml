@@ -65,12 +65,12 @@ jobs:
           echo $u1
           echo $u2
           echo ${{ inputs.end-time }}
-          endd_time=${{ inputs.end-time }}
-          // 如果tag的创建时间比end_time晚,就用now来算
-          # if [ "$u1" -gt "$u2" ]; then
-          #   end_time=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-          #   echo "tag later than end_time"
-          # fi
+          end_time=${{ inputs.end-time }}
+          # 如果tag的创建时间比end_time晚,就用now来算
+          if [ "$u1" -gt "$u2" ]; then
+            end_time=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+            echo "tag later than end_time"
+          fi
 
           sc=$(curl -L \
             -H "Accept: application/vnd.github+json" \
