@@ -15,7 +15,7 @@ on:
           type: string
       tag:
           description: 'tag_name or tag_sha'
-          default: '2020-01-01T00:00:00Z'
+          default: 'v1'
           required: true
           type: string
 jobs:
