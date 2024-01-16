@@ -60,6 +60,9 @@ jobs:
             "https://api.github.com/repos/$repo/commits/${{ inputs.tag}}" | jq '.commit.author.date')
           unix_timestamp1=$(date -d "$tag_time" +"%s")
           unix_timestamp2=$(date -d "${{ inputs.end-time}}" +"%s")
+          echo $unix_timestamp1
+          echo $unix_timestamp2
+
           // 如果tag的创建时间比end_time晚,就用now来算
           if [ $unix_timestamp1 -gt $unix_timestamp2 ]; then
             sc=$(curl -L \
