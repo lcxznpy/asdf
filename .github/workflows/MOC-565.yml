@@ -58,13 +58,8 @@ jobs:
               -H "Authorization: Bearer ${{ secrets.TOKEN_ACTION}}" \
               -H "X-GitHub-Api-Version: 2022-11-28" \
               "https://api.github.com/repos/lcxznpy/asdf/commits/${{ inputs.tag}}" | jq '.commit.author.date' | sed 's/"//g' )
-          echo $tag_time
-          echo ${{ inputs.end-time}}
           u1=$(date -d "$tag_time" +"%s")
           u2=$(date -d "${{ inputs.end-time}}" +"%s")
-          echo $u1
-          echo $u2
-          echo ${{ inputs.end-time }}
           end_time=${{ inputs.end-time }}
           # 如果tag的创建时间比end_time晚,就用now来算
           if [ "$u1" -gt "$u2" ]; then
@@ -77,20 +72,27 @@ jobs:
             -H "Authorization: Bearer ${{ secrets.TOKEN_ACTION}}" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
             "https://api.github.com/repos/lcxznpy/asdf/issues?state=open&since=$tag_time" | jq length)
-          # now_time=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
           ec=$(curl -L \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer ${{ secrets.TOKEN_ACTION}}" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
             "https://api.github.com/repos/lcxznpy/asdf/issues?state=open&since=$end_time" | jq length)
           echo "tag open issue number is $(expr $sc - $ec )"
-      - name: Get tag closed issue numbers
+      - name: Get tag Closed issue numbers
         run: |
           tag_time=$(curl -L \
-            -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${{ secrets.TOKEN_ACTION}}" \
-            -H "X-GitHub-Api-Version: 2022-11-28" \
-            "https://api.github.com/repos/lcxznpy/asdf/commits/${{ inputs.tag}}" | jq '.commit.author.date')
+              -H "Accept: application/vnd.github+json" \
+              -H "Authorization: Bearer ${{ secrets.TOKEN_ACTION}}" \
+              -H "X-GitHub-Api-Version: 2022-11-28" \
+              "https://api.github.com/repos/lcxznpy/asdf/commits/${{ inputs.tag}}" | jq '.commit.author.date' | sed 's/"//g' )
+          u1=$(date -d "$tag_time" +"%s")
+          u2=$(date -d "${{ inputs.end-time}}" +"%s")
+          end_time=${{ inputs.end-time }}
+          # 如果tag的创建时间比end_time晚,就用now来算
+          if [ "$u1" -gt "$u2" ]; then
+            end_time=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+            echo "tag later than end_time"
+          fi
           sc=$(curl -L \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer ${{ secrets.TOKEN_ACTION}}" \
