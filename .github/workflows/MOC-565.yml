@@ -63,26 +63,13 @@ jobs:
           u1=$(date -d "$tag_time" +"%s")
           u2=$(date -d "${{ inputs.end-time}}" +"%s")
 
-
+          end_time=${{ inputs.end-time}}
           // 如果tag的创建时间比end_time晚,就用now来算
           if [ $u1 -gt $u2 ]; then
-            sc=$(curl -L \
-            -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${{ secrets.TOKEN_ACTION}}" \
-            -H "X-GitHub-Api-Version: 2022-11-28" \
-            "https://api.github.com/repos/lcxznpy/asdf/issues?state=open&since=$tag_time" | jq length)
-            now_time=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-          ec=$(curl -L \
-            -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${{ secrets.TOKEN_ACTION}}" \
-            -H "X-GitHub-Api-Version: 2022-11-28" \
-            "https://api.github.com/repos/lcxznpy/asdf/issues?state=open&since=$now_time" | jq length)
+            end_time=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
           echo "tag later than end_time"
-          echo "tag open issue number is $(expr $sc - $ec )"
-          exit
           fi
 
-          // tag创建时间比end_time早，用end_time来算
           sc=$(curl -L \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer ${{ secrets.TOKEN_ACTION}}" \
@@ -93,9 +80,8 @@ jobs:
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer ${{ secrets.TOKEN_ACTION}}" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
-            "https://api.github.com/repos/lcxznpy/asdf/issues?state=open&since=${{ inputs.end-time}}" | jq length)
-          echo "tag earlier than end_time"
-          echo "tag closed issue number is $(expr $sc - $ec )"
+            "https://api.github.com/repos/lcxznpy/asdf/issues?state=open&since=$end_time" | jq length)
+          echo "tag open issue number is $(expr $sc - $ec )"
       - name: Get tag closed issue numbers
         run: |
           tag_time=$(curl -L \
