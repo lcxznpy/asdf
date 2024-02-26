@@ -3,7 +3,8 @@
 name: name——youhua
 
 on:
-  workflow_dispatch:
+  pull_request:
+    types: [opened, reopened]
 
 jobs:
   qaq:
@@ -19,7 +20,7 @@ jobs:
           mkdir test1
       - uses: actions/upload-artifact@v4
         with:
-          name: create1txt-pr_number=${{ github.event.pull_request.number}}-run_id=${{ github.run_id }}-job_id=${{ github.job}}
+          name: create1txt-pr_number=${{ github.event.pull_request.number}}-run_id=${{ github.run_id }}-job_name=${{ github.job}}
           path: ${{ github.workspace }}/1.txt
       - uses: actions/download-artifact@v4
         with:
