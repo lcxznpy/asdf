@@ -9,6 +9,7 @@ on:
 jobs:
   qaq:
     runs-on: ubuntu-latest
+    name: qwerwqerwqer  wqerqwer qwerwqer
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
