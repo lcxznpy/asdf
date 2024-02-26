@@ -21,11 +21,11 @@ jobs:
           mkdir test1
       - uses: actions/upload-artifact@v4
         with:
-          name: create1txt- pr_number=${{ github.event.pull_request.number}}-run_id=${{ github.run_id }}-job_name=${{ github.jobs[github.job].name }}
+          name: create1txt- pr_number=${{ github.event.pull_request.number}}-run_id=${{ github.run_id }}-job_name=${{ jobs.${{ github.job}}.name }}
           path: ${{ github.workspace }}/1.txt
       - uses: actions/download-artifact@v4
         with:
-          name: create1txt- pr_number=${{ github.event.pull_request.number}}-run_id=${{ github.run_id }}-job_name=${{ github.jobs[github.job].name }}
+          name: create1txt- pr_number=${{ github.event.pull_request.number}}-run_id=${{ github.run_id }}-job_name=${{ jobs.${{ github.job}}.name }}
           path: ${{ github.workspace }}/test1/
       - name: Display structure of downloaded files
         run: |
