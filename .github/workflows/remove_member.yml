@@ -14,11 +14,11 @@ jobs:
       - name: Remove user from GitHub Enterprise
         env:
           USERNAME: ${{ github.event.inputs.username }}
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }} # 确保你已经创建了这个secret
+          GITHUB_TOKEN: ${{ secrets.TOKEN_ACTION }} # 确保你已经创建了这个secret
         run: |
           curl \
             -X DELETE \
-            -H "Authorization: token ${GITHUB_TOKEN}" \
+            -H "Authorization: token ${{ secrets.TOKEN_ACTION }}" \
             -H "Accept: application/vnd.github.v3+json" \
-            "https://api.github.com/orgs/YOUR_ORG/members/${USERNAME}"
+            "https://api.github.com/orgs/lcxznpy-test/members/${{ github.event.inputs.username }}"
           echo "User ${USERNAME} has been removed from the organization."
