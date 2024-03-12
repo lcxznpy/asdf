@@ -1,0 +1,24 @@
+name: Remove Member
+
+on:
+  workflow_dispatch:
+    inputs:
+      username:
+        description: 'GitHub username to be removed'
+        required: true
+
+jobs:
+  remove-user:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Remove user from GitHub Enterprise
+        env:
+          USERNAME: ${{ github.event.inputs.username }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }} # 确保你已经创建了这个secret
+        run: |
+          curl \
+            -X DELETE \
+            -H "Authorization: token ${GITHUB_TOKEN}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "https://api.github.com/orgs/YOUR_ORG/members/${USERNAME}"
+          echo "User ${USERNAME} has been removed from the organization."
