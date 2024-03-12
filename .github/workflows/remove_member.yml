@@ -8,7 +8,7 @@ on:
         required: true
 
 jobs:
-  remove-user:
+  remove-github-user:
     runs-on: ubuntu-latest
     steps:
       - name: Remove user from GitHub Enterprise
@@ -22,3 +22,15 @@ jobs:
             -H "Accept: application/vnd.github.v3+json" \
             "https://api.github.com/orgs/lcxznpy-test/members/${{ github.event.inputs.username }}"
           echo "User ${USERNAME} has been removed from the organization."
+  remove-user:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Remove user from WeWork
+        env:
+          USERID: ${{ github.event.inputs.userid }}
+          CORPID: ${{ secrets.CORPID }}
+          CORPSECRET: ${{ secrets.QY_SECRET }}
+        run: |
+          ACCESS_TOKEN=$(curl -s "https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=${CORPID}&corpsecret=${CORPSECRET}" | jq -r '.access_token')
+          RESPONSE=$(curl -s -X POST "https://qyapi.weixin.qq.com/cgi-bin/user/delete?access_token=${ACCESS_TOKEN}&userid=${USERID}")
+          echo "Response: $RESPONSE"
