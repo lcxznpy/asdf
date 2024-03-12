@@ -3,8 +3,11 @@ name: Remove Member
 on:
   workflow_dispatch:
     inputs:
-      username:
+      github-username:
         description: 'GitHub username to be removed'
+        required: true
+      wework-username:
+        description: 'WEWORK username to be removed'
         required: true
 
 jobs:
