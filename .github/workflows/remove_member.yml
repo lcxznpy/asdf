@@ -6,8 +6,8 @@ on:
       github-username:
         description: 'GitHub username to be removed'
         required: true
-      wework-username:
-        description: 'WEWORK username to be removed'
+      userid:
+        description: 'WEWORK userid to be removed'
         required: true
 
 jobs:
