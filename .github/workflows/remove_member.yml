@@ -25,7 +25,7 @@ jobs:
             -H "Accept: application/vnd.github.v3+json" \
             "https://api.github.com/orgs/lcxznpy-test/members/${{ github.event.inputs.username }}"
           echo "User ${USERNAME} has been removed from the organization."
-  remove-user:
+  remove-wework-user:
     runs-on: ubuntu-latest
     steps:
       - name: Remove user from WeWork
@@ -37,3 +37,12 @@ jobs:
           ACCESS_TOKEN=$(curl -s "https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=${CORPID}&corpsecret=${CORPSECRET}" | jq -r '.access_token')
           RESPONSE=$(curl -s -X POST "https://qyapi.weixin.qq.com/cgi-bin/user/delete?access_token=${ACCESS_TOKEN}&userid=${USERID}")
           echo "Response: $RESPONSE"
+  remove-slack-user:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Remove user from Slack
+        run: |
+          curl -X DELETE "https://api.slack.com/scim/v1/Users/${{ github.event.inputs.slack_user_id}}" \
+           -H "Accept: application/json" \
+           -H "Authorization: Bearer ${{ secrets.Slack_Token}}"
+          
