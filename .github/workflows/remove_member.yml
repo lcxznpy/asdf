@@ -25,7 +25,7 @@ jobs:
             -X DELETE \
             -H "Authorization: token ${{ secrets.TOKEN_ACTION }}" \
             -H "Accept: application/vnd.github.v3+json" \
-            "https://api.github.com/orgs/lcxznpy-test/members/${{ github.event.inputs.username }}"
+            "https://api.github.com/orgs/lcxznpy-test/members/${{ github.event.inputs.github-username }}"
           echo "User ${USERNAME} has been removed from the organization."
   # remove-MO-Cloud-user:
   #   runs-on: ubuntu-latest
@@ -47,7 +47,7 @@ jobs:
       - name: Remove user from WeWork
         run: |
           ACCESS_TOKEN=$(curl -s "https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=${{ secrets.CORPID }}&corpsecret=${{ secrets.QY_SECRET }}" | jq -r '.access_token')
-          RESPONSE=$(curl -s -X POST "https://qyapi.weixin.qq.com/cgi-bin/user/delete?access_token=${ACCESS_TOKEN}&userid=${{ github.event.inputs.userid }}")
+          RESPONSE=$(curl -s -X POST "https://qyapi.weixin.qq.com/cgi-bin/user/delete?access_token=${ACCESS_TOKEN}&userid=${{ github.event.inputs.wework-userid }}")
           echo "Response: $RESPONSE"
 
           
