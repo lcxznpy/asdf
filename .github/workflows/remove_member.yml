@@ -11,7 +11,7 @@ on:
         required: true
 
 jobs:
-  remove-github-user:
+  remove-MO-user:
     runs-on: ubuntu-latest
     steps:
       - name: Remove user from GitHub Enterprise
@@ -23,7 +23,21 @@ jobs:
             -X DELETE \
             -H "Authorization: token ${{ secrets.TOKEN_ACTION }}" \
             -H "Accept: application/vnd.github.v3+json" \
-            "https://api.github.com/orgs/lcxznpy-test/members/${{ github.event.inputs.username }}"
+            "https://api.github.com/orgs/matrixorigin/members/${{ github.event.inputs.username }}"
+          echo "User ${USERNAME} has been removed from the organization."
+  remove-MO-Cloud-user:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Remove user from GitHub Enterprise
+        env:
+          USERNAME: ${{ github.event.inputs.username }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN_ACTION }} # 确保你已经创建了这个secret
+        run: |
+          curl \
+            -X DELETE \
+            -H "Authorization: token ${{ secrets.TOKEN_ACTION }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "https://api.github.com/orgs/matrixone-cloud/members/${{ github.event.inputs.username }}"
           echo "User ${USERNAME} has been removed from the organization."
   remove-wework-user:
     runs-on: ubuntu-latest
