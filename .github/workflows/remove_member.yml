@@ -42,7 +42,7 @@ jobs:
   #           "https://api.github.com/orgs/matrixone-cloud/members/${{ github.event.inputs.username }}"
   #         echo "User ${USERNAME} has been removed from the organization."
   remove-wework-user:
-    runs-on: ubuntu-latest
+    runs-on: dhxdl666
     steps:
       - name: Remove user from WeWork
         run: |
