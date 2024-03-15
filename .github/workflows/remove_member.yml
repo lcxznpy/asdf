@@ -14,7 +14,7 @@ on:
 
 jobs:
   remove-MO-user:
-    runs-on: dhxdl666
+    runs-on: self-hosted
     steps:
       - name: Remove user from GitHub Enterprise
         env:
@@ -42,7 +42,7 @@ jobs:
   #           "https://api.github.com/orgs/matrixone-cloud/members/${{ github.event.inputs.username }}"
   #         echo "User ${USERNAME} has been removed from the organization."
   remove-wework-user:
-    runs-on: dhxdl666
+    runs-on: self-hosted
     steps:
       - name: Remove user from WeWork
         run: |
