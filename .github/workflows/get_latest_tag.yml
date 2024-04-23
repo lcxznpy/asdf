@@ -26,4 +26,4 @@ jobs:
 
       - name: Use the release tag
         run: |
-          echo "Using release tag $RELEASE_TAG"
+          echo "Using release tag ${{ steps.get-latest-release.RELEASE_TAG }}"
