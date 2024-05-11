@@ -33,7 +33,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
       with:
-        ref: "v1"
+        ref: ${{ inputs.tag_name}}
     - name: Upload Release normal linux x86_64
       uses: actions/upload-release-asset@v1.0.1
       env:
