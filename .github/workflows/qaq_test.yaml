@@ -5,8 +5,5 @@ on:
 
 jobs:
   auto-assign-to-project:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: lcxznpy/asdf/.github/workflow/qaq/qaq.yaml@main
+    name: echo
+    uses: lcxznpy/asdf/.github/workflows/qaq/qaq.yaml@main
