@@ -26,5 +26,5 @@ jobs:
         #   "https://api.github.com/repos/${{ github.repository }}/releases/tags/${{ inputs.tag_name}}"  | jq -r '.upload_url'))
         # echo $Upload_url
         # echo "upload_url=$Upload_url" >> "$GITHUB_OUTPUT"
-    - name: Output Upload URL
-      run: echo "Release upload URL is ${{ steps.get_upload_url.outputs.upload_url }}"
+    # - name: Output Upload URL
+    #   run: echo "Release upload URL is ${{ steps.get_upload_url.outputs.upload_url }}"
