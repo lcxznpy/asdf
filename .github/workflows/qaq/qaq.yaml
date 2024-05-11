@@ -1,0 +1,13 @@
+name: Auto-assign-to-project
+
+on:
+  workflow_call:
+
+jobs:
+  auto-assign-to-project:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        run: |
+          echo "qaqaqaqaq"

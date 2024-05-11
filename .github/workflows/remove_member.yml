@@ -1,0 +1,53 @@
+
+
+name: Remove Member
+
+on:
+  workflow_dispatch:
+    inputs:
+      github-username:
+        description: 'GitHub username to be removed'
+        required: true
+      wework-userid:
+        description: 'WEWORK userid to be removed'
+        required: true
+
+jobs:
+  remove-MO-user:
+    runs-on: self-hosted
+    steps:
+      - name: Remove user from GitHub Enterprise
+        env:
+          USERNAME: ${{ github.event.inputs.username }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN_ACTION }} # 确保你已经创建了这个secret
+        run: |
+          curl \
+            -X DELETE \
+            -H "Authorization: token ${{ secrets.TOKEN_ACTION }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "https://api.github.com/orgs/lcxznpy-test/members/${{ github.event.inputs.github-username }}"
+          echo "User ${USERNAME} has been removed from the organization."
+  # remove-MO-Cloud-user:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Remove user from GitHub Enterprise
+  #       env:
+  #         USERNAME: ${{ github.event.inputs.username }}
+  #         GITHUB_TOKEN: ${{ secrets.TOKEN_ACTION }} # 确保你已经创建了这个secret
+  #       run: |
+  #         curl \
+  #           -X DELETE \
+  #           -H "Authorization: token ${{ secrets.TOKEN_ACTION }}" \
+  #           -H "Accept: application/vnd.github.v3+json" \
+  #           "https://api.github.com/orgs/matrixone-cloud/members/${{ github.event.inputs.username }}"
+  #         echo "User ${USERNAME} has been removed from the organization."
+  remove-wework-user:
+    runs-on: self-hosted
+    steps:
+      - name: Remove user from WeWork
+        run: |
+          ACCESS_TOKEN=$(curl -s "https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=${{ secrets.CORPID }}&corpsecret=${{ secrets.QY_SECRET }}" | jq -r '.access_token')
+          RESPONSE=$(curl -s -X POST "https://qyapi.weixin.qq.com/cgi-bin/user/delete?access_token=${ACCESS_TOKEN}&userid=${{ github.event.inputs.wework-userid }}")
+          echo "Response: $RESPONSE"
+
+          
