@@ -1,0 +1,34 @@
+# This is a basic workflow to help you get started with Actions
+
+name: name——youhua
+
+on:
+  pull_request:
+    types: [opened, reopened]
+
+jobs:
+  qaq:
+    runs-on: ubuntu-latest
+    name: qwerwqerwqer  wqerqwer qwerwqer
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: generate upload file
+        run: |
+          touch 1.txt
+          echo 111111111 >> 1.txt
+          cat 1.txt
+          mkdir test1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: create1txt- pr_number=${{ github.event.pull_request.number}}-run_id=${{ github.run_id }}-job_name=${{ jobs.${{ github.job}}.name }}
+          path: ${{ github.workspace }}/1.txt
+      - uses: actions/download-artifact@v4
+        with:
+          name: create1txt- pr_number=${{ github.event.pull_request.number}}-run_id=${{ github.run_id }}-job_name=${{ jobs.${{ github.job}}.name }}
+          path: ${{ github.workspace }}/test1/
+      - name: Display structure of downloaded files
+        run: |
+          cd ${{ github.workspace }}/test1/
+          ls -la
+          cat 1.txt
