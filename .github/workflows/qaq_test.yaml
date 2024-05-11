@@ -1,0 +1,12 @@
+name: qaq test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  auto-assign-to-project:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: lcxznpy/asdf/.github/workflow/qaq/qaq.yaml@main
