@@ -16,7 +16,7 @@ jobs:
       with:
         token: ${{ secrets.TOKEN_ACTION }}
         tag: ${{ inputs.tag_name }}
-        asset:  "*.txt"
+        assets:  "*.txt"
     - name: Get Upload URL
       id: get_upload_url
       run: |
