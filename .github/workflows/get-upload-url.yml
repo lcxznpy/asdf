@@ -11,6 +11,12 @@ jobs:
   get_upload_url:
     runs-on: ubuntu-latest
     steps:
+    - name: Delete old release assets
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ secrets.TOKEN_ACTION }}
+        tag: ${{ inputs.tag_name }}
+        asset:  "*.txt"
     - name: Get Upload URL
       id: get_upload_url
       run: |
@@ -23,3 +29,16 @@ jobs:
         echo "upload_url=$Upload_url" >> "$GITHUB_OUTPUT"
     - name: Output Upload URL
       run: echo "Release upload URL is ${{ steps.get_upload_url.outputs.upload_url }}"
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        ref: "v1"
+    - name: Upload Release normal linux x86_64
+      uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.TOKEN_ACTION }}
+      with:
+        upload_url: ${{ steps.get_upload_url.outputs.upload_url }}
+        asset_path: ./2.txt
+        asset_name: 2.txt
+        asset_content_type: text/plain
